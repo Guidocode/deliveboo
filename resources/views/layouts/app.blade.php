@@ -39,6 +39,7 @@
                         <li>
                             <a class="nav-link" href="{{ route('admin.dishes.create') }}">Add a Dish</a>
                         </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

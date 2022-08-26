@@ -6,6 +6,7 @@ use App\Dish;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\DishRequest;
 
 class DishController extends Controller
 {
@@ -38,7 +39,7 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DishRequest $request)
     {
         $data = $request->validate(
             [
@@ -95,9 +96,13 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DishRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $dish = Dish::find($id);
+        $dish->update($data);
+
+        return redirect()->route('admin.dishes.show', compact('dish'));
     }
 
     /**
@@ -106,8 +111,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        return redirect()->route('admin.dishes.index')->with('dish_cancellato',  $dish->name . 'è stato eliminato correttamente');
     }
 }

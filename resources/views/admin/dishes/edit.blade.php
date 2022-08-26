@@ -10,7 +10,7 @@
                 <div class="mb-3">
                     <label for="name" class="form-label">Dish Name</label>
 
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"  value='{{ old('name', $post->title) }}' >
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"  value='{{ old('name', $dish->name) }}' >
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
