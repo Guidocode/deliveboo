@@ -10,15 +10,25 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
+    
+    
+    public function types(){
+      return $this->belongsToMany('App\Type');
+    }
+
+    public function dishes(){
+        return $this->hasMany('App\Dish');
+      }
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -53,4 +63,5 @@ class User extends Authenticatable
 
         return $slug;
       }
+
 }
