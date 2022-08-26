@@ -39,6 +39,51 @@
                             </div>
                         </div>
 
+                        {{-- aggiunta --}}
+
+                        <div class="form-group row">
+                            <label for="vat-number" class="col-md-4 col-form-label text-md-right">{{ __('Vat-number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="vat-number" type="text" class="form-control @error('vat-number') is-invalid @enderror" name="vat-number" value="{{ old('vat-number') }}" >
+
+                                @error('vat-number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" >
+
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" >
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- fine aggiunta --}}
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -68,7 +113,9 @@
                                 </button>
                             </div>
                         </div>
+                        
                     </form>
+                    
                 </div>
             </div>
         </div>
