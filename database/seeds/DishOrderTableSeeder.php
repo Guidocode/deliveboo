@@ -15,11 +15,11 @@ class DishOrderTableSeeder extends Seeder
     {
         for($i=0; $i < 20; $i++){
             
-            $dish = Dish::inRandomOrder()->first();           
+            $dish = Dish::inRandomOrder()->first()->id;           
 
             $order = Order::inRandomOrder()->first();
 
-            $dish->dishes()->attach($order);
+            $order->dishes()->attach($dish);
            
         }
     }
