@@ -35,7 +35,8 @@
 
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish)}}"><< Torna indietro</a>
         </form>
     </div>
 </div>

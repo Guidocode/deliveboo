@@ -18,7 +18,7 @@ class DishController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $dishes = Dish::where('user_id',$user_id)->get();
+        $dishes = Dish::orderBy('id', 'desc')->where('user_id',$user_id)->get();
 
         return view('admin.dishes.index', compact('dishes'));
     }
@@ -55,9 +55,8 @@ class DishController extends Controller
         $id = Auth::id();
         $new_dish->user_id = $id;
         $new_dish->fill($data);
-
-
         $new_dish->save();
+
         return redirect()->route('admin.dishes.show', $new_dish);
 
 
@@ -69,9 +68,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Dish $dish)
     {
-        $dish = Dish::find($id);
+        // $dish = Dish::find($id);
 
         return view('admin.dishes.show', compact('dish'));
     }
@@ -82,9 +81,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Dish $dish)
     {
-        $dish = Dish::find($id);
+        // $dish = Dish::find($id);
 
         return view('admin.dishes.edit', compact('dish'));
     }
@@ -114,6 +113,7 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
+        
         return redirect()->route('admin.dishes.index')->with('dish_cancellato',  $dish->name . 'è stato eliminato correttamente');
     }
 }
