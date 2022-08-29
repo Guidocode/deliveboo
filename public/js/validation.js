@@ -153,7 +153,7 @@ function _prova() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\js\validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! C:\Users\Ket\LARAVEL\laravel-crud-prova-1\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })
