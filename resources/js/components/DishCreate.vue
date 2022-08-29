@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form  method="POST">
+        <form @submit.prevent="submit">
 
             <div class="mb-3">
               <label for="name" class="form-label">Dish Name</label>
@@ -42,7 +42,8 @@
 </template>
 
 <script>
-import Axios from 'axios';
+
+import axios from 'axios';
 
 export default {
     name: 'DishCreate',
@@ -51,8 +52,15 @@ export default {
             fields:{}
         }
     },
+    mounted() {
+        axios.get('/api/user')
+        .then(r => {
+            console.log(r.data);
+        })
+    },
     methods: {
         submit() {
+
             axios.post('/api/dishes', this.fields)
             .then(r => {
                 this.fields = {};

@@ -1908,10 +1908,31 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DishCreate',
   data: function data() {
-    return {};
+    return {
+      fields: {}
+    };
+  },
+  mounted: function mounted() {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user').then(function (r) {
+      console.log(r.data);
+    });
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/dishes', this.fields).then(function (r) {
+        _this.fields = {};
+      })["catch"](function (e) {
+        console.log('Error');
+      });
+    }
   }
 });
 
@@ -1932,16 +1953,12 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", [_c("form", {
-    attrs: {
-      method: "POST"
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submit.apply(null, arguments);
+      }
     }
   }, [_c("div", {
     staticClass: "mb-3"
@@ -1951,11 +1968,27 @@ var staticRenderFns = [function () {
       "for": "name"
     }
   }, [_vm._v("Dish Name")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.fields.name,
+      expression: "fields.name"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
       name: "name",
       id: "name"
+    },
+    domProps: {
+      value: _vm.fields.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.fields, "name", $event.target.value);
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
@@ -1965,12 +1998,27 @@ var staticRenderFns = [function () {
       "for": "description"
     }
   }, [_vm._v("Ingredients")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.fields.description,
+      expression: "fields.description"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
       name: "description",
-      id: "description",
-      value: ""
+      id: "description"
+    },
+    domProps: {
+      value: _vm.fields.description
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.fields, "description", $event.target.value);
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
@@ -1980,14 +2028,41 @@ var staticRenderFns = [function () {
       "for": "price"
     }
   }, [_vm._v("Price")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.fields.price,
+      expression: "fields.price"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
       name: "price",
-      id: "price",
-      value: ""
+      id: "price"
+    },
+    domProps: {
+      value: _vm.fields.price
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.fields, "price", $event.target.value);
+      }
     }
-  })]), _vm._v("\n\n        Disponibile:\n        "), _c("div", {
+  })]), _vm._v("\n\n        Disponibile:\n        "), _vm._m(0), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Submit")])])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "form-check"
   }, [_c("input", {
     staticClass: "form-check-input",
@@ -2016,12 +2091,7 @@ var staticRenderFns = [function () {
     attrs: {
       "for": "not-visible"
     }
-  }, [_vm._v("\n              No\n            ")])]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Submit")])])]);
+  }, [_vm._v("\n              No\n            ")])]);
 }];
 render._withStripped = true;
 
