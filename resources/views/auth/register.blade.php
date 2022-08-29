@@ -59,36 +59,25 @@
                         <div class="form-group row ">
                             <label for="types" class="col-md-4 col-form-label text-md-right">{{ __('Types') }}</label>
 
-                            
-                            <div class="col-md-6 d-flex">
-                                {{-- @foreach($types as $type) --}}
 
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                  <label class="form-check-label" for="inlineCheckbox1">Pizzeria</label>
-                                </div>
-    
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                  <label class="form-check-label" for="inlineCheckbox2">Messicana</label>
-                                </div>
+                            <div class="col-md-6 d-flex flex-wrap">
+                                @foreach ($types as $type)
+                                    <div class="form-check form-check-inline">
+                                        <input @if ( in_array($type->id,old('types', [])) )
+                                        checked
+                                    @endif class="form-check-input" name="types[]" type="checkbox" id="{{ $type->id }}" value="{{ $type->id }}">
+                                        <label class="form-check-label" for="{{ $type->id }}">{{ $type->name }}</label>
+                                    </div>
+                                @endforeach
 
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Cinese</label>
-                                  </div>
 
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Sushi</label>
-                                  </div>
 
-                                  {{-- @endforeach --}}
+
                             </div>
                         </div>
 
 
-                    
+
 
                         {{-- END CHECK-BOX --}}
 

@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Type;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class RegisterController extends Controller
 {
@@ -55,8 +57,13 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'max:15', 'min:10' ], //
             'address' => ['required','max:255'],
-            'vat_number'=>['required','digits:11'] 
+            'vat_number'=>['required','digits:11']
         ]);
+    }
+    public function showRegistrationForm()
+    {
+        $types = Type::all();
+        return view("auth.register", compact("types"));
     }
 
     /**
@@ -67,14 +74,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone'=>$data['phone'],
             'slug'=> User::generateSlug($data['name']),
             'address'=> $data['address'],
-            'vat_number'=> $data['vat_number']
+            'vat_number'=> $data['vat_number'],
+            // ->
         ]);
+        foreach ($data['types'] as $type) {
+            $user->types()->attach($type);
+        }
+
+        return $user;
     }
+
 }
