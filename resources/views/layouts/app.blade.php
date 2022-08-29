@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/validation.js') }}" defer></script>
+
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -44,7 +47,7 @@
                             <a class="nav-link" href="#">My Orders/NF</a>
                         </li>
                     </ul>
-                    
+
                 @endauth
 
                     <!-- Right Side Of Navbar -->
@@ -83,7 +86,7 @@
                                         </a>
                                     </div> --}}
 
-                         
+
 
 
                             {{-- </li> --}}

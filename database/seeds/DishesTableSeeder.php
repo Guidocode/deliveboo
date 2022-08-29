@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Dish;
 use Faker\Generator as Faker;
+use App\User;
 
 class DishesTableSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DishesTableSeeder extends Seeder
         foreach ($dishes as $dish) {
             $new_dish = new Dish();
             $new_dish->name = $dish;
+            $new_dish->user_id = User::inRandomOrder()->first()->id;
             $new_dish->description = $faker->text(6);
             $new_dish->price = $faker->randomFloat(2,3,50);
             $new_dish->save();
