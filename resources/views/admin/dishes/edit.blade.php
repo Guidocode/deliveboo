@@ -32,6 +32,19 @@
                     @enderror
                 </div>
 
+                <div class="form-check">                
+                    <input class="form-check-input" type="radio" name="visible" id="visible" value="1" checked>
+                    <label class="form-check-label mr-4 mb-3" for="visible">
+                      Si
+                    </label>
+            
+                    <input class="form-check-input" type="radio" name="visible" id="not-visible" value="0">
+                    <label class="form-check-label" for="not-visible">
+                      No
+                    </label>
+    
+                </div>
+
 
 
 

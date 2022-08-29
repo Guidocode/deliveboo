@@ -11,7 +11,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">My ID</th>
+        <th scope="col">ID</th>
         <th scope="col">Name Of Dish</th>
         <th scope="col">Actions</th>
       </tr>
