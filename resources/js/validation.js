@@ -1,14 +1,14 @@
 
-let submit = document.getElementById('registration-submit');
+// let submit = document.getElementById('registration-submit');
 
-submit.disabled = true;
+// submit.disabled = true;
 
-let name = document.getElementById('name');
+// let name = document.getElementById('name');
 
-async function prova(){
-    submit.disabled = false
-    console.log('ciaoo')
-}
+// async function prova(){
+//     submit.disabled = false
+//     console.log('ciaoo')
+// }
 
 
 

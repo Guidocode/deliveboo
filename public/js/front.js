@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Ket\LARAVEL\laravel-crud-prova-1\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
