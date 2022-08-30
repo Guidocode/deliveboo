@@ -1,0 +1,18 @@
+
+addd imgaes
+- cambiare in il filesistem da local a Storage
+- creo link simbolico: php artisan storage:link etc
+- modifico la migration aggiungendo l'immagine e il nome originale dell'immagine perché Laravel da un suo nome univoco al file
+- fresh migration e rilancio seeder
+- aggiungere al form  enctype="multipart/form-data" per dargli la possibilità di inviare i file
+- aggiungo il campo nel form per aggiungere il file
+- aggiungo i campi image e original_name_image nella fillable dentro il model
+- tolgo la request custom per vedere se aggiunge l'immagine
+- nella funzione store del controller controllo se dentro data esiste l'immagine ,aggiungo il dato in $data, salvo l'immagine in storage
+- faccio un dump di data per vedere cosa invio
+- rimetto la request custom per i controlli
+- nella show del singolo record aggiungo l'immagine se esiste
+- modifico il form di edit, come fatto per create, per dare la possibilità di modificare anche l'immagine.
+- stampo anche l'immagine nel form per vederla quando la modifico
+- per farla cambiare aggiungo uno script javascript con una funzione che intercetta l'evento del cambio immagine (onchange) tramite id dato alla stessa e la cambia
+- nella funzione di update del controller verifico se l'immagine è già presente e la elimino
