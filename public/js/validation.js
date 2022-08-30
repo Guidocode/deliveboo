@@ -126,7 +126,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\js\validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! C:\Users\Cristina\Desktop\deliveboo\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })

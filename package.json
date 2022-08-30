@@ -26,6 +26,12 @@
     "dependencies": {
         "@fontsource/chonburi": "^4.5.9",
         "@fontsource/poppins": "^4.5.9",
+        "@fortawesome/fontawesome-svg-core": "^6.1.2",
+        "@fortawesome/free-brands-svg-icons": "^6.1.2",
+        "@fortawesome/free-regular-svg-icons": "^6.1.2",
+        "@fortawesome/free-solid-svg-icons": "^6.1.2",
+        "@fortawesome/vue-fontawesome": "^2.0.8",
+        "font-awesome": "^4.7.0",
         "vue-router": "^2.8.1"
     }
 }
