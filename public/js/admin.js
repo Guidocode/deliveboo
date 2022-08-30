@@ -37345,9 +37345,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\sass\front\style.scss */"./resources/sass/front/style.scss");
+__webpack_require__(/*! C:\Users\PC\LARAVEL\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! C:\Users\PC\LARAVEL\deliveboo\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! C:\Users\PC\LARAVEL\deliveboo\resources\sass\front\style.scss */"./resources/sass/front/style.scss");
 
 
 /***/ })
