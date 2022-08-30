@@ -1,3 +1,6 @@
+
+require('./bootstrap');
+
 window.axios = require('axios');
 
 window.Vue = require('vue');
@@ -12,3 +15,7 @@ const app = new Vue({
   router,
   render: h => h(App)
 })
+
+
+
+
