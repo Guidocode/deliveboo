@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-6 offset-3">
         <h1 class="text-center my-5">Update Dish</h1>
-        <form action ="{{ route('admin.dishes.update', $dish) }}" method="POST">
+        <form action ="{{ route('admin.dishes.update', $dish) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
                 <div class="mb-3">
@@ -25,6 +25,7 @@
                 </div>
 
                 <div class="mb-3">
+
                     <label for="price" class="form-label">Price</label>
                     <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price"  value='{{ old('price', $dish->price) }}'>
                     @error('price')
@@ -32,17 +33,36 @@
                     @enderror
                 </div>
 
-                <div class="form-check">                
+                <div class="mb-3">
+
+                    @if ($dish->image)
+                        <div class="image">
+                            <img id="output-image" width="150" src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->original_name_image }}">
+                        </div>
+                    @endif
+
+                    <label for="image" class="form-label">Immagine</label>
+                    <input type="file" id="image" name="image"
+                    value="{{ old('image') }}"
+                    onchange="showImage(event)"
+                    class="form-control @error('image') is-invalid @enderror">
+                    @error('image')
+                        <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                    {{-- <p class="invalid-feedback" id="error-image"></p> --}}
+                </div>
+
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="visible" id="visible" value="1" checked>
                     <label class="form-check-label mr-4 mb-3" for="visible">
                       Si
                     </label>
-            
+
                     <input class="form-check-input" type="radio" name="visible" id="not-visible" value="0">
                     <label class="form-check-label" for="not-visible">
                       No
                     </label>
-    
+
                 </div>
 
 
@@ -51,6 +71,14 @@
             <button type="submit" class="btn btn-success">Submit</button>
             <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish)}}"><< Torna indietro</a>
         </form>
+
+        <script>
+            var showImage = function(event) {
+                const image = document.getElementById('output-image');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+        </script>
+
     </div>
 </div>
 @endsection

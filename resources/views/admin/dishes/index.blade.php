@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+
   <h1>My Menu</h1>
   @if(session('dish_cancellato'))
       <div class="alert alert-success" role="alert">
@@ -24,11 +24,11 @@
         <th scope="row">{{$dish->id}}</th>
         <td>{{$dish->name}}</td>
         <td class="d-flex">
-          
+
           <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish) }}">SHOW</a>
           <a class="btn btn-warning mx-3" href="{{ route('admin.dishes.edit', $dish) }}">EDIT</a>
-        
-          <form   
+
+          <form
           onsubmit="return confirm('confermi l\'eliminazione di: {{ $dish->name }}?')"
           action="{{ route('admin.dishes.destroy', $dish) }}" method="POST">
           @csrf
@@ -41,7 +41,7 @@
       </tr>
     </tbody>
   </table>
-</div>
+
 
 
 @endsection

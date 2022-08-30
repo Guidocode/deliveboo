@@ -26,7 +26,8 @@ class DishRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:100',
             'description' => 'required|min:3|max:500',
-            'price' => 'required|numeric|between:1.00,9999.00'
+            'price' => 'required|numeric|between:1.00,9999.00',
+            'image' => 'image'
         ];
     }
 

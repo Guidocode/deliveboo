@@ -7,6 +7,7 @@ use App\Dish;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\DishRequest;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -41,14 +42,34 @@ class DishController extends Controller
      */
     public function store(DishRequest $request)
     {
-        $data = $request->validate(
-            [
-            'name' => 'required ',
-            'price' => 'required ',
-            'description' => 'required'
-            ]) ;
+
 
         $data = $request->all();
+
+
+        // controllo se dentro data esiste l'immagine
+        // aggiungo il dato in $data
+        // salvo l'immagine in storage
+
+        $default = asset('storage/uploads/default-img.gif');
+
+        // dd($default);
+
+        if (array_key_exists('image', $data)) {
+
+            $data['original_name_image'] = $request->file('image')->getClientOriginalName();
+
+
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
+        // }else {
+
+        //     $data['original_name_image'] = 'default';
+
+        //     $data['image'] = $default;
+        // }
+
+        // dd($data);
 
         $new_dish = new Dish();
 
@@ -98,7 +119,23 @@ class DishController extends Controller
     public function update(DishRequest $request, $id)
     {
         $data = $request->all();
+
         $dish = Dish::find($id);
+
+        // verifico se dentro data esiste l'immagine
+        // se esiste il file lo elimino
+        if (array_key_exists('image', $data)) {
+
+            if ($dish->image) {
+                Storage::delete($dish->image);
+            }
+
+            $data['original_name_image'] = $request->file('image')->getClientOriginalName();
+
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
+
+
         $dish->update($data);
 
         return redirect()->route('admin.dishes.show', compact('dish'));
@@ -113,7 +150,7 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        
+
         return redirect()->route('admin.dishes.index')->with('dish_cancellato',  $dish->name . 'è stato eliminato correttamente');
     }
 }
