@@ -1,2 +1,18 @@
 @import '~@fontsource/poppins';
 @import '~@fontsource/chonburi';
+
+@import './vars';
+
+body{
+  background-color: $green_salad;
+}
+ul li {
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: black;
+  &:hover{
+    color: $orange;
+  }
+}

@@ -17,9 +17,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $dishes = Dish::orderBy('id', 'desc')->where('user_id',$user_id)->get();
-
+        $dishes = Dish::where('user_id', Auth::id())->orderby('id','desc')->get();
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -57,7 +55,7 @@ class DishController extends Controller
         $new_dish->fill($data);
         $new_dish->save();
 
-        return redirect()->route('admin.dishes.show', $new_dish);
+        return redirect()->route('admin.dishes.show', $new_dish)->with('success_msg', $new_dish->name.' '." è stato creato con successo");
 
 
     }

@@ -11,7 +11,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
+        {{-- <th scope="col">ID</th> --}}
         <th scope="col">Name Of Dish</th>
         <th scope="col">Actions</th>
       </tr>
@@ -21,7 +21,7 @@
 
       @foreach ($dishes as $dish)
       <tr>
-        <th scope="row">{{$dish->id}}</th>
+        {{-- <th scope="row">{{$dish->id}}</th> --}}
         <td>{{$dish->name}}</td>
         <td class="d-flex">
           

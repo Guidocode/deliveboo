@@ -3,7 +3,12 @@
 @section('content')
 <div class="container">
 
-    
+    @if(session('success_msg'))
+    <div class="alert alert-success" role="alert">
+      <strong>{{ session('success_msg') }}</strong>
+    </div>
+    @endif
+  
     <h1>{{ $dish->name }}</h1>
     
     <span class="h5">Ingredients:</span>
