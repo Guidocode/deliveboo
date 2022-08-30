@@ -1919,9 +1919,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user').then(function (r) {
-      console.log(r.data);
-    });
+    // axios.get('/api/user')
+    // .then(r => {
+    //     console.log(r.data);
+    // })
+    this.fields.user_id = this.$userId;
   },
   methods: {
     submit: function submit() {
@@ -1929,6 +1931,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/dishes', this.fields).then(function (r) {
         _this.fields = {};
+        _this.fields.user_id = _this.$userId;
       })["catch"](function (e) {
         console.log('Error');
       });
@@ -49634,6 +49637,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 Vue.component('dish-create', __webpack_require__(/*! ./components/DishCreate.vue */ "./resources/js/components/DishCreate.vue")["default"]);
 var app = new Vue({
   el: '#app'
@@ -49784,9 +49788,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\6-Laravel\laravel-crud-prova\resources\sass\front\style.scss */"./resources/sass/front/style.scss");
+__webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\js\admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\sass\front\style.scss */"./resources/sass/front/style.scss");
 
 
 /***/ })

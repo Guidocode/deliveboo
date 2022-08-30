@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dish extends Model
 {
-    protected $fillable = ['name', 'description', 'price','user_id', 'visible'];
+    protected $fillable = ['name', 'description', 'price', 'user_id', 'visible'];
     public function orders(){
         return $this->belongsToMany('App\Order');
     }

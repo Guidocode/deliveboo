@@ -49,21 +49,26 @@ export default {
     name: 'DishCreate',
     data () {
         return {
-            fields:{}
+            fields:{
+
+            }
         }
     },
     mounted() {
-        axios.get('/api/user')
-        .then(r => {
-            console.log(r.data);
-        })
+        // axios.get('/api/user')
+        // .then(r => {
+        //     console.log(r.data);
+        // })
+        this.fields.user_id = this.$userId
     },
     methods: {
         submit() {
 
             axios.post('/api/dishes', this.fields)
             .then(r => {
+
                 this.fields = {};
+                this.fields.user_id = this.$userId
             }).catch(e => {
                 console.log('Error')
             })

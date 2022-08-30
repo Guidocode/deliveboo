@@ -19,15 +19,16 @@ class DishController extends Controller
             [
             'name' => 'required ',
             'price' => 'required ',
-            'description' => 'required'
+            'description' => 'required',
+            'user_id' => 'required',
             ]) ;
 
 
 
 
 
-        $id = Auth::id();
-        $new_dish->user_id = $id;
+
+
         $new_dish->fill($data);
         $new_dish->save();
 
