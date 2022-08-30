@@ -2002,8 +2002,14 @@ __webpack_require__.r(__webpack_exports__);
     filteredResearch: function filteredResearch() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/ristoranti-filtrati/' + this.type).then(function (r) {
-        console.log(_this3.types = r.data.types);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/ristoranti').then(function (r) {
+        r.data.users.forEach(function (element) {
+          element.types.forEach(function (res) {
+            if (res.name == 'Cinese') {
+              _this3.resturants.push(element);
+            }
+          });
+        });
       });
     }
   }

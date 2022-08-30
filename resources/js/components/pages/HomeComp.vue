@@ -55,11 +55,19 @@ export default {
     },
 
     filteredResearch(){
-        axios.get('/api/ristoranti-filtrati/' + this.type)
+        axios.get('/api/ristoranti')
         .then(r => {
-        console.log(this.types = r.data.types)
-      })
+        r.data.users.forEach(element => {
+            element.types.forEach(res => {
+                if(res.name == 'Cinese'){
+                    this.resturants.push(element)
+                }
+            });
 
+        });
+
+
+      })
     }
   },
 }
