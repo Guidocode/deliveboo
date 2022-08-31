@@ -20,7 +20,8 @@ class PageController extends Controller
     }
 
     // public function filteredResearch($type){
-    //     $users = User::with(['types','dishes'])->where('types.name','Cinese' )->get();
+    //     //$users = User::join('types','types.name','=',$type)->get();
+    //    $users = User::with(['types','dishes'])->where('types.name',$type )->get();
 
     //     return response()->json(compact('users'));
     // }

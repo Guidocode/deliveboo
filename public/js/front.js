@@ -1999,17 +1999,23 @@ __webpack_require__.r(__webpack_exports__);
         _this2.types = r.data.types;
       });
     },
+    // filteredResearch(){
+    //     axios.get('/api/ristoranti')
+    //     .then(r => {
+    //     r.data.users.forEach(element => {
+    //         element.types.forEach(res => {
+    //             if(res.name == 'Cinese'){
+    //                 this.resturants.push(element)
+    //             }
+    //         });
+    //     });
+    //   })
+    // },
     filteredResearch: function filteredResearch() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/ristoranti').then(function (r) {
-        r.data.users.forEach(function (element) {
-          element.types.forEach(function (res) {
-            if (res.name == 'Cinese') {
-              _this3.resturants.push(element);
-            }
-          });
-        });
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/ristoranti-filtrati' + this.type).then(function (r) {
+        _this3.resturants = r.data.users;
       });
     }
   }

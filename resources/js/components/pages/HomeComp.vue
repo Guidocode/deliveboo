@@ -54,20 +54,27 @@ export default {
       })
     },
 
+    // filteredResearch(){
+    //     axios.get('/api/ristoranti')
+    //     .then(r => {
+    //     r.data.users.forEach(element => {
+    //         element.types.forEach(res => {
+    //             if(res.name == 'Cinese'){
+    //                 this.resturants.push(element)
+    //             }
+    //         });
+
+    //     });
+
+
+    //   })
+    // },
+
     filteredResearch(){
-        axios.get('/api/ristoranti')
+        axios.get('/api/ristoranti-filtrati'+ this.type)
         .then(r => {
-        r.data.users.forEach(element => {
-            element.types.forEach(res => {
-                if(res.name == 'Cinese'){
-                    this.resturants.push(element)
-                }
-            });
-
-        });
-
-
-      })
+            this.resturants = r.data.users
+        })
     }
   },
 }
