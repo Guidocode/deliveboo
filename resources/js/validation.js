@@ -22,13 +22,12 @@ nameField.addEventListener('focusout', function(){
     if(reg.test(nameField.value)){
         nameFieldError.innerText = ''
         nameCheck = true
-        submitOn()
     }else{
         nameFieldError.innerText = 'Il nome.....'
         nameCheck = false
-        submitOn()
-    }
 
+    }
+    submitOn()
 })
 
 let emailField = document.getElementById('email');
@@ -40,14 +39,12 @@ emailField.addEventListener('focusout', function(){
     if (reg.test(emailField.value)) {
         emailError.innerText = ''
         emailCheck = true
-        submitOn()
     }else{
         emailError.innerText = 'La mail inserita non è valida'
         emailCheck = false
-        submitOn()
     }
 
-
+    submitOn()
 })
 
 let vatNumberField = document.getElementById('vat_number');
@@ -60,13 +57,11 @@ vatNumberField.addEventListener('focusout', function(){
     if (reg.test(vatNumberField.value)) {
         vatNumberError.innerText = ''
         vatNumberCheck = true
-        submitOn()
     }else{
         vatNumberError.innerText = 'La partita Iva deve contenere solo numeri e deve contenere 11 caratteri.'
         vatNumberCheck = false
-        submitOn()
     }
-
+    submitOn()
 
 })
 
@@ -88,6 +83,33 @@ addressField.addEventListener('focusout', function(){
         addressError.innerText = 'L\'indirizzo non è valido'
         addressCheck = false
 
+    }
+    submitOn()
+
+})
+
+
+
+let phoneField = document.getElementById('phone');
+let phoneError = document.getElementById('phone-error')
+let phoneCheck = false
+
+
+phoneField.addEventListener('focusout', function(){
+    let reg = /^[0-9-+\s]+$/
+    if (reg.test(phoneField.value)) {
+        phoneError.innerText = ''
+        phoneCheck = true
+        console.log('primo if');
+    }else if(phoneField.value.length == 0   ){
+        phoneError.innerText = 'Compila questo campo'
+        phoneCheck = false
+        console.log('secindo if');
+    }
+    else {
+        phoneError.innerText = 'Il numero non è valido'
+        phoneCheck = false
+        console.log('else ');
     }
     submitOn()
 

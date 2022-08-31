@@ -47,7 +47,7 @@
 
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" >
-                                <div id="vat_number-error" class=" text-danger border-danger ">Ciao</div>
+                                <div id="vat_number-error" class=" text-danger border-danger "></div>
                                 @error('vat_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -101,7 +101,7 @@
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" >
-
+                                <div id="phone-error" class=" text-danger"></div>
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

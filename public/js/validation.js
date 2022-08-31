@@ -113,12 +113,12 @@ nameField.addEventListener('focusout', function () {
   if (reg.test(nameField.value)) {
     nameFieldError.innerText = '';
     nameCheck = true;
-    submitOn();
   } else {
     nameFieldError.innerText = 'Il nome.....';
     nameCheck = false;
-    submitOn();
   }
+
+  submitOn();
 });
 var emailField = document.getElementById('email');
 var emailError = document.getElementById('email-error');
@@ -129,12 +129,12 @@ emailField.addEventListener('focusout', function () {
   if (reg.test(emailField.value)) {
     emailError.innerText = '';
     emailCheck = true;
-    submitOn();
   } else {
     emailError.innerText = 'La mail inserita non è valida';
     emailCheck = false;
-    submitOn();
   }
+
+  submitOn();
 });
 var vatNumberField = document.getElementById('vat_number');
 var vatNumberError = document.getElementById('vat_number-error');
@@ -145,12 +145,12 @@ vatNumberField.addEventListener('focusout', function () {
   if (reg.test(vatNumberField.value)) {
     vatNumberError.innerText = '';
     vatNumberCheck = true;
-    submitOn();
   } else {
     vatNumberError.innerText = 'La partita Iva deve contenere solo numeri e deve contenere 11 caratteri.';
     vatNumberCheck = false;
-    submitOn();
   }
+
+  submitOn();
 });
 var addressField = document.getElementById('address');
 var addressError = document.getElementById('address-error');
@@ -171,6 +171,28 @@ addressField.addEventListener('focusout', function () {
 
   submitOn();
 });
+var phoneField = document.getElementById('phone');
+var phoneError = document.getElementById('phone-error');
+var phoneCheck = false;
+phoneField.addEventListener('focusout', function () {
+  var reg = /^[0-9-+\s]+$/;
+
+  if (reg.test(phoneField.value)) {
+    phoneError.innerText = '';
+    phoneCheck = true;
+    console.log('primo if');
+  } else if (phoneField.value.length == 0) {
+    phoneError.innerText = 'Compila questo campo';
+    phoneCheck = false;
+    console.log('secindo if');
+  } else {
+    phoneError.innerText = 'Il numero non è valido';
+    phoneCheck = false;
+    console.log('else ');
+  }
+
+  submitOn();
+});
 
 /***/ }),
 
@@ -181,7 +203,7 @@ addressField.addEventListener('focusout', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\js\validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! /Users/guidobuono/Desktop/Boolean/laravel/deliveboo/resources/js/validation.js */"./resources/js/validation.js");
 
 
 /***/ })
