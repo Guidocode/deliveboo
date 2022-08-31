@@ -93,29 +93,84 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// let submit = document.getElementById('registration-submit');
-// submit.disabled = true;
-// let name = document.getElementById('name');
-// async function prova(){
-//     submit.disabled = false
-//     console.log('ciaoo')
-// }
-// handleSubmit(){
-//     this.nameMessageError = ( /^(?!-)[a-zA-Z-][a-zA-Z]$/.test(this.insertName) && this.insertName.length > 2) ? '':'Name must be at least 3 letters, no numbers and special characters';
-//     //per contollare la mail inserito uso una forma di Regex...Che con Vue va in una specie di conflitto con " . "  , e ho dovuto disabilitare i controlli sulla  prossima linea successiva --->
-//     //eslint-disable-next-line
-//     this.mailMessageError = (/^\w+([.-]?\w+)@\w+([.-]?\w+)*(.\w{2,3})+$/.test(this.insertMail)) ? '': 'Please provide a correct email address!';
-//    if( this.mailMessageError == '' && this.nameMessageError == '' )
-//    {
-//         this.successMessage = 'Congrats, you're one of us!';
-//         this.insertMail = '';
-//         this.insertName = '';
-//         this.visible = false;
-//    }
-//    else{
-//      this.successMessage = 'Please repeat!';
-//    }
-//  }
+var submit = document.getElementById('registration-submit');
+submit.disabled = true;
+
+function submitOn() {
+  if (nameCheck && emailCheck && vatNumberCheck) {
+    submit.disabled = false;
+  } else {
+    submit.disabled = true;
+  }
+}
+
+var nameField = document.getElementById('name');
+var nameFieldError = document.getElementById('name-error');
+var nameCheck = false;
+nameField.addEventListener('focusout', function () {
+  var reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/; // let reg = /^([a-zA-Z0-9 ']*)$/
+
+  if (reg.test(nameField.value)) {
+    nameFieldError.innerText = '';
+    nameCheck = true;
+    submitOn();
+  } else {
+    nameFieldError.innerText = 'Il nome.....';
+    nameCheck = false;
+    submitOn();
+  }
+});
+var emailField = document.getElementById('email');
+var emailError = document.getElementById('email-error');
+var emailCheck = false;
+emailField.addEventListener('focusout', function () {
+  var reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+
+  if (reg.test(emailField.value)) {
+    emailError.innerText = '';
+    emailCheck = true;
+    submitOn();
+  } else {
+    emailError.innerText = 'La mail inserita non è valida';
+    emailCheck = false;
+    submitOn();
+  }
+});
+var vatNumberField = document.getElementById('vat_number');
+var vatNumberError = document.getElementById('vat_number-error');
+var vatNumberCheck = false;
+vatNumberField.addEventListener('focusout', function () {
+  var reg = /^[0-9]{11}$/;
+
+  if (reg.test(vatNumberField.value)) {
+    vatNumberError.innerText = '';
+    vatNumberCheck = true;
+    submitOn();
+  } else {
+    vatNumberError.innerText = 'La partita Iva deve contenere solo numeri e deve contenere 11 caratteri.';
+    vatNumberCheck = false;
+    submitOn();
+  }
+});
+var addressField = document.getElementById('address');
+var addressError = document.getElementById('address-error');
+var addressCheck = false;
+addressField.addEventListener('focusout', function () {
+  var reg = /[0-9a-zA-Z]{6,}/;
+
+  if (reg.test(addressField.value)) {
+    addressError.innerText = '';
+    addressCheck = true;
+  } else if (addressField.value.length == 0) {
+    addressError.innerText = 'Compila questo campo';
+    addressCheck = false;
+  } else {
+    addressError.innerText = 'L\'indirizzo non è valido';
+    addressCheck = false;
+  }
+
+  submitOn();
+});
 
 /***/ }),
 
@@ -126,7 +181,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Cristina\Desktop\deliveboo\resources\js\validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })

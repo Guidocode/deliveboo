@@ -1,37 +1,97 @@
 
-// let submit = document.getElementById('registration-submit');
+let submit = document.getElementById('registration-submit');
 
-// submit.disabled = true;
+submit.disabled = true;
 
-// let name = document.getElementById('name');
-
-// async function prova(){
-//     submit.disabled = false
-//     console.log('ciaoo')
-// }
-
-
-
+function submitOn(){
+    if(nameCheck && emailCheck && vatNumberCheck){
+        submit.disabled = false
+    }else{
+        submit.disabled = true
+    }
+}
 
 
+let nameField = document.getElementById('name');
+let nameFieldError = document.getElementById('name-error');
+let nameCheck = false
 
-// handleSubmit(){
+nameField.addEventListener('focusout', function(){
+    let reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/
+    // let reg = /^([a-zA-Z0-9 ']*)$/
+    if(reg.test(nameField.value)){
+        nameFieldError.innerText = ''
+        nameCheck = true
+        submitOn()
+    }else{
+        nameFieldError.innerText = 'Il nome.....'
+        nameCheck = false
+        submitOn()
+    }
 
-//     this.nameMessageError = ( /^(?!-)[a-zA-Z-][a-zA-Z]$/.test(this.insertName) && this.insertName.length > 2) ? '':'Name must be at least 3 letters, no numbers and special characters';
+})
 
-//     //per contollare la mail inserito uso una forma di Regex...Che con Vue va in una specie di conflitto con " . "  , e ho dovuto disabilitare i controlli sulla  prossima linea successiva --->
+let emailField = document.getElementById('email');
+let emailError = document.getElementById('email-error')
+let emailCheck = false
 
-//     //eslint-disable-next-line
-//     this.mailMessageError = (/^\w+([.-]?\w+)@\w+([.-]?\w+)*(.\w{2,3})+$/.test(this.insertMail)) ? '': 'Please provide a correct email address!';
+emailField.addEventListener('focusout', function(){
+    let reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/
+    if (reg.test(emailField.value)) {
+        emailError.innerText = ''
+        emailCheck = true
+        submitOn()
+    }else{
+        emailError.innerText = 'La mail inserita non è valida'
+        emailCheck = false
+        submitOn()
+    }
 
-//    if( this.mailMessageError == '' && this.nameMessageError == '' )
-//    {
-//         this.successMessage = 'Congrats, you're one of us!';
-//         this.insertMail = '';
-//         this.insertName = '';
-//         this.visible = false;
-//    }
-//    else{
-//      this.successMessage = 'Please repeat!';
-//    }
-//  }
+
+})
+
+let vatNumberField = document.getElementById('vat_number');
+let vatNumberError = document.getElementById('vat_number-error')
+let vatNumberCheck = false
+
+
+vatNumberField.addEventListener('focusout', function(){
+    let reg = /^[0-9]{11}$/
+    if (reg.test(vatNumberField.value)) {
+        vatNumberError.innerText = ''
+        vatNumberCheck = true
+        submitOn()
+    }else{
+        vatNumberError.innerText = 'La partita Iva deve contenere solo numeri e deve contenere 11 caratteri.'
+        vatNumberCheck = false
+        submitOn()
+    }
+
+
+})
+
+let addressField = document.getElementById('address');
+let addressError = document.getElementById('address-error')
+let addressCheck = false
+
+
+addressField.addEventListener('focusout', function(){
+    let reg = /[0-9a-zA-Z]{6,}/
+    if (reg.test(addressField.value)) {
+        addressError.innerText = ''
+        addressCheck = true
+    }else if(addressField.value.length == 0   ){
+        addressError.innerText = 'Compila questo campo'
+        addressCheck = false
+    }
+    else {
+        addressError.innerText = 'L\'indirizzo non è valido'
+        addressCheck = false
+
+    }
+    submitOn()
+
+})
+
+
+
