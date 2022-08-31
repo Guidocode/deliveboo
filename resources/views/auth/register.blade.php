@@ -130,7 +130,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                <div id="password-conf-error" class=" text-danger">errore</div>
+                                <div id="confirm-error" class=" text-danger">errore</div>
                             </div>
 
                         </div>

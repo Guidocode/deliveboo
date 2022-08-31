@@ -97,7 +97,7 @@ var submit = document.getElementById('registration-submit');
 submit.disabled = true;
 
 function submitOn() {
-  if (nameCheck && emailCheck && vatNumberCheck && addressCheck && phoneCheck && checkboxsCheck) {
+  if (nameCheck && emailCheck && vatNumberCheck && addressCheck && phoneCheck && checkboxsCheck && passwordCheck && passwordConfCheck) {
     submit.disabled = false;
   } else {
     submit.disabled = true;
@@ -249,43 +249,28 @@ passwordField.addEventListener('focusout', function () {
     }
   }
 
-  submitOn;
+  passwordMatch();
+  submitOn();
 });
 var passwordConfField = document.getElementById('password-confirm');
-var passwordConfError = document.getElementById('password-conf-error');
+var confirmError = document.getElementById('confirm-error');
 var passwordConfCheck = false;
 
 function passwordMatch() {
   if (passwordConfField.value == passwordField.value) {
-    passwordConfError = '';
+    confirmError.innerText = '';
     passwordConfCheck = true;
     console.log('sono io', passwordConfField.value);
   } else {
-    passwordConfError = 'Le password non coincidono';
+    confirmError.innerText = 'Le password non coincidono';
     passwordConfCheck = false;
     console.log('sono io non ', passwordConfField.value);
   }
+
+  submitOn();
 }
 
-passwordConfField.addEventListener('focusout', passwordMatch); // passwordField.addEventListener('focusout', function(){
-//     let reg = /^(?!\S*\s)(?=.[0-9])(?=.[a-z]).{8,20}$/
-//     let regw = /\s/
-//     console.log(regw.test(passwordField.value));
-//     if (reg.test(passwordField.value.trim())) {
-//         passwordError.innerText = '';
-//         passwordCheck = true;
-//         console.log(passwordField.value.trim().length);
-//     }else if(passwordField.value.length == 0   ){
-//         passwordError.innerText = 'Compila questo campo';
-//         passwordCheck = false;
-//         console.log(passwordField.value.trim().length);
-//     }else {
-//         passwordError.innerText = 'La password inserita deve contenere almeno 8 caratteri e massimo 20';
-//         passwordCheck = false;
-//         console.log(passwordField.value.trim().length);
-//     }
-//     submitOn()
-// })
+passwordConfField.addEventListener('focusout', passwordMatch);
 
 /***/ }),
 
@@ -296,7 +281,7 @@ passwordConfField.addEventListener('focusout', passwordMatch); // passwordField.
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/guidobuono/Desktop/Boolean/laravel/deliveboo/resources/js/validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! C:\Users\andry\Boolean\PROGETTO FINALE\deliveboo\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })
