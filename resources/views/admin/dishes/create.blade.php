@@ -16,10 +16,11 @@
 
             <div class="mb-3">
               <label for="description" class="form-label">Ingredients</label>
-              <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description') }}'>
-                @error('description')
-                 <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+              {{-- <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description') }}'> --}}
+              <textarea name="description" class="form-control @error('description') is-invalid @enderror"" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+              @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
 
             <div class="mb-3">
