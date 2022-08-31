@@ -71,7 +71,7 @@
                                     </div>
                                 @endforeach
 
-
+                                <div id="checkbox-error" class=" text-danger"></div>
 
 
                             </div>
@@ -116,7 +116,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                <div id="password-error" class=" text-danger"></div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -130,7 +130,9 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div id="password-conf-error" class=" text-danger">errore</div>
                             </div>
+
                         </div>
 
                         <div class="form-group row mb-0">

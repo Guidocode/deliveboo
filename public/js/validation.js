@@ -97,7 +97,7 @@ var submit = document.getElementById('registration-submit');
 submit.disabled = true;
 
 function submitOn() {
-  if (nameCheck && emailCheck && vatNumberCheck) {
+  if (nameCheck && emailCheck && vatNumberCheck && addressCheck && phoneCheck && checkboxsCheck) {
     submit.disabled = false;
   } else {
     submit.disabled = true;
@@ -110,11 +110,12 @@ var nameCheck = false;
 nameField.addEventListener('focusout', function () {
   var reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/; // let reg = /^([a-zA-Z0-9 ']*)$/
 
-  if (reg.test(nameField.value)) {
+  if (reg.test(nameField.value.trim())) {
     nameFieldError.innerText = '';
     nameCheck = true;
+    console.log(nameField.value.trim());
   } else {
-    nameFieldError.innerText = 'Il nome.....';
+    nameFieldError.innerText = 'Il nome non è valido';
     nameCheck = false;
   }
 
@@ -124,9 +125,10 @@ var emailField = document.getElementById('email');
 var emailError = document.getElementById('email-error');
 var emailCheck = false;
 emailField.addEventListener('focusout', function () {
-  var reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+  // let reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z]+$/
+  var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  if (reg.test(emailField.value)) {
+  if (reg.test(emailField.value.trim())) {
     emailError.innerText = '';
     emailCheck = true;
   } else {
@@ -142,9 +144,9 @@ var vatNumberCheck = false;
 vatNumberField.addEventListener('focusout', function () {
   var reg = /^[0-9]{11}$/;
 
-  if (reg.test(vatNumberField.value)) {
+  if (reg.test(vatNumberField.value.trim())) {
     vatNumberError.innerText = '';
-    vatNumberCheck = true;
+    vatNumberCheck = true; // console.log(vatNumberField.value.trim().length);
   } else {
     vatNumberError.innerText = 'La partita Iva deve contenere solo numeri e deve contenere 11 caratteri.';
     vatNumberCheck = false;
@@ -156,9 +158,9 @@ var addressField = document.getElementById('address');
 var addressError = document.getElementById('address-error');
 var addressCheck = false;
 addressField.addEventListener('focusout', function () {
-  var reg = /[0-9a-zA-Z]{6,}/;
+  var reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/;
 
-  if (reg.test(addressField.value)) {
+  if (reg.test(addressField.value.trim())) {
     addressError.innerText = '';
     addressCheck = true;
   } else if (addressField.value.length == 0) {
@@ -175,16 +177,14 @@ var phoneField = document.getElementById('phone');
 var phoneError = document.getElementById('phone-error');
 var phoneCheck = false;
 phoneField.addEventListener('focusout', function () {
-  var reg = /^[0-9-+\s]+$/;
+  var reg = /^[0-9-+\s]{9,15}$/;
 
-  if (reg.test(phoneField.value)) {
+  if (reg.test(phoneField.value.trim())) {
     phoneError.innerText = '';
     phoneCheck = true;
-    console.log('primo if');
   } else if (phoneField.value.length == 0) {
     phoneError.innerText = 'Compila questo campo';
     phoneCheck = false;
-    console.log('secindo if');
   } else {
     phoneError.innerText = 'Il numero non è valido';
     phoneCheck = false;
@@ -193,6 +193,99 @@ phoneField.addEventListener('focusout', function () {
 
   submitOn();
 });
+var checkboxsField = document.getElementsByName('types[]');
+var checkboxsError = document.getElementById('checkbox-error');
+var checkboxsCheck = false;
+var count = 0;
+
+var _loop = function _loop(i) {
+  checkboxsField[i].addEventListener('click', function () {
+    if (checkboxsField[i].checked) {
+      checkboxsCheck = true;
+      count++;
+      checkboxsError.innerText = '';
+    } else if (!checkboxsField[i].checked) {
+      count--;
+
+      if (count == 0) {
+        checkboxsError.innerText = 'Selezionare almeno un tipo';
+      }
+    } // else if(!checkboxsField[i].checked && count == 0){
+    //     checkboxsError.innerText = 'Selezionare almeno un tipo';
+    // }
+
+
+    console.log(count);
+  });
+  submitOn();
+};
+
+for (var i = 0; i < checkboxsField.length; i++) {
+  _loop(i);
+}
+
+var passwordField = document.getElementById('password');
+var passwordError = document.getElementById('password-error');
+var passwordCheck = false;
+passwordField.addEventListener('focusout', function () {
+  // let reg = /^(?!.*\s)(?=.[0-9])(?=.[a-z]).{8,20}$
+  var reg = /\s/;
+
+  if (reg.test(passwordField.value)) {
+    passwordError.innerText = 'La password non può contenere spazi';
+  } else {
+    if (passwordField.value.length >= 8 && passwordField.value.length < 20) {
+      passwordError.innerText = '';
+      passwordCheck = true;
+      console.log(passwordField.value);
+    } else if (passwordField.value.length == 0) {
+      passwordError.innerText = 'Compila questo campo';
+      passwordCheck = false;
+      console.log(passwordField.value);
+    } else {
+      passwordError.innerText = 'La password inserita deve contenere almeno 8 caratteri e massimo 20';
+      passwordCheck = false;
+      console.log(passwordField.value);
+    }
+  }
+
+  submitOn;
+});
+var passwordConfField = document.getElementById('password-confirm');
+var passwordConfError = document.getElementById('password-conf-error');
+var passwordConfCheck = false;
+
+function passwordMatch() {
+  if (passwordConfField.value == passwordField.value) {
+    passwordConfError = '';
+    passwordConfCheck = true;
+    console.log('sono io', passwordConfField.value);
+  } else {
+    passwordConfError = 'Le password non coincidono';
+    passwordConfCheck = false;
+    console.log('sono io non ', passwordConfField.value);
+  }
+}
+
+passwordConfField.addEventListener('focusout', passwordMatch); // passwordField.addEventListener('focusout', function(){
+//     let reg = /^(?!\S*\s)(?=.[0-9])(?=.[a-z]).{8,20}$/
+//     let regw = /\s/
+//     console.log(regw.test(passwordField.value));
+//     if (reg.test(passwordField.value.trim())) {
+//         passwordError.innerText = '';
+//         passwordCheck = true;
+//         console.log(passwordField.value.trim().length);
+//     }else if(passwordField.value.length == 0   ){
+//         passwordError.innerText = 'Compila questo campo';
+//         passwordCheck = false;
+//         console.log(passwordField.value.trim().length);
+//     }else {
+//         passwordError.innerText = 'La password inserita deve contenere almeno 8 caratteri e massimo 20';
+//         passwordCheck = false;
+//         console.log(passwordField.value.trim().length);
+//     }
+//     submitOn()
+// })
 
 /***/ }),
 
