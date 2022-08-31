@@ -4,16 +4,16 @@
       <header class="d-flex">
 
         <div class="logo">
-          <img :src="'img/Logo.svg'" alt="Logo">
+          <img :src="'img/logo.svg'" alt="Logo">
         </div>
 
 
         <!-- NAVBAR -->
         <nav>
           <ul id="header" class="nav-list">
-            <li><router-link :to="{name:'home'}">Home</router-link></li>
-            <li><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
-            <li><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
+            <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
+            <li class="restors"><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
+            <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
           </ul>
         </nav>
 
@@ -46,7 +46,7 @@ export default {
 
 header{
   min-height: 100px;
-  position: absolute!important;
+  position: fixed!important;
   left: 0;
   right: 0;
   z-index: 90;
@@ -55,10 +55,11 @@ header{
   align-items: center;
   justify-content: space-between;
   padding: 1em 3em;
-  background-color: lightgray;
-  
+  background-color: white;
+  // border-bottom: 1px solid black;
+  box-shadow: 0 0 15px black;
   .logo img{
-  width:100px;
+  width:200px;
   }
 
   .nav-list{
@@ -66,8 +67,9 @@ header{
     align-items: center;
     li{
       margin: 0 15px;
+      padding: 5px 20px;
       cursor: pointer;
-      line-height: 60px;
+      line-height: 30px;
       a{
         color: black;
         display: flex;
@@ -77,6 +79,17 @@ header{
         }
       }
 
+    }
+    .home{
+      border: 2px solid black;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      &:hover{
+        transition: border-radius 0.4s linear;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        cursor:pointer;
+      }
     }
   }
   .hamburger{

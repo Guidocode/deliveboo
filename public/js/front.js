@@ -1967,8 +1967,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+// import ButtonComp from '../partials/ButtonComp.vue'
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'HomeComp'
+  name: 'HomeComp' // components:{
+  //   ButtonComp
+  // }
+
 });
 
 /***/ }),
@@ -2105,21 +2109,17 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     staticClass: "jumbo"
-  }, [_c("div", {
-    staticClass: "k_container text-center"
-  }, [_c("div", {
-    staticClass: "banner-text pb-2 text-uppercase question"
-  }, [_vm._v("Hai Fame?")]), _vm._v(" "), _c("h6", [_vm._v("Sei nel posto giusto")])])]);
-}];
+  }, [_c("img", {
+    attrs: {
+      src: "img/cover.v3.jpg",
+      alt: ""
+    }
+  })]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2196,7 +2196,7 @@ var render = function render() {
     staticClass: "logo"
   }, [_c("img", {
     attrs: {
-      src: "img/Logo.svg",
+      src: "img/logo.svg",
       alt: "Logo"
     }
   })]), _vm._v(" "), _c("nav", [_c("ul", {
@@ -2204,19 +2204,25 @@ var render = function render() {
     attrs: {
       id: "header"
     }
-  }, [_c("li", [_c("router-link", {
+  }, [_c("li", {
+    staticClass: "home"
+  }, [_c("router-link", {
     attrs: {
       to: {
         name: "home"
       }
     }
-  }, [_vm._v("Home")])], 1), _vm._v(" "), _c("li", [_c("router-link", {
+  }, [_vm._v("Home")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "restors"
+  }, [_c("router-link", {
     attrs: {
       to: {
         name: "restaurants"
       }
     }
-  }, [_vm._v("Ristornati")])], 1), _vm._v(" "), _c("li", [_c("router-link", {
+  }, [_vm._v("Ristornati")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "about"
+  }, [_c("router-link", {
     attrs: {
       to: {
         name: "about"
@@ -2243,7 +2249,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-4b10c5b8] {\n  width: 100%;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  max-height: 720px;\n  background-position: center;\n  background: url(\"https://images.unsplash.com/photo-1630278156268-12d56c2e135f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80\");\n  background-size: cover;\n}\n.jumbo .question[data-v-4b10c5b8] {\n  font-size: 4em;\n  font-weight: 700;\n  color: white;\n}", ""]);
+exports.push([module.i, ".jumbo[data-v-4b10c5b8] {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  padding-top: 100px;\n  background-position: center;\n  background-size: contain;\n  background-attachment: fixed;\n}\n.jumbo img[data-v-4b10c5b8] {\n  width: 100%;\n}\n.jumbo .question[data-v-4b10c5b8] {\n  font-size: 4em;\n  font-weight: 700;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -2262,7 +2268,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-494e1ffe] {\n  min-height: 100px;\n  position: absolute !important;\n  left: 0;\n  right: 0;\n  z-index: 90;\n  background-image: none;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1em 3em;\n  background-color: lightgray;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 100px;\n}\nheader .nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li[data-v-494e1ffe] {\n  margin: 0 15px;\n  cursor: pointer;\n  line-height: 60px;\n}\nheader .nav-list li a[data-v-494e1ffe] {\n  color: black;\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li a[data-v-494e1ffe]:hover {\n  color: red;\n}\nheader .hamburger[data-v-494e1ffe] {\n  display: none;\n  cursor: crosshair;\n}\nheader .hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: white;\n}", ""]);
+exports.push([module.i, "header[data-v-494e1ffe] {\n  min-height: 100px;\n  position: fixed !important;\n  left: 0;\n  right: 0;\n  z-index: 90;\n  background-image: none;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1em 3em;\n  background-color: white;\n  box-shadow: 0 0 15px black;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 200px;\n}\nheader .nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li[data-v-494e1ffe] {\n  margin: 0 15px;\n  padding: 5px 20px;\n  cursor: pointer;\n  line-height: 30px;\n}\nheader .nav-list li a[data-v-494e1ffe] {\n  color: black;\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li a[data-v-494e1ffe]:hover {\n  color: red;\n}\nheader .nav-list .home[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-top-right-radius: 25px;\n  border-bottom-right-radius: 25px;\n}\nheader .nav-list .home[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  cursor: pointer;\n}\nheader .hamburger[data-v-494e1ffe] {\n  display: none;\n  cursor: crosshair;\n}\nheader .hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: white;\n}", ""]);
 
 // exports
 
