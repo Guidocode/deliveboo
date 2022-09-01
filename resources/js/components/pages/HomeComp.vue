@@ -9,7 +9,7 @@
     <div class="msg_text text-center" >
       <div class="banner-text pt-2 text-uppercase question">Hai Fame?</div>
       <div class="msg_2">Sei nel posto giusto</div>
- 
+
          <button class="go_ahead mt-5"><a href="#tipologie">Seleziona categorie <i class="fa-solid fa-arrow-down"></i></a></button>
 
      </div>
@@ -34,7 +34,7 @@
   </div>
 
 
-  
+
 </template>
 
 <script>
