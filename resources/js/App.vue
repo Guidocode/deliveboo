@@ -9,8 +9,8 @@
     <FooterComp/>
 
   </div>
-  
-  
+
+
 </template>
 
 <script>
@@ -40,6 +40,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+main{
+    padding-top: 100px;
+}
 </style>
