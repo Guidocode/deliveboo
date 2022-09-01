@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Benvenuto nella tua area personale!') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    Ciao {{ Auth::user()->name }}, sei loggato!
+                    Ciao <span class=" text-success">{{ Auth::user()->name }}</span>, sei loggato!
                 </div>
             </div>
         </div>

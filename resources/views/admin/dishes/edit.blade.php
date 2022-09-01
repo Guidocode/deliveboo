@@ -8,7 +8,7 @@
             @method('PUT')
             @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Dish Name</label>
+                    <label for="name" class="form-label">Dish Name*</label>
 
                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"  value='{{ old('name', $dish->name) }}' >
                     @error('name')
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Ingredients</label>
+                    <label for="description" class="form-label">Ingredients*</label>
                     <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description', $dish->description) }}'>
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -26,7 +26,7 @@
 
                 <div class="mb-3">
 
-                    <label for="price" class="form-label">Price</label>
+                    <label for="price" class="form-label">Price*</label>
                     <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price"  value='{{ old('price', $dish->price) }}'>
                     @error('price')
                     <div class="alert alert-danger">{{ $message }}</div>

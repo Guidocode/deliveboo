@@ -3,11 +3,11 @@
 @section('content')
 <div class="row">
     <div class="col-6 offset-3">
-        <h1 class="text-center my-5">ADD DISH</h1>
+        <h1 class="text-center my-5">AGGIUNGI PIATTO</h1>
         <form action ="{{ route('admin.dishes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-              <label for="name" class="form-label">Dish Name</label>
+              <label for="name" class="form-label">Nome piatto*</label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"  value='{{ old('name') }}' >
                 @error('name')
                  <div class="alert alert-danger">{{ $message }}</div>
@@ -15,7 +15,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="description" class="form-label">Ingredients</label>
+              <label for="description" class="form-label">Ingredienti*</label>
               {{-- <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description') }}'> --}}
               <textarea name="description" class="form-control @error('description') is-invalid @enderror"" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
               @error('description')
@@ -24,7 +24,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="price" class="form-label">Price</label>
+              <label for="price" class="form-label">Prezzo*</label>
               <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price"  value='{{ old('price') }}'>
                 @error('price')
                  <div class="alert alert-danger">{{ $message }}</div>

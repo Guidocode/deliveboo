@@ -38,13 +38,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : '' }}" href="{{ route('admin.dishes.index') }}">My Food</a>
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : '' }}" href="{{ route('admin.dishes.index') }}">Menu</a>
                         </li>
                         <li>
-                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : '' }}" href="{{ route('admin.dishes.create') }}">Add a Dish</a>
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : '' }}" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#">My Orders/NF</a>
+                            <a class="nav-link" href="#">Ordini</a>
                         </li>
                     </ul>
 
@@ -59,7 +59,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
