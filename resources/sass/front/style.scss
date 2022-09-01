@@ -2,3 +2,35 @@
 @import '~@fontsource/chonburi';
 @import '~bootstrap/scss/bootstrap.scss';
 
+@import './vars';
+
+
+
+
+::-webkit-scrollbar {
+  width: .7em;
+  height: .7em;
+  margin-right: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 20px;
+  min-width: 20px;
+  border: none;
+  background-color: rgb(71, 68, 68);
+}
+ul li {
+  list-style:none;
+}
+
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.my_container{
+  width:70%;
+  margin: 0 auto;
+}
