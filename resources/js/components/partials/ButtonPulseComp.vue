@@ -26,7 +26,8 @@ export default {
 
 <style lang="scss" scoped>
 .text-box {
-    margin: 30px 0;
+    margin-top: 50px;
+    margin-bottom:30px;
     display:flex;
     justify-content:center;
  }

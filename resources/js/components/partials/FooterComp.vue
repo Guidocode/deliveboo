@@ -131,7 +131,7 @@ footer{
 //End fOOTER
 
   @media only screen and (max-width: 575px){}
-   .copyright{
-    display:none;
-   }
+//    .copyright{
+//     display:none;
+//    }
 </style>
