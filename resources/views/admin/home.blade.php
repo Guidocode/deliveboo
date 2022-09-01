@@ -20,6 +20,23 @@
                 </div>
             </div>
         </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ Auth::user()->image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ Auth::user()->name }}</h5>
+                <p class="card-text">Email: {{ Auth::user()->email }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Indirizzo: {{ Auth::user()->address }}</li>
+                <li class="list-group-item">P. Iva: {{ Auth::user()->vat_number }}</li>
+                <li class="list-group-item">Telefono: {{ Auth::user()->phone }}</li>
+            </ul>
+            {{-- <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div> --}}
+        </div>
     </div>
+
 
 @endsection
