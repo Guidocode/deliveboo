@@ -42,6 +42,6 @@ export default {
 
 <style lang="scss" scoped>
 main{
-    padding-top: 100px;
+    padding-top: 110px;
 }
 </style>
