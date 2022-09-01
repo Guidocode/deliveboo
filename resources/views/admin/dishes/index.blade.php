@@ -2,12 +2,16 @@
 
 @section('content')
 <div class="container">
-  <h1>Menu</h1>
-  @if(session('dish_cancellato'))
+    <h1>Menu</h1>
+    @if(session('dish_cancellato'))
       <div class="alert alert-success" role="alert">
         <strong>{{ session('dish_cancellato') }}</strong>
       </div>
-  @endif
+    @elseif (session('accesso-negato'))
+    <div class="alert alert-danger" role="alert">
+        <strong>{{ session('accesso-negato') }}</strong>
+      </div>
+    @endif
   <table class="table">
     <thead>
       <tr>

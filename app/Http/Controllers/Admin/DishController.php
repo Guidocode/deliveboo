@@ -104,9 +104,14 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        // $dish = Dish::find($id);
+        if(Auth::user()->id==$dish->user_id){
+            return view('admin.dishes.edit', compact('dish'));
+        }else{
+            // redirect user to home page
+            return redirect()->route('admin.dishes.index')->with('accesso-negato',  'Furbacchione non puoi accedere ai piatti della concorrenza');
+        }
 
-        return view('admin.dishes.edit', compact('dish'));
+
     }
 
     /**

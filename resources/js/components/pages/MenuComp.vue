@@ -3,7 +3,8 @@
         <div class="container d-flex container-menu">
 
             <div class="sidebar">
-               <h4> Ricerca Rapida </h4>
+                {{ resturant.name }}
+               Aggiungere info ristoranti
             </div>
 
             <div class="dish-container d-flex">
