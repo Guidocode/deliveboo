@@ -2109,14 +2109,24 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "jumbo"
-  }, [_c("img", {
+  return _c("div", [_c("img", {
     attrs: {
-      src: "img/cover.v3.jpg",
+      src: "img/cover.v4.png",
       alt: ""
     }
-  })]);
+  }), _vm._v(" "), _c("div", {
+    staticClass: "msg_text text-center"
+  }, [_c("div", {
+    staticClass: "banner-text pt-2 text-uppercase question"
+  }, [_vm._v("Hai Fame?")]), _vm._v(" "), _c("div", {
+    staticClass: "msg_2"
+  }, [_vm._v("Sei nel posto giusto")]), _vm._v(" "), _c("ButtonComp", {
+    attrs: {
+      buttonText: "Join us today!"
+    }
+  }), _vm._v(" "), _c("button", {
+    staticClass: "go_ahead mt-5"
+  }, [_vm._v("Comincia")])], 1)]);
 };
 
 var staticRenderFns = [];
@@ -2228,7 +2238,12 @@ var render = function render() {
         name: "about"
       }
     }
-  }, [_vm._v("Chi Siamo")])], 1)])])])]);
+  }, [_vm._v("Chi Siamo")])], 1), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-cart-shopping mx-2",
+    staticStyle: {
+      color: "black"
+    }
+  })])])])]);
 };
 
 var staticRenderFns = [];
@@ -2249,7 +2264,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-4b10c5b8] {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  padding-top: 100px;\n  background-position: center;\n  background-size: contain;\n  background-attachment: fixed;\n}\n.jumbo img[data-v-4b10c5b8] {\n  width: 100%;\n}\n.jumbo .question[data-v-4b10c5b8] {\n  font-size: 4em;\n  font-weight: 700;\n  color: white;\n}", ""]);
+exports.push([module.i, "img[data-v-4b10c5b8] {\n  width: 100%;\n  position: relative;\n}\n.msg_text[data-v-4b10c5b8] {\n  position: absolute !important;\n  z-index: 998;\n  top: 80px;\n  padding: 0 40px;\n  transform: translate(110%, 50%);\n  font-family: Poppins;\n}\n.question[data-v-4b10c5b8] {\n  font-size: 5em;\n  font-weight: 700;\n  color: black;\n}\n.msg_2[data-v-4b10c5b8] {\n  font-size: 22px;\n  position: absolute;\n  z-index: 997;\n  top: 107px;\n  left: 125px;\n}\n.go_ahead[data-v-4b10c5b8] {\n  padding: 5px 15px;\n  border-radius: 30px;\n}", ""]);
 
 // exports
 
@@ -2268,7 +2283,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-494e1ffe] {\n  min-height: 100px;\n  position: fixed !important;\n  left: 0;\n  right: 0;\n  z-index: 90;\n  background-image: none;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1em 3em;\n  background-color: white;\n  box-shadow: 0 0 15px black;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 200px;\n}\nheader .nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li[data-v-494e1ffe] {\n  margin: 0 15px;\n  padding: 5px 20px;\n  cursor: pointer;\n  line-height: 30px;\n}\nheader .nav-list li a[data-v-494e1ffe] {\n  color: black;\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li a[data-v-494e1ffe]:hover {\n  color: red;\n}\nheader .nav-list .home[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-top-right-radius: 25px;\n  border-bottom-right-radius: 25px;\n}\nheader .nav-list .home[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  cursor: pointer;\n}\nheader .hamburger[data-v-494e1ffe] {\n  display: none;\n  cursor: crosshair;\n}\nheader .hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: white;\n}", ""]);
+exports.push([module.i, "header[data-v-494e1ffe] {\n  height: 100px;\n  position: fixed !important;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background-image: none;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  align-items: center;\n  padding: 10px 40px 20px 50px;\n  background-color: white;\n  box-shadow: 0 0 15px black;\n  overflow: hidden;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 200px;\n}\nheader nav[data-v-494e1ffe] {\n  padding-top: 17px;\n}\nheader .nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\nheader .nav-list li[data-v-494e1ffe] {\n  margin: 0 10px;\n  padding: 5px 20px;\n  cursor: pointer;\n  line-height: 30px;\n}\nheader .nav-list li a[data-v-494e1ffe] {\n  color: black;\n}\nheader .nav-list li a[data-v-494e1ffe]:hover {\n  text-decoration: none !important;\n}\nheader .nav-list .home[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-top-right-radius: 25px;\n  border-bottom-right-radius: 25px;\n}\nheader .nav-list .home[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  cursor: pointer;\n}\nheader .nav-list .restors[data-v-494e1ffe], header .nav-list .about[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-radius: 25px;\n}\nheader .nav-list .restors[data-v-494e1ffe]:hover, header .nav-list .about[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-radius: 0;\n  cursor: pointer;\n}\nheader .nav-list .hamburger[data-v-494e1ffe] {\n  display: none;\n  cursor: crosshair;\n}\nheader .nav-list .hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: white;\n}", ""]);
 
 // exports
 

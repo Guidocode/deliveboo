@@ -1,15 +1,15 @@
 <template>
 
-  <div class="jumbo">
-    <img :src="'img/cover.v3.jpg'" alt="">
-    <!-- <div class="k_container text-center">
-      <div class="banner-text pb-2 text-uppercase question">Hai Fame?</div>
-      <h6>Sei nel posto giusto</h6>
-             <div class="text-center">
+  <div>
+    <img :src="'img/cover.v4.png'" alt="">
+
+    <div class="msg_text text-center">
+      <div class="banner-text pt-2 text-uppercase question">Hai Fame?</div>
+      <div class="msg_2">Sei nel posto giusto</div>
          <ButtonComp buttonText="Join us today!"/>
-      
-            </div> 
-     </div>  -->
+         <button class="go_ahead mt-5">Comincia</button>
+
+     </div>
 
     <!-- <ButtonComp/> -->
   </div>
@@ -29,26 +29,36 @@ export default {
 
 <style lang="scss" scoped>
 
-.jumbo{
-  width:100%;
-  display: flex;
-  align-items: center;
-  padding-top:100px;
-  background-position: center;
-  // background: url('https://images.unsplash.com/photo-1630278156268-12d56c2e135f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80');
-  background-size: contain;
-  background-attachment: fixed;
   img{
     width:100%;
+    position: relative;
     // height: 900px;
+  }
+  .msg_text{
+    position: absolute!important;
+    z-index: 998;
+    top: 80px;
+    padding: 0 40px;
+    transform: translate(110%,50%);
+    font-family: Poppins;
   }
 
   .question{
-    font-size: 4em;
+    font-size: 5em;
     font-weight: 700;
-    color:white;
-
+    color:black;
   }
-}
+  .msg_2{
+    font-size: 22px;
+    position: absolute;
+    z-index: 997;
+    top: 107px;
+    left: 125px;
+    }
+    .go_ahead{
+      padding: 5px 15px;
+      border-radius: 30px;
+    }
+
 
 </style>
