@@ -1,58 +1,84 @@
 <template>
 
-  <div>
-    <div class="background_img" :style="'background-image: url(img/cover.v4.png)'">
+  <div class="home">
 
-    </div>
-    <!-- <img :src="'img/cover.v4.png'" alt=""> -->
+    <!-- TEXT  -->
+    <div class="my_container text-center" >
 
-    <div class="msg_text text-center" >
       <div class="banner-text pt-2 text-uppercase question">Hai Fame?</div>
       <div class="msg_2">Sei nel posto giusto</div>
- 
-         <button class="go_ahead mt-5"><a href="#tipologie">Seleziona categorie <i class="fa-solid fa-arrow-down"></i></a></button>
+      
+      <ButtonPulseComp a_link="#tipologie" button_text="Choose ONE"/>  
+      <!-- :light_btn="false" for white btn-->
 
-     </div>
+    </div>
 
-  <section id="tipologie" class="my_container typos">
-   <h1>CATEGORIE</h1>
-    <ul>
-      <li>
-        <a href="#">logo + text</a>
-      </li>
-      <li>
-        <a href="#">logo + text</a>
-      </li>
-      <li>
-        <a href="#">logo + text</a>
-      </li>
-      <li>
-        <a href="#">logo + text</a>
-      </li>
-    </ul>
-  </section>
+    <!-- IMAGE COVER -->
+    <div class="jumbo">
+      <img :src="'img/cover.v5.png'" alt="">
+    </div>
+
+    <!-- SCROLL TEXT -->
+    <div id="scroll-container">
+      <div id="scroll-text">
+
+        <span class="txt_scroll">categoria</span>
+        <span class="txt_scroll">categoria</span>
+        <span class="txt_scroll">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+        <span class="txt_scroll hide">categoria</span>
+
+      </div>
+    </div>
+    <!-- END / SCROLL TEXT -->
+
+    <section id="tipologie" class="my_container typos">
+      <h1>CATEGORIE</h1>
+        <ul>
+          <li>
+            <a href="#">logo + text</a>
+          </li>
+        </ul>
+
+    </section>
+
+    
+
   </div>
-
-
+ 
   
 </template>
 
 <script>
+import ButtonPulseComp from '../partials/ButtonPulseComp'
+
 
 export default {
-  name: 'HomeComp'
+  name: 'HomeComp',
+  components:{
+    ButtonPulseComp,
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import'../../../sass/front/vars';
+.home{
+  padding-top: 80px;
+}
+  .jumbo img{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
 
-  .background_img{
-    width:100%;
-    position:relative;
-    height: 1050px;
-    // background-color: red;
-    background-image: url('/public/img/cover.v4.png');
-  }
   .msg_text{
     position: absolute!important;
     z-index: 998;
@@ -66,15 +92,15 @@ export default {
     font-size: 5em;
     font-weight: 700;
     color: black;
-  }
+    }
   .msg_2{
     font-size: 22px;
-    position: absolute;
-    z-index: 997;
-    top: 107px;
-    left: 125px;
+    text-transform: uppercase;
+    line-height: 2px;
+
     }
     .go_ahead{
+      margin: 60px 0;
       padding: 10px 40px;
       border-radius: 30px;
       background-color:black;
@@ -90,6 +116,95 @@ export default {
       margin-top:50px;
       text-align:center;
     }
+    .my_container{
+      height:240px;
+    }
 
+//-----------------------------
+// SCROLL
+
+#scroll-container {
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+#scroll-text {
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  
+  -moz-animation: my-animation 20s linear infinite;
+  -webkit-animation: my-animation 15s linear infinite;
+  animation: my-animation 15s linear infinite;
+  .txt_scroll{
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from { -moz-transform: translateX(100%); }
+  // to { -moz-transform: translateX(-100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from { -webkit-transform: translateX(100%); }
+  to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+//-----------------------------
+//MEDIAS
+
+
+ @media only screen and (max-width: 590px){
+  .question{
+    line-height:66px;
+  }
+  .msg_2{
+    line-height: 55px;
+    font-size: 20px;
+  }
+  .hide{
+    display:none;
+  }
+  .jumbo{
+    margin-top: 50px;
+  }
+ }
+
+  @media only screen and (max-width: 575px){
+  .question{
+    font-size: 4em;
+  }
+  .msg_2{
+    font-size: 18px;
+  }
+  .go_ahead{
+    margin: 30px 0;
+  }
+  h1{
+    font-size: 2em;
+  }
+ }
 
 </style>

@@ -5,7 +5,9 @@
 @import './vars';
 
 
-
+body{
+  background-color: #EEF0EB;
+}
 
 ::-webkit-scrollbar {
   width: .7em;
@@ -25,12 +27,13 @@ ul li {
 
 a{
   text-decoration: none;
+  color:black;
   &:hover{
     text-decoration: none;
   }
 }
 
 .my_container{
-  width:70%;
+  width:65%;
   margin: 0 auto;
 }
