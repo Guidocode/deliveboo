@@ -9,14 +9,22 @@
              </ul>
 
          </div>
-         <div class="bg-dark flex-grow-1 ">
+         <!-- <div class="bg-dark flex-grow-1 ">
              <div v-for="resturant in resturants" :key="resturant.id">
                  <h3 class=" text-white">{{ resturant.name }}</h3>
                  <ul>
                      <li class=" text-white" v-for="(item,index) in resturant.types" :key="`tipoo${ index }`">{{ item.name }}</li>
                  </ul>
              </div>
-         </div>
+         </div> -->
+        <div class="card" style="width: 18rem;">
+                <img :src="resturant.image" class="card-img-top" :alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ resturant.name }}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+</div>
 
      </div>
  </template>
