@@ -19,12 +19,11 @@ class PageController extends Controller
         return response()->json(compact('types'));
     }
 
-    // public function filteredResearch($type){
-    //     //$users = User::join('types','types.name','=',$type)->get();
-    //    $users = User::with(['types','dishes'])->where('types.name',$type )->get();
+    public function getRestaurant($slug){
+        $user  = User::where('slug', $slug)->with('dishes')->first();
 
-    //     return response()->json(compact('users'));
-    // }
+        return response()->json(compact('user'));
+    }
 
 
 }

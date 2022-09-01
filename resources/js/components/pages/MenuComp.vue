@@ -7,7 +7,8 @@
             </div>
 
             <div class="dish-container d-flex">
-                <DishCard />
+                <DishCard v-for="dish in resturant.dishes" :key="dish.id"
+                :dish="dish" />
 
             </div>
 
@@ -21,9 +22,23 @@ import DishCard from './cards/DishCard.vue';
 export default {
     name: "MenuComp",
     data() {
-        return {};
+        return {
+            resturant:{}
+        };
     },
-    components: { DishCard }
+    components: { DishCard },
+    mounted() {
+        this.getDishes()
+    },
+    methods: {
+        getDishes(){
+            console.log(this.$route.params.slug)
+            axios.get('/api/'+ this.$route.params.slug)
+           .then(r => {
+             this.resturant = r.data.user
+           })
+        }
+    },
 }
 </script>
 

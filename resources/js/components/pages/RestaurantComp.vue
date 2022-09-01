@@ -1,15 +1,16 @@
 <template>
     <div>
-        <div class=" bg-info ">
-        <ul class="d-flex justify-content-center">
-            <li class=" ml-2" v-for="(tipo, index) in types" :key="`tipo${ index }`">
-                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" v-model="selectedTypes">
-                <label :for="tipo.id">{{ tipo.name }}</label>
-            </li>
-        </ul>
+        <div class="search-container p-1">
+            <h4 class=" text-center">Cosa vuoi mangiare?</h4>
+            <ul class="d-flex justify-content-center">
+                <li class=" ml-2" v-for="(tipo, index) in types" :key="`tipo${ index }`">
+                    <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" v-model="selectedTypes">
+                    <label :for="tipo.id">{{ tipo.name }}</label>
+                </li>
+            </ul>
 
-    </div>
-    <div class="d-flex container flex-wrap resturant-container">
+        </div>
+    <div class="d-flex container flex-wrap resturant-container justify-content-center py-4">
 
         <div v-for="resturant in resturants" :key="resturant.id" class="card" style="width: 18rem;">
             <img :src="resturant.image" class="card-img-top" alt="">
@@ -84,7 +85,14 @@
      </script>
 
 <style lang="scss" scoped>
+    @import'../../../sass/front/vars';
+    .search-container{
+        background-color: $light_green;
+        border-radius: 10px;
+    }
     .resturant-container{
         gap: 10px;
+        border-radius: 10px;
+        background-color: $orange;
     }
 </style>
