@@ -17,7 +17,7 @@
             <div class="mb-3">
               <label for="description" class="form-label">Ingredienti*</label>
               {{-- <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description') }}'> --}}
-              <textarea name="description" class="form-control @error('description') is-invalid @enderror"" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+              <textarea name="description" class="form-control @error('description') is-invalid @enderror"" id="description" cols="30" rows="5">{{ old('description') }}</textarea>
               @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
               @enderror

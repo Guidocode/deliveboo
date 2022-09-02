@@ -9,6 +9,7 @@ Vue.use(VueRouter);
 import HomeComp from './components/pages/HomeComp';
 import Error404 from './components/pages/Error404';
 import AboutComp from './components/pages/AboutComp';
+import MenuComp from './components/pages/MenuComp.vue';
 import RestaurantComp from './components/pages/RestaurantComp';
 
 
@@ -31,6 +32,11 @@ const router = new VueRouter({
       path: '/chi-siamo',
       name: 'about',
       component: AboutComp
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: MenuComp
     },
     {
       path: '*',

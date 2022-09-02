@@ -38,6 +38,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.index' ? 'active' : '' }}" href="{{ route('admin.index') }}">Dashboard</a>
+                        </li>
+                        <li>
                             <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : '' }}" href="{{ route('admin.dishes.index') }}">Menu</a>
                         </li>
                         <li>

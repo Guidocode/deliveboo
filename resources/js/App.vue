@@ -3,7 +3,10 @@
     <HeaderComp/>
 
     <main>
-      <router-view></router-view>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+
     </main>
 
     <FooterComp/>
@@ -11,8 +14,8 @@
     <div id="pagetop" v-show="scY > 300" @click="toTop"><i class="fa-solid fa-arrow-up"></i>
     </div>
   </div>
-  
-  
+
+
 </template>
 
 <script>
@@ -57,6 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 #pagetop{
   position: fixed;
   z-index: 995;
@@ -78,3 +82,5 @@ export default {
 }
 
 </style>
+
+

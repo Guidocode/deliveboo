@@ -7,6 +7,7 @@
 
       <div class="banner-text pt-2 text-uppercase question">Hai Fame?</div>
       <div class="msg_2">Sei nel posto giusto</div>
+
       
       <ButtonPulseComp a_link="#tipologie" button_text="Choose ONE"/>  
       <!-- :light_btn="false" for white btn-->
@@ -17,6 +18,7 @@
     <div class="jumbo">
       <img :src="'img/cover.v5.png'" alt="">
     </div>
+
 
     <!-- SCROLL TEXT -->
     <div id="scroll-container">
@@ -53,6 +55,7 @@
   </div>
  
   
+
 </template>
 
 <script>
