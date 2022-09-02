@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title"> {{ dish.name }} </h5>
                 <span> {{ dish.price }} &euro;</span>
-                <a @click="addCart()" class="btn btn-primary"> Aggiungi al carrello </a>
+                <a @click="addCart(dish),cartNumber()" class="btn btn-primary"> Aggiungi al carrello </a>
             </div>
         </div>
     </div>
@@ -23,19 +23,58 @@ export default {
         }
     },
     methods: {
-        addCart(){
+        addCart(dish){
             let count = localStorage.getItem('count');
             count = parseInt(count);
+            console.log(count)
+            this.setItem(dish)
 
             if(count){
                 localStorage.setItem('count', count + 1);
 
             }else{
                 localStorage.setItem('count', 1);
+                count = parseInt(count);
             }
-            count = parseInt(count);
+            this.cartNumber()
+        },
+        cartNumber(){
+            let count = localStorage.getItem('count');
             this.$emit('getCount', count)
+        },
+        setItem(dish){
+        //     let cartItems = localStorage.getItem('dishesInCart')
+
+
+        //     if(cartItems != null){
+        //         cartItems = JSON.parse('dishesInCart')
+        //         cartItems[dish.name].inCart++
+        //     }else{
+        //         if(!dish.inCart){
+        //             cartItems = {
+        //                 [dish.name] : dish
+        //             }
+        //             dish.inCart = 1
+        //             localStorage.setItem('dishesInCart', JSON.stringify(cartItems))
+        //         }
+        //     }
+        let cartItems = localStorage.getItem('dishesInCart')
+        cartItems = JSON.parse(cartItems)
+
+        if(cartItems != null){
+            cartItems[dish.name].inCart += 1
+        }else {
+            dish.inCart = 1
+            cartItems = {
+                [dish.name]: dish,
+            }
         }
+
+        localStorage.setItem('dishesInCart', JSON.stringify(cartItems))
+        }
+    },
+    mounted() {
+        this.cartNumber()
     },
 }
 </script>

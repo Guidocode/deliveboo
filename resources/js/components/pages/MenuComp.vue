@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         getDishes(){
-            axios.get('/api/'+ this.$route.params.slug)
+            axios.get('/api/ristorante/'+ this.$route.params.slug)
            .then(r => {
              this.resturant = r.data.user
            })
@@ -45,7 +45,6 @@ export default {
 
         cartItemCount(count){
             if(count){
-
                 this.cartNumber = count
             }
         }
