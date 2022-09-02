@@ -2033,7 +2033,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cartItemCount: function cartItemCount(count) {
-      this.cartNumber = count;
+      if (count) {
+        this.cartNumber = count;
+      }
     }
   }
 });
@@ -2132,6 +2134,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         localStorage.setItem('count', 1);
       }
+
+      count = parseInt(count);
+      this.$emit('getCount', count);
     }
   }
 });
@@ -2431,6 +2436,9 @@ var render = function render() {
       key: dish.id,
       attrs: {
         dish: dish
+      },
+      on: {
+        getCount: _vm.cartItemCount
       }
     });
   }), 1)])]);

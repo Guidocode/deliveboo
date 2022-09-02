@@ -10,7 +10,9 @@
 
             <div class="dish-container d-flex">
                 <DishCard v-for="dish in resturant.dishes" :key="dish.id"
-                :dish="dish" />
+                :dish="dish"
+                @getCount="cartItemCount"
+                />
 
             </div>
 
@@ -40,10 +42,15 @@ export default {
              this.resturant = r.data.user
            })
         },
+
         cartItemCount(count){
-            this.cartNumber = count
+            if(count){
+
+                this.cartNumber = count
+            }
         }
     },
+
 }
 </script>
 

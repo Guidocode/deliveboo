@@ -33,6 +33,8 @@ export default {
             }else{
                 localStorage.setItem('count', 1);
             }
+            count = parseInt(count);
+            this.$emit('getCount', count)
         }
     },
 }
