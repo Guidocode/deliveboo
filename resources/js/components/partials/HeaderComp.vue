@@ -1,6 +1,5 @@
 <template>
   <!-- HEader & Jumbotron  -->
-    <div class="my_jumbotron">
       <header class="d-flex">
 
         <div class="logo">
@@ -9,38 +8,34 @@
 
 
         <!-- NAVBAR -->
-        <nav>
-          <ul id="header" class="nav-list">
-            <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
-            <li class="restors"><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
-            <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
-            <i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i>
-          </ul>
+        <div class="d-flex align-items-center">
+          <nav>
+            <ul id="header" class="nav-list">
+              <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
+              <li class="restors"><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
+              <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
+            </ul>
+          </nav>
 
-        </nav>
+          <i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i>
+          <!-- HAMBURGER MENU -->
+          <div class="hamburger ml-2">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>          
+          </div> 
 
-
-
-        <!-- Humburger-Menu 
-        <div class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
         </div>
 
-        <ul class="hamburger-menu">
-          <li><router-link :to="{name:'home'}">Home</router-link></li>
-            <li><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
-            <li><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
-        </ul>   -->
+        <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
+          <li>1</li>>
+       </ul>
+
       </header>
-
-    </div>
-
-
 </template>
 
 <script>
+
 export default {
   name: 'HeaderComp'
 }
@@ -48,27 +43,26 @@ export default {
 
 <style lang="scss" scoped>
 
+@import'../../../sass/front/vars';
+
 header{
-  height: 100px;
-  position: fixed!important;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  background-image: none;
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px 20px 50px;
-  background-color: white;
-  // border-bottom: 1px solid black;
-  box-shadow: 0 0 15px black;
-  overflow: hidden;
-  .logo img{
-  width:200px;
-  }
-  nav{
-    padding-top:17px;
+    height: 100px;
+    background-color: $light-green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 5em;
+    box-shadow: 0 0 15px black;
+    .logo img{
+    width:200px;
+    }
+    nav{
+      padding-top:17px;
+    }
+    li .active{
+      color:#7131fa;
+    }
+
   }
 
   .nav-list{
@@ -81,10 +75,9 @@ header{
       line-height: 30px;
       list-style:none;
       a{
-        color: black;
         &:hover{
           text-decoration: none !important;
-        }
+        }        
       }
 
     }
@@ -108,45 +101,46 @@ header{
         cursor:pointer;
     }
   }
+  }    
      .hamburger{
-      display:none;
-      cursor: crosshair;
+      display:none!important;
+      cursor: pointer;
       .bar{
         display:block;
         width: 25px;
         height: 3px;
         margin: 5px auto;
         transition: all .2s ease-in-out;
-        background-color: white;;
+        background-color: rgb(0, 0, 0);;
       }
-    }
-  
+      }
+  //-----------------------------
+  //MEDIA
 
-  }    
-}
-
- @media (max-width: 992px) {
+ @media only screen and (max-width: 992px) {
   .header{
-  padding: 3em 3em;
+  padding: 1em 1.5em;
   }
-  .header img {
-  width: 120px;
-  }
-  .header ul li{
-  margin-right: 1rem;
-  }
-  .banner-text{
-    font-size:3em!important;
-  }
+
   }
 
   
-  @media only screen and (max-width: 768px) {
-
-  .header img {
-    width: 100px;
+  @media only screen and (max-width: 768px) { //akamde rac xdeba
+  header{
+    padding: 1em 2em;
   }
- 
+
+  header .logo img{
+    width: 150px;
+  }
+  .nav-list li{
+    margin: 0 5px;
+    padding: 5px 12px;
+    a{
+      font-size: 14px;
+    }
+  }
+  
   .nav{
     position: fixed;
     left: -120%;
@@ -166,35 +160,43 @@ header{
   .banner-text{
     font-size:3em!important;
   }
+  }
 
-  .hamburger{
-    display: block!important;
-  }
-  }
-  .hamburger-menu{
-    position: absolute;
-    z-index: 967;
-    top: 115px;
-    width:100%;
-    background-color: red;
-    display:flex;
-    flex-direction: column;
-    text-align:center;
-    justify-content: center;
-    padding: 0;
-    li{
-      padding: 10px 0;
-      &:hover{
-        background-color: lighten(red, 10%);
-        cursor: pointer;
+    @media only screen and (max-width: 575px){
+      header{
+        padding: 0 2em;
       }
-    }
-    a{
-      color: white;
-      text-decoration: none;
-      font-size: 22px;
-      text-transform: uppercase;
-    }   
-    }
+      header nav li{
+        display:none;
+      }
+       .hamburger{
+        display: block!important;
+        }
+        .hamburger-menu{
+        position: absolute;
+        z-index: 967;
+        top: 115px;
+        width:100%;
+        background-color: red;
+        display:flex;
+        flex-direction: column;
+        text-align:center;
+        justify-content: center;
+        padding: 0;
+        li{
+          padding: 10px 0;
+          &:hover{
+            background-color: lighten(red, 10%);
+            cursor: pointer;
+          }
+        }
+        a{
+          color: white;
+          text-decoration: none;
+          font-size: 22px;
+          text-transform: uppercase;
+        }   
+        }
 
+    }
 </style>

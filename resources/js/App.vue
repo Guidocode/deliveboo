@@ -10,7 +10,9 @@
     </main>
 
     <FooterComp/>
-
+    <!-- ADD PAGEUP -->
+    <div id="pagetop" v-show="scY > 300" @click="toTop"><i class="fa-solid fa-arrow-up"></i>
+    </div>
   </div>
 
 
@@ -27,24 +29,58 @@ export default {
     HeaderComp,
     FooterComp
   },
-
-  data(){
-    return{
-
+  data() {
+    return {
+      scTimer: 0,
+      scY: 0,
     }
   },
-  methods:{
- /// getApi() -->axios
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
   },
+  methods:{
+    handleScroll: function () {
+      if (this.scTimer) return;
+      this.scTimer = setTimeout(() => {
+      this.scY = window.scrollY;
 
-  mounted(){
+      clearTimeout(this.scTimer);
+      this.scTimer = 0;
+      }, 100);
+    },
 
-  }
+    toTop: function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    },
+ }
 }
 </script>
 
 <style lang="scss" scoped>
-main{
-    padding-top: 110px;
+
+#pagetop{
+  position: fixed;
+  z-index: 995;
+  bottom: 40px;
+  right:50px;
+
 }
+
+.fa-arrow-up{
+  color:black;
+  padding: 12px 15px;
+  background-color: white;
+  border-radius: 50%;
+  &:hover{
+    background-color:rgb(252, 151, 151);
+    cursor: pointer;
+    color:black;
+  }
+}
+
 </style>
+
+

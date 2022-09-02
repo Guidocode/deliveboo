@@ -11045,6 +11045,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  background-color: #EEF0EB;
+}
+
 ::-webkit-scrollbar {
   width: 0.7em;
   height: 0.7em;
@@ -11064,6 +11068,7 @@ ul li {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 a:hover {
@@ -11071,7 +11076,7 @@ a:hover {
 }
 
 .my_container {
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
 }
 
