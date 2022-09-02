@@ -5,6 +5,7 @@
             <div class="sidebar">
                 {{ resturant.name }}
                Aggiungere info ristoranti
+               <h3>carrello <span >{{ cartNumber }}</span></h3>
             </div>
 
             <div class="dish-container d-flex">
@@ -24,7 +25,8 @@ export default {
     name: "MenuComp",
     data() {
         return {
-            resturant:{}
+            resturant:{},
+            cartNumber: 0
         };
     },
     components: { DishCard },
@@ -33,11 +35,13 @@ export default {
     },
     methods: {
         getDishes(){
-            console.log(this.$route.params.slug)
             axios.get('/api/'+ this.$route.params.slug)
            .then(r => {
              this.resturant = r.data.user
            })
+        },
+        cartItemCount(count){
+            this.cartNumber = count
         }
     },
 }
