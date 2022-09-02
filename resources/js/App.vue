@@ -2,7 +2,7 @@
   <div>
     <HeaderComp/>
 
-    <main>
+    <main class="py-5">
         <router-view></router-view>
     </main>
 
