@@ -19,7 +19,7 @@ export default {
     },
     data () {
         return {
-
+            datofasullo: 0
         }
     },
     methods: {
