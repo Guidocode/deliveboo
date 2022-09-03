@@ -2028,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
     getDishes: function getDishes() {
       var _this = this;
 
-      axios.get('/api/' + this.$route.params.slug).then(function (r) {
+      axios.get('/api/ristorante/' + this.$route.params.slug).then(function (r) {
         _this.resturant = r.data.user;
       });
     },
@@ -2065,7 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getResturant(), this.getTypes(); // this.filteredResearch()
+    this.getResturant(), this.getTypes();
   },
   methods: {
     getResturant: function getResturant() {
@@ -2081,25 +2081,17 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/tipi').then(function (r) {
         _this2.types = r.data.types;
       });
-    } // filteredResearch(){
-    //     axios.get('/api/ristoranti')
-    //     .then(r => {
-    //     r.data.users.forEach(element => {
-    //         element.types.forEach(res => {
-    //             if(res.name == 'Cinese'){
-    //                 this.resturants.push(element)
-    //             }
-    //         });
-    //     });
-    //   })
-    // },
-    //     filteredResearch(){
-    //         axios.get('/api/ristoranti-filtrati'+ this.type)
-    //         .then(r => {
-    //             this.resturants = r.data.users
-    //         })
-    //     }
-
+    },
+    filterMe: function filterMe(id) {
+      this.selectedTypes.push(id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/filter', {
+        params: {
+          ids: this.selectedTypes
+        }
+      }).then(function (r) {
+        console.log(r.data);
+      });
+    }
   }
 });
 
@@ -2114,6 +2106,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DishCard',
   props: {
@@ -2125,19 +2119,54 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    addCart: function addCart() {
+    addCart: function addCart(dish) {
       var count = localStorage.getItem('count');
       count = parseInt(count);
+      console.log(count);
+      this.setItem(dish);
 
       if (count) {
         localStorage.setItem('count', count + 1);
       } else {
         localStorage.setItem('count', 1);
+        count = parseInt(count);
       }
 
-      count = parseInt(count);
+      this.cartNumber();
+    },
+    cartNumber: function cartNumber() {
+      var count = localStorage.getItem('count');
       this.$emit('getCount', count);
+    },
+    setItem: function setItem(dish) {
+      //     let cartItems = localStorage.getItem('dishesInCart')
+      //     if(cartItems != null){
+      //         cartItems = JSON.parse('dishesInCart')
+      //         cartItems[dish.name].inCart++
+      //     }else{
+      //         if(!dish.inCart){
+      //             cartItems = {
+      //                 [dish.name] : dish
+      //             }
+      //             dish.inCart = 1
+      //             localStorage.setItem('dishesInCart', JSON.stringify(cartItems))
+      //         }
+      //     }
+      var cartItems = localStorage.getItem('dishesInCart');
+      cartItems = JSON.parse(cartItems);
+
+      if (cartItems != null) {
+        cartItems[dish.name].inCart += 1;
+      } else {
+        dish.inCart = 1;
+        cartItems = _defineProperty({}, dish.name, dish);
+      }
+
+      localStorage.setItem('dishesInCart', JSON.stringify(cartItems));
     }
+  },
+  mounted: function mounted() {
+    this.cartNumber();
   }
 });
 
@@ -2476,39 +2505,17 @@ var render = function render() {
       key: "tipo".concat(index),
       staticClass: "ml-2"
     }, [_c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _vm.selectedTypes,
-        expression: "selectedTypes"
-      }],
       attrs: {
         type: "checkbox",
         name: tipo.name,
         id: tipo.id
       },
       domProps: {
-        value: tipo.id,
-        checked: Array.isArray(_vm.selectedTypes) ? _vm._i(_vm.selectedTypes, tipo.id) > -1 : _vm.selectedTypes
+        value: tipo.id
       },
       on: {
-        change: function change($event) {
-          var $$a = _vm.selectedTypes,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;
-
-          if (Array.isArray($$a)) {
-            var $$v = tipo.id,
-                $$i = _vm._i($$a, $$v);
-
-            if ($$el.checked) {
-              $$i < 0 && (_vm.selectedTypes = $$a.concat([$$v]));
-            } else {
-              $$i > -1 && (_vm.selectedTypes = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.selectedTypes = $$c;
-          }
+        click: function click($event) {
+          return _vm.filterMe(tipo.id);
         }
       }
     }), _vm._v(" "), _c("label", {
@@ -2591,7 +2598,7 @@ var render = function render() {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
-        return _vm.addCart();
+        _vm.addCart(_vm.dish), _vm.cartNumber();
       }
     }
   }, [_vm._v(" Aggiungi al carrello ")])])])]);
