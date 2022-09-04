@@ -86,8 +86,6 @@
                                 return false
                             }
                         })
-                        console.log(alredyExist)
-                        console.log
                         if(!alredyExist){
                             this.resturants.push(element)
                         }
