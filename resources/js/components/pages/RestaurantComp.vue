@@ -59,15 +59,44 @@
         },
 
         filterMe(id){
-            this.selectedTypes.push(id)
-            axios.get('/api/filter', {
-                params:{
-                    ids: this.selectedTypes
-                }
-            })
-            .then(r => {
-                console.log(r.data);
-            })
+
+            if(this.selectedTypes.includes(id)){
+                let index = this.selectedTypes.indexOf(id)
+                this.selectedTypes.splice(index,1)
+            }else{
+                this.selectedTypes.push(id)
+            }
+
+            if(this.selectedTypes.length != 0){
+                axios.get('/api/filter', {
+                    params:{
+                        ids: this.selectedTypes
+                    }
+                })
+                .then(r => {
+                    // console.log(r.data);
+                    // this.resturants = r.data.selectedTypes
+                    this.resturants = []
+
+                    r.data.selectedTypes.forEach(element => {
+                        let alredyExist = this.resturants.some(resturant => {
+                            if(resturant.id == element.id){
+                                return true
+                            }else{
+                                return false
+                            }
+                        })
+                        console.log(alredyExist)
+                        console.log
+                        if(!alredyExist){
+                            this.resturants.push(element)
+                        }
+                    });
+                })
+            }else{
+                this.getResturant()
+            }
+
         },
 
 

@@ -18,13 +18,12 @@ class FilterResturant extends Controller
             foreach ($resturants as  $resturant) {
                 $users = $resturant->users;
                 foreach ($users as  $user) {
-                    $selectedTypes[]= $user;
+                    $selectedTypes[] = $user;
                 }
 
             }
         }
-        //  $resturant = Type::where('id', $r[0])->with('users')->get();
-        //  $selectedTypes[] = $resturant[0]->users;
+
 
         return response()->json(compact('selectedTypes'));
     }
