@@ -1,6 +1,6 @@
 <template>
   <div class="text-box">
-    <a :href="a_link" class="btn btn-white btn-animate" :class="[light_btn ? '' : 'light_btn']">{{button_text}}</a>
+    <a :href="a_link" class="btn btn-white btn-animate" :class="[light_btn ? 'light_btn' :'' ]">{{button_text}}</a>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     },
     light_btn:{
         type: Boolean,
-        default: () => 'false'
+        default: () => 'true'
     }
   }
 }

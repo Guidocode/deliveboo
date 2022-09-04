@@ -18,94 +18,73 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
 
     <!-- Styles -->
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    Vai al Sito Pubblico
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                @auth()
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div id="app">      
+     <div class="d-flex layout_wrapper">
+        @auth
+                <aside>
+                    <div class="top">
+                        <div class="logo">
+                            <img src='img/deliverboo_logo.png' alt="Logo">
+                        </div>
+                        <div class="close" id="close-btn">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
 
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a class="nav-link {{ Route::currentRouteName() === 'admin.index' ? 'active' : '' }}" href="{{ route('admin.index') }}">Dashboard</a>
-                        </li>
-                        <li>
-                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : '' }}" href="{{ route('admin.dishes.index') }}">Menu</a>
-                        </li>
-                        <li>
-                            <a class="nav-link {{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : '' }}" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">Ordini</a>
-                        </li>
-                    </ul>
+                    {{-- sidebar --}}
+                    <div class="sidebar">
+                        <a href="#" class="active">
+                            <i class="fa-solid fa-table-list"></i>
+                            <h4>Dashboard</h4>
+                        </a>
+                        <a href="#">
+                            <i class="fa-regular fa-user"></i>
+                            <h4>Profile</h4>
+                        </a>
+                        <a href="#">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                            <h4>My menu</h4>
+                        </a>
+                        <a href="#">
+                            <i class="fa-solid fa-money-bill-wheat"></i>
+                            <h4>Orders</h4>
+                            <span class="message-count">2</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa-solid fa-utensils"></i>
+                            <h4>Add plate</h4>
+                        </a>
+                        <a href="#">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h4>Analytics</h4>
+                        </a>
+                        <a href="#">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <h4>Reports</h4>
+                        </a>
 
-                @endauth
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
-                                </li>
-                            @endif
-                        @else
-
-                            {{-- <li class="nav-item dropdown"> --}}
-                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a> --}}
-
-
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                    {{-- <div>
-                                        <a class="dropdown-item" href="">
-                                            {{ __('Dashboard') }}
-                                        </a>
-                                    </div> --}}
-
-
-
-
-                            {{-- </li> --}}
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-
-        <main class="py-4">
-            <div class="container">
-
-                @yield('content')
-            </div>
+                        <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><i class="fa-regular fa-user"></i>
+                        <h4>{{ __('Logout') }}</h4>
+                        </a>
+                    </div>
+                </aside>                   
+        @endauth
+        <main>
+            @yield('content')
         </main>
+    </div>
     </div>
 </body>
 </html>

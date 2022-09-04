@@ -1,7 +1,9 @@
 <template>
   <div>
+
     <HeaderComp
     :cartList="dataCart" />
+
 
     <main class="py-5">
         <router-view></router-view>

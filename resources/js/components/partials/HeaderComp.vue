@@ -29,9 +29,9 @@
 
         </div>
 
-        <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
+        <!-- <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
           <li>1</li>>
-       </ul>
+       </ul> -->
 
       </header>
 </template>
