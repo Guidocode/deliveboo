@@ -17,13 +17,15 @@
             </ul>
           </nav>
 
-          <i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i>
+          <!-- <i class="fa-solid fa-cart-shopping mx-2" style="color:black"><router-link :to="{name:'Cart'}"></router-link></i> -->
+
+          <router-link :to="{name:'Cart'}"><i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i></router-link>
           <!-- HAMBURGER MENU -->
           <div class="hamburger ml-2">
             <span class="bar"></span>
             <span class="bar"></span>
-            <span class="bar"></span>          
-          </div> 
+            <span class="bar"></span>
+          </div>
 
         </div>
 
@@ -37,7 +39,13 @@
 <script>
 
 export default {
-  name: 'HeaderComp'
+  name: 'HeaderComp',
+  data() {
+    return {
+        cartList: JSON.parse(window.localStorage.getItem('dishesInCart'))
+
+    }
+  },
 }
 </script>
 
@@ -77,7 +85,7 @@ header{
       a{
         &:hover{
           text-decoration: none !important;
-        }        
+        }
       }
 
     }
@@ -101,7 +109,7 @@ header{
         cursor:pointer;
     }
   }
-  }    
+  }
      .hamburger{
       display:none!important;
       cursor: pointer;
@@ -124,7 +132,7 @@ header{
 
   }
 
-  
+
   @media only screen and (max-width: 768px) { //akamde rac xdeba
   header{
     padding: 1em 2em;
@@ -140,7 +148,7 @@ header{
       font-size: 14px;
     }
   }
-  
+
   .nav{
     position: fixed;
     left: -120%;
@@ -195,7 +203,7 @@ header{
           text-decoration: none;
           font-size: 22px;
           text-transform: uppercase;
-        }   
+        }
         }
 
     }

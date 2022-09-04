@@ -1,12 +1,12 @@
 <template>
   <div>
-    <HeaderComp/>
 
-    <main>
-        <div>
-            <router-view></router-view>
-        </div>
+    <HeaderComp
+    :cartList="dataCart" />
 
+
+    <main class="py-5">
+        <router-view></router-view>
     </main>
 
     <FooterComp/>
@@ -33,12 +33,15 @@ export default {
     return {
       scTimer: 0,
       scY: 0,
+      dataCart: null
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+
   },
   methods:{
+
     handleScroll: function () {
       if (this.scTimer) return;
       this.scTimer = setTimeout(() => {
