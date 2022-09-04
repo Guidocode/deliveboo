@@ -9,7 +9,7 @@
       <div class="msg_2">Sei nel posto giusto</div>
 
       
-      <ButtonPulseComp a_link="#tipologie" button_text="Choose ONE"/>  
+      <ButtonPulseComp :light_btn="false" a_link="#tipologie" button_text="Scegli Categoria"/>  
       <!-- :light_btn="false" for white btn-->
 
     </div>

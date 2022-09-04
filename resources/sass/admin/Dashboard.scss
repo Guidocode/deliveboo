@@ -1,0 +1,138 @@
+main{
+  // height: 100vh;
+  margin:3rem 4rem;
+  font-family: Poppins,sans-serif;
+  .date{
+    display:inline-block;
+    // background-color: pink;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0;
+    input[type="date"]{
+     background-color: pink;
+     border:none;
+     border-radius: 20px;
+     color: darkmagenta;
+     padding: 0.5rem 1rem;
+    }
+  }
+
+  .insights{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:1.6rem;
+    .progress{
+      height: 11rem;
+      line-height: 0; 
+      background-color: transparent;
+      // display:block;
+      position: relative;
+      width:92px;
+      height: 92px;
+      border-radius:50%;
+      svg{
+        width:100px;
+        circle {
+          fill:none;
+          stroke:rgb(142, 93, 210);
+          stroke-width: 14;
+          stroke-linecap: round;
+          transform: translate(5px, 5px);
+          stroke-dasharray: 110;
+          stroke-dashoffset: 92;
+        }
+      }
+    }
+  }
+  .insights > div{
+     background-color: white;
+     padding: 1rem;
+     border-radius: 0.5rem;
+     margin-top: 1rem;
+     box-shadow: 0 5px 10px rgb(121, 120, 120);
+     transition:all 300ms ease;
+     &:hover{
+      box-shadow:none;
+     }
+    }
+    .insights > div i{
+      padding: 0.5rem;
+      border-radius: 50%;
+      color: white;
+      font-size: 1rem;     
+    }
+    .insights > div.sales i{
+      background: rgb(142, 93, 210);
+    }
+    .insights > div.expenses i{
+      background: rgb(254, 68, 11);
+    }
+    .insights > div.income i{
+      background: greenyellow;
+    }
+    .insights > div.middle{
+      display:flex;
+      height: 200px;
+    }
+    .middle{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .insights .sales svg circle{
+      stroke-dashoffset: -30;
+      stroke-dasharray: 200;
+    }
+    .insights .income svg circle{
+      stroke-dashoffset: 35;
+      stroke-dasharray: 110;
+    }
+    .insights .expenses svg circle{
+      stroke-dashoffset: 20;
+      stroke-dasharray: 80;
+    }
+
+    // RECENT_ORDERS
+    .recent-orders h2{
+      margin:2rem 0;
+    }
+
+    .recent-orders table{
+        background-color: white;
+        width:100%;
+        border-radius: 10px;
+        padding: 20px 30px;
+        text-align:center;
+        box-shadow: 0 5px 10px gray;
+        transition: all 300ms ease;
+        &:hover{
+          box-shadow: none;
+        }
+      }
+      td{
+        margin:0 30px;
+      }
+      table tbody td{
+          height: 2.8rem;
+          border-bottom: 1px solid rgb(179, 179, 179);
+          color: black;
+        }
+        tbody tr:last-child td{
+          border:none;
+        }
+        a{
+          text-align:center;
+          display:block;
+          margin: 1rem auto;
+          color:rgb(30, 6, 165);
+        }
+
+        .card-img-top{
+          display: block;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          box-shadow: 0 0 10 black;
+        }
+      }
+    
+  
