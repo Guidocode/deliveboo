@@ -1,6 +1,6 @@
 <template>
   <div class="text-box">
-    <a :href="a_link" class="btn btn-white btn-animate" :class="[light_btn ? 'light_btn' :'' ]">{{button_text}}</a>
+    <a :href="a_link" class="btn btn-white btn-animate" :class="[light_btn ? 'light_btn' :'' ]">{{button_text}} <i class="fa-solid fa-arrow-right ml-2"></i></a>
   </div>
 </template>
 

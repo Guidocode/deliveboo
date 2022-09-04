@@ -9,7 +9,8 @@
       <div class="msg_2">Sei nel posto giusto</div>
 
       
-      <ButtonPulseComp :light_btn="false" a_link="#tipologie" button_text="Scegli Categoria"/>  
+      <ButtonPulseComp :light_btn="false" a_link="/ristoranti" button_text="Comincia subito"
+      /> 
       <!-- :light_btn="false" for white btn-->
 
     </div>
@@ -21,7 +22,7 @@
 
 
     <!-- SCROLL TEXT -->
-    <div id="scroll-container">
+    <!-- <div id="scroll-container">
       <div id="scroll-text">
 
         <span class="txt_scroll">categoria</span>
@@ -37,20 +38,8 @@
         <span class="txt_scroll hide">categoria</span>
 
       </div>
-    </div>
+    </div> -->
     <!-- END / SCROLL TEXT -->
-
-    <section id="tipologie" class="my_container typos">
-      <h1>CATEGORIE</h1>
-        <ul>
-          <li>
-            <a href="#">logo + text</a>
-          </li>
-        </ul>
-
-    </section>
-
-    
 
   </div>
  
@@ -126,76 +115,82 @@ export default {
 //-----------------------------
 // SCROLL
 
-#scroll-container {
-  border: 2px solid black;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 10px;
-  padding: 10px 0;
-}
+// #scroll-container {
+//   border: 2px solid black;
+//   border-radius: 5px;
+//   overflow: hidden;
+//   margin-top: 10px;
+//   padding: 10px 0;
+// }
 
-#scroll-text {
-  /* animation properties */
-  -moz-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+// #scroll-text {
+//   /* animation properties */
+//   -moz-transform: translateX(100%);
+//   -webkit-transform: translateX(100%);
+//   transform: translateX(100%);
   
-  -moz-animation: my-animation 20s linear infinite;
-  -webkit-animation: my-animation 15s linear infinite;
-  animation: my-animation 15s linear infinite;
-  .txt_scroll{
-    padding: 0 10px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 600;
-  }
-}
+//   -moz-animation: my-animation 20s linear infinite;
+//   -webkit-animation: my-animation 15s linear infinite;
+//   animation: my-animation 15s linear infinite;
+//   .txt_scroll{
+//     padding: 0 10px;
+//     text-transform: uppercase;
+//     font-size: 20px;
+//     font-weight: 600;
+//   }
+// }
 
-/* for Firefox */
-@-moz-keyframes my-animation {
-  from { -moz-transform: translateX(100%); }
-  // to { -moz-transform: translateX(-100%); }
-}
+// /* for Firefox */
+// @-moz-keyframes my-animation {
+//   from { -moz-transform: translateX(100%); }
+//   // to { -moz-transform: translateX(-100%); }
+// }
 
-/* for Chrome */
-@-webkit-keyframes my-animation {
-  from { -webkit-transform: translateX(100%); }
-  to { -webkit-transform: translateX(-100%); }
-}
+// /* for Chrome */
+// @-webkit-keyframes my-animation {
+//   from { -webkit-transform: translateX(100%); }
+//   to { -webkit-transform: translateX(-100%); }
+// }
 
-@keyframes my-animation {
-  from {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  to {
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-}
+// @keyframes my-animation {
+//   from {
+//     -moz-transform: translateX(100%);
+//     -webkit-transform: translateX(100%);
+//     transform: translateX(100%);
+//   }
+//   to {
+//     -moz-transform: translateX(-100%);
+//     -webkit-transform: translateX(-100%);
+//     transform: translateX(-100%);
+//   }
+// }
 //-----------------------------
 //MEDIAS
 
 
- @media only screen and (max-width: 590px){
-  .question{
-    line-height:66px;
-  }
-  .msg_2{
-    line-height: 55px;
-    font-size: 20px;
-  }
-  .hide{
-    display:none;
-  }
-  .jumbo{
-    margin-top: 50px;
-  }
- }
+//  @media only screen and (max-width: 590px){
+//   .question{
+//     line-height:66px;
+//   }
+//   .msg_2{
+//     line-height: 55px;
+//     font-size: 20px;
+//   }
+//   .hide{
+//     display:none;
+//   }
+//   .jumbo{
+//     margin-top: 50px;
+//   }
+//  }
 
-  @media only screen and (max-width: 575px){
+@media only screen and (max-width: 769px){
+  .question{
+    font-size: 3.8em;
+  }
+}
+
+  @media only screen and (max-width: 590px){
   .question{
     font-size: 4em;
   }
