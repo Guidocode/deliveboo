@@ -59,7 +59,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em 5em;
+    padding: 1em 4em;
     box-shadow: 0 0 15px black;
     .logo img{
     width:200px;
@@ -125,15 +125,22 @@ header{
   //-----------------------------
   //MEDIA
 
- @media only screen and (max-width: 992px) {
+ @media only screen and (max-width: 776px) {
   .header{
   padding: 1em 1.5em;
   }
-
+  .logo img{
+    width:170px;
+  }
+  .nav-list li {
+    padding: 5px 10px;
+  }
   }
 
 
-  @media only screen and (max-width: 768px) { //akamde rac xdeba
+  
+  @media only screen and (max-width: 695px) { //akamde rac xdeba
+
   header{
     padding: 1em 2em;
   }
@@ -168,6 +175,9 @@ header{
   .banner-text{
     font-size:3em!important;
   }
+  }
+  @media only screen and (max-width: 768px){
+
   }
 
     @media only screen and (max-width: 575px){
