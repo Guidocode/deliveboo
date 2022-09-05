@@ -7,7 +7,7 @@
           <div class="inputs">
             <div id="ck-button" v-for="(tipo, index) in types" :key="`tipo${ index }`">
               <label :for="tipo.id">
-                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" v-model="selectedTypes"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
+                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
               </label>
             </div>
           </div>

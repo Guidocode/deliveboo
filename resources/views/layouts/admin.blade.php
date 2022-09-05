@@ -30,6 +30,20 @@
 <body>
     <div id="app">      
      <div class="d-flex layout_wrapper">
+        <div class="guest">
+            @guest
+
+            <a href="{{ url('/') }}">Go Back</a>
+                
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}">Register</a>
+            @endif
+                
+            @endguest
+
+        </div>
+
+        {{-- END GUEST --}}
         @auth
                 <aside>
                     <div class="top">
