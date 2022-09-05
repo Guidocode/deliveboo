@@ -7,27 +7,13 @@
           <div class="inputs">
             <div id="ck-button" v-for="(tipo, index) in types" :key="`tipo${ index }`">
               <label :for="tipo.id">
-                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" v-model="selectedTypes"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
+                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id"  @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
               </label>
             </div>
           </div>
         </div>
-
-      <!-- <div class="line mt-2"></div> -->
-      <div class="my_container d-flex flex-wrap justify-content-between">
-                <div v-for="resturant in resturants" :key="resturant.id" class="card" style="width: 18rem;">
-            <img :src="resturant.image" class="card-img-top" alt="">
-            <div class="card-body">
-                <h5 class="card-title">{{ resturant.name }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-            </div>
-         </div>
-
-      </div> 
-
-
-        <!-- <div class="search-container p-1">
+        
+              <!-- <div class="search-container p-1">
             <h4 class=" text-center">Cosa vuoi mangiare?</h4>
             <ul class="d-flex justify-content-center">
                 <li class=" ml-2" v-for="(tipo, index) in types" :key="`tipo${ index }`">
@@ -36,8 +22,9 @@
                 </li>
             </ul>
 
-        </div> -->
-    <!-- <div class="d-flex container flex-wrap resturant-container justify-content-center py-4">
+            </div>  -->
+
+     <div class="d-flex container flex-wrap resturant-container justify-content-center py-4">
 
         <div v-for="resturant in resturants" :key="resturant.id" class="card" style="width: 18rem;">
             <img :src="resturant.image" class="card-img-top" alt="">
@@ -48,7 +35,7 @@
             </div>
          </div>
 
-      </div> -->
+      </div>
   </div>
     
  </template>
