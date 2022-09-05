@@ -10,6 +10,8 @@ import HomeComp from './components/pages/HomeComp';
 import Error404 from './components/pages/Error404';
 import AboutComp from './components/pages/AboutComp';
 import MenuComp from './components/pages/MenuComp.vue';
+import CartComp from './components/pages/CartComp.vue';
+import TanksPage from './components/pages/TanksPage.vue';
 import RestaurantComp from './components/pages/RestaurantComp';
 
 
@@ -37,6 +39,16 @@ const router = new VueRouter({
       path: '/menu',
       name: 'Menu',
       component: MenuComp
+    },
+    {
+      path: '/carrello',
+      name: 'Cart',
+      component: CartComp
+    },
+    {
+      path: '/grazie',
+      name: 'ThanksPage',
+      component: TanksPage
     },
     {
       path: '*',

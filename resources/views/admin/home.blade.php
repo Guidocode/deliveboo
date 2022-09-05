@@ -148,9 +148,15 @@
                 </div>
             </div>
 
-        </div> --}}
-        {{-- <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{ Auth::user()->image }}" alt="Card image cap">
+        </div>
+        <div class="card" style="width: 18rem;">
+
+            @if (Auth::user()->image)
+                <img class="card-img-top" src="{{ Auth::user()->image }}" alt="Card image cap">
+            @else
+                <img src="https://restaurants.mu/img/default.jpg" alt="default">
+            @endif
+
             <div class="card-body">
                 <h5 class="card-title">{{ Auth::user()->name }}</h5>
                 <p class="card-text">Email: {{ Auth::user()->email }}</p>

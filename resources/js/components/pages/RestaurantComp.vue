@@ -31,7 +31,7 @@
             <h4 class=" text-center">Cosa vuoi mangiare?</h4>
             <ul class="d-flex justify-content-center">
                 <li class=" ml-2" v-for="(tipo, index) in types" :key="`tipo${ index }`">
-                    <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" v-model="selectedTypes">
+                    <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id"  @click="filterMe(tipo.id)">
                     <label :for="tipo.id">{{ tipo.name }}</label>
                 </li>
             </ul>
@@ -58,56 +58,74 @@
 
      export default {
        name: 'HomeComp',
-       data() {
-         return {
+        data() {
+            return {
              resturants: [],
              types:[],
              selectedTypes:[],
              type: 'Cinese'
-         }
-       },
+            }
+        },
        mounted() {
          this.getResturant(),
          this.getTypes()
-         // this.filteredResearch()
+
        },
        methods: {
-         getResturant(){
-           axios.get('/api/ristoranti')
-           .then(r => {
-             this.resturants = r.data.users
-           })
-         },
+        getResturant(){
+            axios.get('/api/ristoranti')
+            .then(r => {
+                this.resturants = r.data.users
+            })
+        },
 
-         getTypes(){
-           axios.get('/api/tipi')
-           .then(r => {
-             this.types = r.data.types
-           })
-         },
+        getTypes(){
+            axios.get('/api/tipi')
+            .then(r => {
+                this.types = r.data.types
+            })
+        },
 
-         // filteredResearch(){
-         //     axios.get('/api/ristoranti')
-         //     .then(r => {
-         //     r.data.users.forEach(element => {
-         //         element.types.forEach(res => {
-         //             if(res.name == 'Cinese'){
-         //                 this.resturants.push(element)
-         //             }
-         //         });
+        filterMe(id){
 
-         //     });
+            if(this.selectedTypes.includes(id)){
+                let index = this.selectedTypes.indexOf(id)
+                this.selectedTypes.splice(index,1)
+            }else{
+                this.selectedTypes.push(id)
+            }
+
+            if(this.selectedTypes.length != 0){
+                axios.get('/api/filter', {
+                    params:{
+                        ids: this.selectedTypes
+                    }
+                })
+                .then(r => {
+                    // console.log(r.data);
+                    // this.resturants = r.data.selectedTypes
+                    this.resturants = []
+
+                    r.data.selectedTypes.forEach(element => {
+                        let alredyExist = this.resturants.some(resturant => {
+                            if(resturant.id == element.id){
+                                return true
+                            }else{
+                                return false
+                            }
+                        })
+                        if(!alredyExist){
+                            this.resturants.push(element)
+                        }
+                    });
+                })
+            }else{
+                this.getResturant()
+            }
+
+        },
 
 
-         //   })
-         // },
-
-     //     filteredResearch(){
-     //         axios.get('/api/ristoranti-filtrati'+ this.type)
-     //         .then(r => {
-     //             this.resturants = r.data.users
-     //         })
-     //     }
         },
      }
   </script>

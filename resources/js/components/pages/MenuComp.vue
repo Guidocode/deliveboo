@@ -3,12 +3,34 @@
         <div class="container d-flex container-menu">
 
             <div class="sidebar">
-               <h4> Ricerca Rapida </h4>
+                {{ resturant.name }}
+               Aggiungere info ristoranti
+               <h3>carrello <span >{{ cartNumber }}</span></h3>
+               <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Piatto</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">N°</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product, index) in productList" :key="index">
+                            <th scope="row">{{ product.name }}</th>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.inCart }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-if="productList" class="btn btn-primary"><router-link :to="{name:'Cart'}">Vai al carrello</router-link></div>
             </div>
 
             <div class="dish-container d-flex">
                 <DishCard v-for="dish in resturant.dishes" :key="dish.id"
-                :dish="dish" />
+                :dish="dish"
+                @getCount="cartItemCount"
+                @getProductList="getProductList"
+                />
 
             </div>
 
@@ -23,22 +45,37 @@ export default {
     name: "MenuComp",
     data() {
         return {
-            resturant:{}
+            resturant:{},
+            cartNumber: 0,
+            productList: {}
         };
     },
     components: { DishCard },
     mounted() {
         this.getDishes()
+
     },
     methods: {
         getDishes(){
-            console.log(this.$route.params.slug)
-            axios.get('/api/'+ this.$route.params.slug)
+            axios.get('/api/ristorante/'+ this.$route.params.slug)
            .then(r => {
              this.resturant = r.data.user
            })
+        },
+
+        cartItemCount(count){
+            if(count){
+                this.cartNumber = count
+            }
+        },
+        getProductList(cartToExport){
+            if(cartToExport){
+                this.productList = cartToExport
+            }
+            this.$emit('dataCart', this.productList)
         }
     },
+
 }
 </script>
 
