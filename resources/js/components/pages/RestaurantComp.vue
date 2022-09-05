@@ -1,6 +1,6 @@
 <template>
-  <div class="restaurants text-center">
-    
+    <div class="restaurants text-center">
+
         <!-- <h2>Cosa vuoi mangiare?</h2> -->
 
         <div class="input-wrap">
@@ -47,8 +47,8 @@
                       <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
                   </div>
               </div>
-
-          </div> -->
+              -->
+        </div>
 
     </div>
 

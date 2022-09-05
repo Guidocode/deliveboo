@@ -11073,6 +11073,7 @@ a {
 
 a:hover {
   text-decoration: none;
+  color: black;
 }
 
 .my_container {
