@@ -1,18 +1,15 @@
 <template>
-    <div class="restaurants text-center">
+  <div class="restaurants text-center">
+    
+        <!-- <h2>Cosa vuoi mangiare?</h2> -->
 
-          <!-- <h2>Cosa vuoi mangiare?</h2> -->
+        <div class="input-wrap">
+          <div class="inputs">
+            <div id="ck-button" v-for="(tipo, index) in types" :key="`tipo${ index }`">
+              <label :for="tipo.id">
+                <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
+              </label>
 
-          <div class="input-wrap">
-            <div class="inputs">
-              <div id="ck-button" v-for="(tipo, index) in types" :key="`tipo${ index }`"
-
-              >
-
-                  <label :for="tipo.id">
-                  <input type="checkbox" :name="tipo.name" :id="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
-                </label>
-              </div>
             </div>
           </div>
 

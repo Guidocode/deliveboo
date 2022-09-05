@@ -77,3 +77,4 @@
 </div>
 
 @endsection
+@section('title','add-dish')
