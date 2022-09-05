@@ -46,35 +46,49 @@ export default {
     data() {
         return {
             resturant:{},
-            cartNumber: 0,
-            productList: {}
+            cartNumber: JSON.parse(window.localStorage.getItem('count')),
+            productList: JSON.parse(window.localStorage.getItem('dishesInCart')),
+            slug :  this.$route.params.slug? this.$route.params.slug : window.localStorage.getItem('CartRestaurant')
         };
     },
     components: { DishCard },
+
     mounted() {
         this.getDishes()
+        this.cartItemCount()
 
     },
     methods: {
         getDishes(){
-            axios.get('/api/ristorante/'+ this.$route.params.slug)
+            if(this.cartNumber > 0 &&  window.localStorage.getItem('CartRestaurant') != this.$route.params.slug && this.$route.params.slug  ){
+                if(confirm("Sei entrato in un altro ristorante. Vuoi continuare e cancellare l'ordine precedente?")){
+                    localStorage.clear()
+                }else{
+                  this.$router.push('/ristoranti')
+                }
+            }
+
+            if( this.$route.params.slug ||  this.$route.params.slug > 0){
+                localStorage.setItem('CartRestaurant', this.$route.params.slug);
+            }
+
+            axios.get('/api/ristorante/'+ this.slug)
            .then(r => {
-             this.resturant = r.data.user
-           })
+                this.resturant = r.data.user
+            })
         },
 
         cartItemCount(count){
-            if(count){
-                this.cartNumber = count
-            }
+            this.cartNumber = JSON.parse(window.localStorage.getItem('count'))
         },
         getProductList(cartToExport){
-            if(cartToExport){
-                this.productList = cartToExport
-            }
+            this.productList = JSON.parse(window.localStorage.getItem('dishesInCart'))
             this.$emit('dataCart', this.productList)
         }
     },
+
+
+
 
 }
 </script>

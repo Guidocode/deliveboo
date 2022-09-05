@@ -40,8 +40,8 @@ export default {
         },
         cartNumber(){
             let count = localStorage.getItem('count');
-            this.$emit('getCount', count),
-            this.$emit('getProductList', this.cartToExport)
+            this.$emit('getCount', ""),
+            this.$emit('getProductList', "")
         },
         setItem(dish){
 
@@ -66,7 +66,7 @@ export default {
 
             localStorage.setItem('dishesInCart', JSON.stringify(cartItems));
             this.cartToExport = cartItems;
-            console.log(this.cartToExport);
+            // console.log(this.cartToExport);
         },
         getTotalCost(dish){
             let cartCost = localStorage.getItem('totalCost');
