@@ -27,3 +27,24 @@ main{
 body{
   font-family: Poppins, sans-serif;
 }
+
+.guest-header{
+  height: 100px;
+    background-color: #EEF0EB;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    padding: 1em 4em;
+    box-shadow: 0 0 15px black;
+    .logo img{
+      width:200px;
+      }
+    a{
+      display: block;
+      color:black;
+      text-transform: uppercase;
+      &:hover{
+        text-decoration: none !important;
+      }
+    }
+}
