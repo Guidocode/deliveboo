@@ -50,7 +50,7 @@ class OrderController extends Controller
         $new_order->save();
         $products = $request->products;
         foreach ($products as  $product) {
-            $new_order->dishes()->attach($product, ['quantity' => $product->inCart]);
+            $new_order->dishes()->attach(1, ['quantity' => 2]);
         }
 
         // foreach ($data['order_details'] as $key => $detail) {
