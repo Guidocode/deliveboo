@@ -50,8 +50,11 @@ class OrderController extends Controller
         $new_order->save();
         $products = $request->products;
         foreach ($products as  $product) {
-            $new_order->dishes()->attach($product, ['quantity' => $product->inCart]);
+
+            $new_order->dishes()->attach($product['id'], ['quantity' => $product['inCart']]);
+
         }
+        //$new_order->dishes()->attach(1, ['quantity' => 2]);
 
         // foreach ($data['order_details'] as $key => $detail) {
         //     $order->plates()->attach($key, ['quantity' => $detail]);
@@ -59,7 +62,11 @@ class OrderController extends Controller
 
 
 
-        return $products;
+        return  [
+            'success' => 'success',
+            'order_id' => $new_order->id
+        ];
+;
     }
 
     /**

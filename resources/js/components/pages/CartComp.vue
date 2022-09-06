@@ -14,7 +14,7 @@
                     <th scope="row">{{ product.name }}</th>
                     <td>{{ product.price }}</td>
                     <td>{{ product.price * product.inCart }}</td>
-                    <td> <span @click="productMinus(product, index)">-</span> {{ product.inCart }} <span>+</span></td>
+                    <td> <span @click="productMinus(product, index)">-</span> {{ product.inCart }} <span @click="productPlus(product, index)">+</span></td>
 
                 </tr>
 
@@ -117,6 +117,16 @@ export default {
 
 
     },
+    productPlus(product, index){
+
+        product.inCart++;
+        localStorage.setItem('dishesInCart',JSON.stringify(this.dataCart));
+        this.totalCount++;
+        localStorage.setItem('count', this.totalCount);
+
+
+
+    },
 
     sendFormDetails(){
 
@@ -143,7 +153,8 @@ export default {
         ).then(r => {
             if(r.data.success == 'success'){
                 setTimeout(() => {
-                    this.$router.push({ name: "ThanksPage"})
+                    this.$router.push({ name: "ThanksPage"});
+                    localStorage.clear();
                 }, 1000);
             }
         console.log(r.data)
