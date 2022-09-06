@@ -10968,3 +10968,380 @@ a.text-dark:focus {
   }
 }
 
+header {
+  width: 100%;
+  padding: 1em 2em;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08) !important;
+}
+
+img {
+  display: block;
+}
+
+.logo img {
+  width: 150px;
+  margin-right: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.text-muted {
+  color: darkslategray;
+}
+
+aside {
+  width: 420px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #EEF0EB;
+}
+
+aside .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+aside .top .logo {
+  display: flex;
+  gap: 0.8rem;
+}
+
+aside .top .logo img {
+  width: 10rem;
+}
+
+aside .top .close {
+  display: none;
+}
+
+aside .sidebar {
+  background-color: #EEF0EB;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 1.5rem;
+  height: 86vh;
+}
+
+aside .sidebar h4 {
+  font-weight: 500;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+}
+
+aside .sidebar a {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  gap: 1rem;
+  position: relative;
+  height: 3.5rem;
+  transition: all 300ms ease;
+  color: rgb(42, 70, 61);
+}
+
+aside .sidebar a:last-child {
+  position: absolute;
+  bottom: 1.2rem;
+  width: 90%;
+}
+
+aside .sidebar a.active {
+  background-color: rgb(87, 175, 146);
+  color: rgb(42, 70, 61);
+  margin-left: 0;
+}
+
+aside .sidebar a.active:before {
+  content: "";
+  width: 6px;
+  height: 100%;
+  background-color: #F98857;
+}
+
+aside .sidebar a:hover {
+  margin-left: 2rem;
+  padding-left: 1rem;
+  background-color: #BECFBC;
+}
+
+aside .sidebar i {
+  font-size: 18px;
+}
+
+main {
+  margin: 3rem 4rem;
+  font-family: Poppins, sans-serif;
+}
+
+main .date {
+  display: inline-block;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0;
+}
+
+main .date input[type=date] {
+  background-color: pink;
+  border: none;
+  border-radius: 20px;
+  color: darkmagenta;
+  padding: 0.5rem 1rem;
+}
+
+main .insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+main .insights .progress {
+  height: 11rem;
+  line-height: 0;
+  background-color: transparent;
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+main .insights .progress svg {
+  width: 100px;
+}
+
+main .insights .progress svg circle {
+  fill: none;
+  stroke: rgb(142, 93, 210);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 110;
+  stroke-dashoffset: 92;
+}
+
+main .insights > div {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 5px 10px rgb(121, 120, 120);
+  transition: all 300ms ease;
+}
+
+main .insights > div:hover {
+  box-shadow: none;
+}
+
+main .insights > div i {
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: white;
+  font-size: 1rem;
+}
+
+main .insights > div.sales i {
+  background: rgb(142, 93, 210);
+}
+
+main .insights > div.expenses i {
+  background: rgb(254, 68, 11);
+}
+
+main .insights > div.income i {
+  background: greenyellow;
+}
+
+main .insights > div.middle {
+  display: flex;
+  height: 200px;
+}
+
+main .middle {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .insights .sales svg circle {
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
+
+main .insights .income svg circle {
+  stroke-dashoffset: 35;
+  stroke-dasharray: 110;
+}
+
+main .insights .expenses svg circle {
+  stroke-dashoffset: 20;
+  stroke-dasharray: 80;
+}
+
+main .recent-orders h2 {
+  margin: 2rem 0;
+}
+
+main .recent-orders table {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px 30px;
+  text-align: center;
+  box-shadow: 0 5px 10px gray;
+  transition: all 300ms ease;
+}
+
+main .recent-orders table:hover {
+  box-shadow: none;
+}
+
+main td {
+  margin: 0 30px;
+}
+
+main table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid rgb(179, 179, 179);
+  color: black;
+}
+
+main tbody tr:last-child td {
+  border: none;
+}
+
+main a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: rgb(30, 6, 165);
+}
+
+main .card-img-top {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 10 black;
+}
+
+/* poppins-devanagari-400-normal*/
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/poppins/files/poppins-devanagari-400-normal.woff2?790d0c8dbcd491d29d58f1369c199d40) format("woff2"), url(/fonts/vendor/@fontsource/poppins/files/poppins-all-400-normal.woff?bbae93786a029de7b9458f5ca63e01fd) format("woff");
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* poppins-latin-ext-400-normal*/
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/poppins/files/poppins-latin-ext-400-normal.woff2?0ed299a4bb5262e17e2145783b2c18f1) format("woff2"), url(/fonts/vendor/@fontsource/poppins/files/poppins-all-400-normal.woff?bbae93786a029de7b9458f5ca63e01fd) format("woff");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* poppins-latin-400-normal*/
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/poppins/files/poppins-latin-400-normal.woff2?9212f6f9860f9fc6c69b02fedf6db8c3) format("woff2"), url(/fonts/vendor/@fontsource/poppins/files/poppins-all-400-normal.woff?bbae93786a029de7b9458f5ca63e01fd) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* chonburi-thai-400-normal*/
+
+@font-face {
+  font-family: "Chonburi";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/chonburi/files/chonburi-thai-400-normal.woff2?15459fd3df3515cbab4de7bccd7cb5e4) format("woff2"), url(/fonts/vendor/@fontsource/chonburi/files/chonburi-all-400-normal.woff?79ea1880aa4d1e15abb40609bd014150) format("woff");
+  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+/* chonburi-vietnamese-400-normal*/
+
+@font-face {
+  font-family: "Chonburi";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/chonburi/files/chonburi-vietnamese-400-normal.woff2?cf27a0471821f66e5a0bf4fae96cf7e3) format("woff2"), url(/fonts/vendor/@fontsource/chonburi/files/chonburi-all-400-normal.woff?79ea1880aa4d1e15abb40609bd014150) format("woff");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+
+/* chonburi-latin-ext-400-normal*/
+
+@font-face {
+  font-family: "Chonburi";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/chonburi/files/chonburi-latin-ext-400-normal.woff2?3beb41891d1efb702532e8b59cb8dc84) format("woff2"), url(/fonts/vendor/@fontsource/chonburi/files/chonburi-all-400-normal.woff?79ea1880aa4d1e15abb40609bd014150) format("woff");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* chonburi-latin-400-normal*/
+
+@font-face {
+  font-family: "Chonburi";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/vendor/@fontsource/chonburi/files/chonburi-latin-400-normal.woff2?fd2e3035bff6ebc202e623e483fd96e3) format("woff2"), url(/fonts/vendor/@fontsource/chonburi/files/chonburi-all-400-normal.woff?79ea1880aa4d1e15abb40609bd014150) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.my_container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+main {
+  width: 100%;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+.guest-header {
+  height: 100px;
+  background-color: #EEF0EB;
+  display: flex;
+  align-items: center;
+  padding: 1em 4em;
+  box-shadow: 0 0 15px black;
+}
+
+.guest-header .logo img {
+  width: 200px;
+}
+
+.guest-header a {
+  display: block;
+  color: black;
+  text-transform: uppercase;
+}
+
+.guest-header a:hover {
+  text-decoration: none !important;
+}
+

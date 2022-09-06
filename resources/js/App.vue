@@ -5,7 +5,7 @@
     :cartList="dataCart" />
 
 
-    <main class="py-5">
+    <main>
         <router-view></router-view>
     </main>
 

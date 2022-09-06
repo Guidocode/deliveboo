@@ -14,6 +14,7 @@
               <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
               <li class="restors"><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
               <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
+              <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
             </ul>
           </nav>
 
@@ -43,7 +44,6 @@ export default {
   data() {
     return {
         cartList: JSON.parse(window.localStorage.getItem('dishesInCart'))
-
     }
   },
 }

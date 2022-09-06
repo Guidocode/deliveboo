@@ -114,3 +114,4 @@
 
 
 @endsection
+@section('title', 'my-menu')
