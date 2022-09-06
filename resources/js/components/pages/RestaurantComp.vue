@@ -14,16 +14,17 @@
           </div>
 
         <!-- <div class="line mt-2"></div> -->
-          <div class="my_container d-flex flex-wrap justify-content-center">
-              <div v-for="resturant in resturants" :key="resturant.id" class="card  mx-4" style="width: 18rem;">
-                  <img :src="resturant.image" class="card-img-top" alt="">
-                  <div class="card-body">
-                      <h5 class="card-title">{{ resturant.name }}</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-                  </div>
-              </div>
-          </div>
+            <div class="my_container d-flex flex-wrap justify-content-center">
+                <div v-for="resturant in resturants" :key="resturant.id" class="card  mx-4" style="width: 18rem;">
+                    <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
+                    <img v-else-if="resturant.image" :src="resturant.image" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ resturant.name }}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
+                    </div>
+                </div>
+            </div>
 
 
           <!-- <div class="search-container p-1">

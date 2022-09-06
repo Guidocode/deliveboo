@@ -23,7 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('vat_number', 11);
             $table->string('phone', 15);
+            $table->string('image_db')->nullable();
             $table->string('image')->nullable();
+            $table->string('original_name_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

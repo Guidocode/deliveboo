@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}"  enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -53,6 +53,21 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Immagine</label>
+
+                            <div class="col-md-6">
+                                <input type="file" id="image" name="image"
+                                value="{{ old('image') }}"
+                                onchange="showImage(event)"
+                                class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                                {{-- <p class="invalid-feedback" id="error-image"></p> --}}
                             </div>
                         </div>
 
@@ -144,6 +159,13 @@
                         </div>
 
                     </form>
+
+                    <script>
+                        var showImage = function(event) {
+                            const image = document.getElementById('output-image');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                    </script>
 
                 </div>
             </div>

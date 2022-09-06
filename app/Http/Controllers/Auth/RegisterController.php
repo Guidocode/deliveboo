@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Type;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -84,6 +85,19 @@ class RegisterController extends Controller
             'vat_number'=> $data['vat_number'],
             // ->
         ]);
+
+        if (request()->hasFile('image') != null) {
+
+            $original_name_image = request()->file('image')->getClientOriginalName();
+
+
+            $image = Storage::put('uploads', request()->file('image'));
+
+            $user->update(['image' => $image, 'original_name_image' => $original_name_image]);
+        }
+
+        // dd($data);
+
         foreach ($data['types'] as $type) {
             $user->types()->attach($type);
         }
