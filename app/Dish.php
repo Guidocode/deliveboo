@@ -9,7 +9,7 @@ class Dish extends Model
     protected $fillable = ['name', 'description', 'price','user_id', 'visible', 'image', 'original_name_image'];
 
     public function orders(){
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('App\Order')->withPivot('quantity');
     }
 
 
