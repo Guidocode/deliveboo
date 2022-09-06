@@ -62,7 +62,11 @@ class OrderController extends Controller
 
 
 
-        return $products;
+        return  [
+            'success' => 'success',
+            'order_id' => $new_order->id
+        ];
+;
     }
 
     /**
