@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('client_address');
             $table->string('client_phone', 15);
             $table->string('client_email');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->decimal('total_price',9,2);
             $table->timestamps();
         });
