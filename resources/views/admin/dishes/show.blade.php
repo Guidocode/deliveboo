@@ -18,8 +18,10 @@
 
         @if ($dish->image)
             <img class="card-img-top" src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->original_name_image }}">
+        @elseif ($dish->image_db)
+            <img class="card-img-top" src="{{ $dish->image_db }}" alt="Immagine db">
         @else
-            <img class="card-img-top" src="{{ asset('storage/uploads/default-img.gif') }}" alt="{{ $dish->original_name_image }}">
+            <img class="card-img-top" src="{{ asset('storage/uploads/dish-default.jpg') }}" alt="{{ $dish->original_name_image }}">
         @endif
 
         <div class="card-body">

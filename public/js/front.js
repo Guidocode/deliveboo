@@ -1994,7 +1994,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    productMinus: function productMinus(product, index) {
+    productMinus: function productMinus(product, index, bool) {
       if (product.inCart > 1) {
         product.inCart--;
         localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart));
@@ -2013,12 +2013,15 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem('totalCost', _actualCost);
         this.$forceUpdate();
       }
+
+      this.updateTotalCost(product.price, bool);
     },
-    productPlus: function productPlus(product, index) {
+    productPlus: function productPlus(product, index, bool) {
       product.inCart++;
       localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart));
       this.totalCount++;
       localStorage.setItem('count', this.totalCount);
+      this.updateTotalCost(product.price, bool);
     },
     sendFormDetails: function sendFormDetails() {
       var _this = this;
@@ -2037,7 +2040,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var nonce = payload.nonce;
-      console.log(payload);
       this.form.products = this.productsToPass;
       this.form.total_price = this.totalCost;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/order', this.form).then(function (r) {
@@ -2050,8 +2052,6 @@ __webpack_require__.r(__webpack_exports__);
             localStorage.clear();
           }, 1000);
         }
-
-        console.log(r.data);
       });
     },
     onError: function onError(error) {
@@ -2073,7 +2073,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      this.totalCost = totalCostF; // }, 3000); forse local storage lento
+      this.totalCost = totalCostF.toFixed(2); // }, 3000); forse local storage lento
+    },
+    updateTotalCost: function updateTotalCost(price, bool) {
+      var actualTotal = parseFloat(this.totalCost);
+
+      if (bool) {
+        this.totalCost = actualTotal + parseFloat(price);
+      } else {
+        this.totalCost = actualTotal - parseFloat(price);
+      }
+
+      this.totalCost = this.totalCost.toFixed(2);
     }
   }
 });
@@ -2206,6 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/ristoranti').then(function (r) {
         _this.resturants = r.data.users;
+        console.log('sono l\'utente', r.data.users);
       });
     },
     getTypes: function getTypes() {
@@ -2565,7 +2577,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("table", {
+  return _c("div", {
+    staticClass: "container my-4"
+  }, [_c("table", {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.dataCart, function (product, index) {
     return _c("tr", {
@@ -2577,19 +2591,21 @@ var render = function render() {
     }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price * product.inCart))]), _vm._v(" "), _c("td", [_c("span", {
       on: {
         click: function click($event) {
-          return _vm.productMinus(product, index);
+          return _vm.productMinus(product, index, 0);
         }
       }
     }, [_vm._v("-")]), _vm._v(" " + _vm._s(product.inCart) + " "), _c("span", {
       on: {
         click: function click($event) {
-          return _vm.productPlus(product, index);
+          return _vm.productPlus(product, index, 1);
         }
       }
     }, [_vm._v("+")])])]);
-  }), 0)]), _vm._v(" "), !_vm.clientData ? _c("div", {
-    staticClass: "container"
-  }, [_c("form", [_c("div", {
+  }), 0)]), _vm._v(" "), _c("h3", {
+    staticClass: "mt-2 text-right"
+  }, [_vm._v("Prezzo Totale "), _c("span", [_vm._v(_vm._s(_vm.totalCost) + "€")])]), _vm._v(" "), !_vm.clientData ? _c("div", {
+    staticClass: "container mt-2"
+  }, [_c("h3", [_vm._v("Informazioni cliente")]), _vm._v(" "), _c("form", [_c("div", {
     staticClass: "form-row"
   }, [_c("div", {
     staticClass: "form-group col-md-6"
@@ -2748,7 +2764,7 @@ var render = function render() {
       id: "",
       rows: "3"
     }
-  }, [_vm._v(_vm._s(_vm.form.note))])]), _vm._v(" "), _c("h3", [_vm._v("Prezzo Totale "), _c("span", [_vm._v(_vm._s(_vm.totalCost) + "€")])])]), _vm._v(" "), _c("button", {
+  }, [_vm._v(_vm._s(_vm.form.note))])])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary btn-lg btn-block",
     attrs: {
       type: "button"
@@ -3009,14 +3025,19 @@ var render = function render() {
       staticClass: "card-img-top",
       attrs: {
         src: resturant.image_db,
-        alt: ""
+        alt: "Imagine db"
       }
     }) : resturant.image ? _c("img", {
       attrs: {
-        src: resturant.image,
-        alt: ""
+        src: "/storage/".concat(resturant.image),
+        alt: "Immagine utente"
       }
-    }) : _vm._e()]), _vm._v(" "), _c("div", {
+    }) : _c("img", {
+      attrs: {
+        src: "storage/uploads/restaurant-default.jpg",
+        alt: "Immagine default"
+      }
+    })]), _vm._v(" "), _c("div", {
       staticClass: "card-body"
     }, [_c("h5", {
       staticClass: "card-title"
@@ -3086,11 +3107,21 @@ var render = function render() {
     staticStyle: {
       width: "18rem"
     }
-  }, [_c("img", {
+  }, [_vm.dish.image_db ? _c("img", {
     staticClass: "card-img-top",
     attrs: {
-      src: "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000",
-      alt: "..."
+      src: _vm.dish.image_db,
+      alt: "Immagine db"
+    }
+  }) : _vm.dish.image ? _c("img", {
+    attrs: {
+      src: "/storage/".concat(_vm.dish.image),
+      alt: "Immagine utente"
+    }
+  }) : _c("img", {
+    attrs: {
+      src: "storage/uploads/dish-default.jpg",
+      alt: "immagine default"
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "card-body"
@@ -45919,7 +45950,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/guidobuono/Desktop/Boolean/laravel/deliveboo/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
