@@ -4,7 +4,7 @@
 
 <div class="my_section">
 
-  <h1>My-profile</h1>
+  <h1>My profile</h1>
   <h6>General Information of <strong>{{Auth::user()->name }}</strong></h6>
   <span>Welcome back!</span>
   
