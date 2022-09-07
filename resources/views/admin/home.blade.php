@@ -23,9 +23,15 @@
                     L'Area privata
 
                 </div>
-    
 
-                <img class="card-img-top" src="{{ Auth::user()->image }}" alt="Card image cap">
+
+                @if (Auth::user()->image)
+                    <img class="card-img-top" src="{{ asset('storage/' . Auth::user()->image) }}" alt="Immagine utente">
+                @elseif (Auth::user()->image_db)
+                    <img class="card-img-top" src="{{ Auth::user()->image_db }}" alt="Immagine db">
+                @else
+                    <img class="card-img-top" src="{{ asset('storage/uploads/restaurant-default.jpg') }}" alt="immagine default ristorante">
+                @endif
             </div>
 
         </div>

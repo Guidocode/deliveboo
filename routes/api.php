@@ -9,3 +9,6 @@ Route::get('tipi', 'Api\PageController@getType');
 Route::get('ristorante/{slug}','Api\PageController@getRestaurant');
 
 Route::get('filter', 'Api\FilterResturant@index');
+
+Route::resource('order', 'Api\OrderController');
+
