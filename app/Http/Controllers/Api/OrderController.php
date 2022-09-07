@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Mail\OrderPlaced;
 use App\Order;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -49,20 +50,18 @@ class OrderController extends Controller
 
         $new_order->save();
         $products = $request->products;
+        $orderdetail = [];
         foreach ($products as  $product) {
-
+            $orderdetail[] = $product;
             $new_order->dishes()->attach($product['id'], ['quantity' => $product['inCart']]);
 
         }
-        //$new_order->dishes()->attach(1, ['quantity' => 2]);
-
-        // foreach ($data['order_details'] as $key => $detail) {
-        //     $order->plates()->attach($key, ['quantity' => $detail]);
-        // }
 
 
 
-        return  [
+        Mail::to($new_order->client_email)->send(new OrderPlaced($new_order, $orderdetail));
+
+        return   [
             'success' => 'success',
             'order_id' => $new_order->id
         ];
