@@ -35,21 +35,21 @@
             <div class="logo">
                 <img src="{{ asset('img/deliverboo_logo.png') }}" alt="Logo">
             </div>
-            
+
             <div class="d-flex justify-content-between w-100 pt-2">
                 <div>
-                    <a href="{{ url('/') }}">Go Back</a>
+                    <a class="about {{ Route::currentRouteName() === '/' ? 'active' : ''}}" href="{{ url('/') }}">Go Back</a>
                 </div>
                 
                 <div class="d-flex">
-                    <a class="mr-4" href="{{ route('login') }}">Login</a>
+                    <a class="mr-4 home {{ Route::currentRouteName() === 'login' ? 'active' : ''}}" href="{{ route('login') }}">Login</a>
 
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
+                    <a class="about {{ Route::currentRouteName() === 'register' ? 'active' : ''}}" href="{{ route('register') }}">Register</a>
                     @endif
                 </div>           
             </div>
-                
+                    
             
         </div>
         @endguest       

@@ -9,8 +9,8 @@
 
 //header
 @import './Header.scss';
-
 @import './Dashboard.scss';
+@import './my_profile';
 
 //fonts
 @import '~@fontsource/poppins';
@@ -27,21 +27,51 @@ body{
 
 .guest-header{
   height: 100px;
-    background-color: #EEF0EB;
-    display: flex;
-    align-items: center;
-    // justify-content: space-between;
-    padding: 1em 4em;
-    box-shadow: 0 0 15px black;
-    .logo img{
-      width:200px;
-      }
-    a{
-      display: block;
-      color:black;
-      text-transform: uppercase;
-      &:hover{
-        text-decoration: none !important;
-      }
+  background-color: #EEF0EB;
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  padding: 1em 4em;
+  box-shadow: 0 0 15px black;
+  .logo img{
+    width:200px;
+  }
+  a{
+  margin: 0 10px;
+  padding: 5px 20px;
+  cursor: pointer;
+  line-height: 30px;
+  list-style:none;
+  display: block;
+  color:black;
+  text-transform: uppercase;
+  &:hover{
+  text-decoration: none !important;
+  }
+  }
+
+  .home{
+    border: 2px solid black;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    &:hover{
+      transition: border-radius 0.4s linear;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      cursor:pointer;
     }
+  }
+
+  .about{
+    border: 2px solid black;
+    border-radius: 25px;
+    &:hover{
+      transition: border-radius 0.4s linear;
+      border-radius: 0;
+      cursor:pointer;
+    }
+  }
+  .active{
+    color:#7131fa;
+  }
 }
