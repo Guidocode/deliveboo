@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container my-4">
         <table class="table">
             <thead>
                 <tr>
@@ -14,15 +14,17 @@
                     <th scope="row">{{ product.name }}</th>
                     <td>{{ product.price }}</td>
                     <td>{{ product.price * product.inCart }}</td>
-                    <td> <span @click="productMinus(product, index)">-</span> {{ product.inCart }} <span @click="productPlus(product, index)">+</span></td>
+                    <td> <span @click="productMinus(product, index, 0)">-</span> {{ product.inCart }} <span @click="productPlus(product, index, 1)">+</span></td>
 
                 </tr>
 
             </tbody>
         </table>
+        <h3 class="mt-2 text-right">Prezzo Totale <span>{{ totalCost }}&euro;</span></h3>
 
         <!-- step 1 paymant -->
-        <div class="container" v-if="!clientData">
+        <div class="container mt-2" v-if="!clientData">
+            <h3>Informazioni cliente</h3>
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -53,7 +55,7 @@
                         <label for="">Note per il ristorante</label>
                         <textarea class="form-control" name="" id="" rows="3">{{ form.note }}</textarea>
                     </div>
-                    <h3>Prezzo Totale <span>{{ totalCost }}&euro;</span></h3>
+
                 </div>
                 <button @click="sendFormDetails" type="button" class="btn btn-primary btn-lg btn-block">Vai al Pagamento</button>
             </form>
@@ -97,15 +99,19 @@ export default {
     },
     methods: {
 
-    productMinus(product, index){
+    productMinus(product, index, bool){
+
         if(product.inCart > 1){
+
             product.inCart--;
             localStorage.setItem('dishesInCart',JSON.stringify(this.dataCart));
             this.totalCount--;
             localStorage.setItem('count', this.totalCount);
             let actualCost = parseFloat(this.totalCost) - product.price
             localStorage.setItem('totalCost', actualCost)
+
         }else if(product.inCart == 1){
+
             delete this.dataCart[index]
             localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart))
             this.totalCount--;
@@ -113,17 +119,21 @@ export default {
             let actualCost = parseFloat(this.totalCost) - product.price
             localStorage.setItem('totalCost', actualCost)
             this.$forceUpdate()
+
         }
 
+        this.updateTotalCost(product.price, bool)
 
     },
-    productPlus(product, index){
+
+    productPlus(product, index, bool){
 
         product.inCart++;
         localStorage.setItem('dishesInCart',JSON.stringify(this.dataCart));
         this.totalCount++;
         localStorage.setItem('count', this.totalCount);
 
+        this.updateTotalCost(product.price, bool)
 
 
     },
@@ -145,34 +155,39 @@ export default {
 
     onSuccess (payload) {
         let nonce = payload.nonce;
-        console.log(payload)
+
         this.form.products = this.productsToPass
         this.form.total_price = this.totalCost
         axios.post('api/order',
             this.form
-        ).then(r => {
+        )
+        .then(r => {
             if(r.data.success == 'success'){
+
                 setTimeout(() => {
+
                     this.$router.push({ name: "ThanksPage"});
                     localStorage.clear();
+
                 }, 1000);
+
             }
-        console.log(r.data)
-
-      })
-
-
+        })
     },
+
     onError (error) {
       let message = error.message;
       console.log(message)
     },
+
     getTotalPrice(){
         console.log('ciao');
         //setTimeout(() => {
             let totalCostF = 0;
             for (const dish in this.dataCart) {
-                if (Object.hasOwnProperty.call(this.dataCart, dish)) {
+
+                if( Object.hasOwnProperty.call(this.dataCart, dish) ){
+
                     const element = this.dataCart[dish];
                     this.productsToPass.push(element)
                     let price = parseFloat(element.price)
@@ -181,10 +196,26 @@ export default {
 
                 }
             }
-            this.totalCost = totalCostF
+            this.totalCost = totalCostF.toFixed(2)
        // }, 3000); forse local storage lento
 
 
+    },
+    updateTotalCost(price,bool){
+
+        let actualTotal = parseFloat(this.totalCost)
+
+        if(bool){
+
+            this.totalCost = actualTotal + parseFloat(price)
+
+        }else{
+
+            this.totalCost = actualTotal - parseFloat(price);
+
+        }
+
+        this.totalCost = this.totalCost.toFixed(2)
     }
   }
 }
