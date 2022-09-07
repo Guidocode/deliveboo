@@ -34,8 +34,9 @@
 
         <div v-for="resturant in resturants" :key="resturant.id" class="my_card mx-4" style="width: 18rem;">
           <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
-             <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
-             <img v-else-if="resturant.image" :src="resturant.image" alt="">
+             <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="Imagine db">
+             <img v-else-if="resturant.image" :src="`/storage/${resturant.image}`" alt="Immagine utente">
+             <img v-else src="storage/uploads/restaurant-default.jpg" alt="Immagine default">
           </router-link>
 
             <div class="card-body">
@@ -44,7 +45,7 @@
                 <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
             </div>
         </div>
-    </div>      
+    </div>
   </div>
 </template>
 
@@ -71,7 +72,8 @@
           getResturant(){
               axios.get('/api/ristoranti')
               .then(r => {
-                  this.resturants = r.data.users
+                  this.resturants = r.data.users;
+                  console.log('sono l\'utente', r.data.users);
               })
           },
 
@@ -147,7 +149,7 @@
     margin-bottom: 40px;
     font-family: Poppins,sans-serif;
   }
-  
+
   // INPUT
   .input-wrap{
     min-width: 300px;
@@ -170,7 +172,7 @@
   div label input {
      margin-right:100px;
   }
-  
+
   .ck-button {
     background-color: $violet;
     color: darken($violet, 50%);
@@ -234,7 +236,7 @@
     // transform: scale(1.3);
     transition: 0.5s ease-in;
   }
-  } 
+  }
   .card-body{
   position: absolute;
   display: flex;
@@ -259,9 +261,9 @@
     border-radius: 20px;
     color:black;
   }
- 
+
   }
-  
+
   //MEDIA
 
   @media only screen and (min-width: 1200px){
