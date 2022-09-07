@@ -1,12 +1,6 @@
 <template>
 
-    <div class="restaurants text-center">
-
-        <!-- <h2>Cosa vuoi mangiare?</h2> -->
-
-
-    
-
+  <div class="restaurants text-center">
 
     <div class="input-wrap">
 
@@ -17,61 +11,32 @@
           </label>
         </div>
       </div>
-
-            </div>
-          </div>
-
-        <!-- <div class="line mt-2"></div> -->
-            <div class="my_container d-flex flex-wrap justify-content-center">
-                <div v-for="resturant in resturants" :key="resturant.id" class="card  mx-4" style="width: 18rem;">
-                    <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
-                    <img v-else-if="resturant.image" :src="resturant.image" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ resturant.name }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-                    </div>
-                </div>
-            </div>
-
-
-          <!-- <div class="search-container p-1">
-              <h4 class=" text-center">Cosa vuoi mangiare?</h4>
-              <ul class="d-flex justify-content-center">
-                  <li class=" ml-2" v-for="(tipo, index) in types" :key="`tipo${ index }`">
-                      <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id"  @click="filterMe(tipo.id)">
-                      <label :for="tipo.id">{{ tipo.name }}</label>
-                  </li>
-              </ul>
-
-          </div>
-
-          <div class="d-flex container flex-wrap resturant-container justify-content-center py-4">
-
-              <div v-for="resturant in resturants" :key="resturant.id" class="card" style="width: 18rem;">
-                  <img :src="resturant.image" class="card-img-top" alt="">
-                  <div class="card-body">
-                      <h5 class="card-title">{{ resturant.name }}</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-                  </div>
-              </div>
-              -->
-        </div>
-
-
     </div>
+
+    <!-- OLD ONE -->
+
+      <!-- <div v-for="resturant in resturants" :key="resturant.id" class="card  mx-4" style="width: 18rem;">
+        <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
+        <img v-else-if="resturant.image" :src="resturant.image" alt="">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ resturant.name }}</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
+        </div>
+      </div>  -->
+
+
 
      <!-- <div class="line mt-2"></div>  -->
 
     <div class="resturant-container d-flex flex-wrap justify-content-center">
 
         <div v-for="resturant in resturants" :key="resturant.id" class="my_card mx-4" style="width: 18rem;">
-
           <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
-            <img :src="resturant.image" class="card-img-top" alt="">
+             <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
+             <img v-else-if="resturant.image" :src="resturant.image" alt="">
           </router-link>
-
 
             <div class="card-body">
                 <h5 class="card-title">{{ resturant.name }}</h5>
@@ -79,15 +44,11 @@
                 <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
             </div>
         </div>
-    </div> 
-
-      
+    </div>      
   </div>
-
-    
-
-
 </template>
+
+
 
 <script>
   import axios from 'axios';
@@ -256,29 +217,6 @@
     background-color: black;
   }
 
-   //JUMBO 
-
-  // .jumbo-img{
-  //   width:100%;
-  //   height: 100px;
-  //   overflow: hidden;
-  //   position: relative;
-  //   display:flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   img{
-  //       width:100%;
-  //   }
-  //   .msg-res{
-  //       width:60%;
-  //       padding: 1rem;
-  //       background-color: $light_green;
-  //       border-radius: 20px;
-  //       position: absolute;
-  //       text-align: start;
-  //    }
-
-  //   }
   //CARD
   .my_card{
   margin: 20px;
@@ -290,9 +228,11 @@
   box-shadow: 0 0 10px gray;
   img {
   object-fit: cover;
+  width:100%;
    &:hover{
     filter: blur(5px);
-     transition: 0.5s ease-in;
+    // transform: scale(1.3);
+    transition: 0.5s ease-in;
   }
   } 
   .card-body{
