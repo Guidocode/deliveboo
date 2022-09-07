@@ -1,13 +1,22 @@
 <template>
 
   <div class="restaurants text-center">
+    <div class="jumbo">
+      <img :src="'img/jumbo.jpg'" alt="">
+
+      <div class="jumbo-text my_container">
+        <img :src="'img/jumbo2.jpg'" alt="" width="200">
+      </div>
+    </div>
 
     <div class="input-wrap">
 
       <div class="inputs">
-        <div class="ck-button" v-for="(tipo, index) in types" :key="`tipo${ index }`">
+        <div class="text-box" v-for="(tipo, index) in types" :key="`tipo${ index }`">
           <label :for="tipo.id">
-            <input type="checkbox" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span>
+            
+            <button class="btn btn-warning my_btn" type="submit" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span></button>
+            
           </label>
         </div>
       </div>
@@ -28,7 +37,8 @@
 
 
 
-     <!-- <div class="line mt-2"></div>  -->
+     <div class="line mt-2"></div>
+     
 
     <div class="resturant-container d-flex flex-wrap justify-content-center">
 
@@ -52,9 +62,13 @@
 
 <script>
   import axios from 'axios';
+  import ButtonPulseComp from '../partials/ButtonPulseComp'
 
        export default {
          name: 'HomeComp',
+         components:{
+          ButtonPulseComp
+         },
           data() {
               return {
                resturants: [],
@@ -122,27 +136,59 @@
           },
 
 
-          },
+
+          }
+
        }
 </script>
 
 <style lang="scss" scoped>
 @import'../../../sass/front/vars';
-  .search-container{
-    background-color: $light_green;
-    border-radius: 10px;
+
+
+  .restaurants{
+    margin: 0 auto;
+    .jumbo{
+      height:550px;
+      width:100%;
+      overflow: hidden;
+      img{
+        width:100%;
+      }
+    }
   }
-  .resturant-container{
+  .jumbo{
+    position:relative;
+
+  }
+  .jumbo-text{
+    width:60%;
+    height: 300px;
+    position:absolute;
+    z-index: 990;
+    top: 0;
+    left:0;
+    transform: translate(33%, 50%);
+    background-color: $light_green;
+    border-radius: 15px;
+    padding: 4rem 7rem;
+    overflow: hidden;
+    animation: mymove 2s linear;
+  }
+
+  @keyframes mymove {
+  from {top: -100px;}
+  to {top: 0}
+  }
+
+    .resturant-container{
     width: 75%;
-    margin: 1rem auto;
+    margin: 4rem auto;
     gap: 10px;
     border-radius: 10px;
   }
 
-  .restaurants{
-    margin: 0 auto;
-  }
-
+  
   h2{
     margin-bottom: 40px;
     font-family: Poppins,sans-serif;
@@ -151,68 +197,40 @@
   // INPUT
   .input-wrap{
     min-width: 300px;
-    height: 67px;
+    height: 85px;
     padding: 0 2rem;
   }
 
   .inputs{
-    margin: 30px auto;
+    margin: 50px auto;
     display:flex;
     height:50px;
     justify-content: center;
     flex-wrap: wrap;
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   div label input {
      margin-right:100px;
   }
   
-  .ck-button {
-    background-color: $violet;
-    color: darken($violet, 50%);
+  .my_btn{
+    color:white;
+    background-color: black;
+    border-radius: 20px;
+    border:none;
     margin:5px;
-    margin: 5px;
-    padding: 7px 20px;
-    border-radius:25px;
+    padding:8px 20px;
     &:hover{
       background-color: $violet;
     }
+    &:active{
+      color:black;
+      background-color: white;
+    }
   }
-
-  .ck-button label {
-      float:left;
-      margin-bottom: 0;
-  }
-
-  .ck-button label span {
-      text-align:center;
-      display:block;
-  }
-
-  .ck-button label input {
-      position:absolute;
-      top:-20px;
-  }
-
-  .ck-button input:checked + span {
-      color:white;
-      padding: 0 30px 0 30px;
-      font-weight:600;
-      &:hover{
-        color: rgb(245, 68, 68);
-        background-color: $violet;
-      }
-  }
-  //END INPUT
 
 
   .line{
-    width:93%;
-    margin: 2rem auto;
     height:3px;
     background-color: black;
   }

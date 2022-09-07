@@ -72,7 +72,7 @@ export default {
 
 }
 main{
-  height: calc(100vh - 335px);
+  min-height: calc(100vh - 335px);
 }
 
 .fa-arrow-up{
