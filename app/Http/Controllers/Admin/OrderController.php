@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Builder;
 class OrderController extends Controller
 {
     public function index(){
+        $orders = Auth::user()->dishes()->with('orders')->get()->pluck('orders')->flatten()->sortDesc()->unique('id');
+
         // $orders = User::where('id', Auth::user()->id)->with('dishes')->with('orders')->get();
         // $orders = DB::table('dish_order')
         // ->select('orders.id','dishes.*')
@@ -40,8 +42,8 @@ class OrderController extends Controller
     //    }])->get();
 
 
-        // return view('admin.order.index',compact('orders'));
-        return response()->json($orders);
+        return view('admin.order.index',compact('orders'));
+        // return response()->json($orders);
 
 
     }

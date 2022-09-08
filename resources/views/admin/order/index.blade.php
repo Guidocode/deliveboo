@@ -4,7 +4,7 @@
 {{-- @dump($orders) --}}
 @foreach ($orders as $order)
 
-@dump($order)
+{{ $order }}
 <br>
 <br>
 @endforeach
