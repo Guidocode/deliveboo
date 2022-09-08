@@ -27,7 +27,7 @@ img{
 }
 aside{
   width: 27rem;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
   background-color: $light_green;
 }
