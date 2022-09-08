@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+{{-- @dump($orders) --}}
 @foreach ($orders as $order)
 
-{{ $order }}
+@dump($order)
 <br>
 <br>
 @endforeach
