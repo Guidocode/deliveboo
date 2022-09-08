@@ -4,9 +4,7 @@
 {{-- @dump($orders) --}}
 @foreach ($orders as $order)
 
-{{ $order->client_name }}
-<br>
-<br>
+@dump($order)
 @endforeach
 
 @endsection

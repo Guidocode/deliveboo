@@ -15,6 +15,9 @@ class OrderController extends Controller
 {
     public function index(){
 
+        //$orders = Auth::user()->dishes()->with('orders')->get()->pluck('orders')->flatten()->sortDesc()->unique('id');
+//         return view('admin.order.index', compact('orders'));
+
         $orders = DB::table('dish_order')
         ->select('orders.*')
         ->join('dishes','dish_order.dish_id','dishes.id' )
@@ -22,8 +25,8 @@ class OrderController extends Controller
         ->join('orders','orders.id','dish_order.order_id')
         ->where('users.id', Auth::user()->id)
         ->groupBy('orders.id')
-        ->get();
-
+        ->get()->pluck('orders');
+        $order = User::user()->id-> -dishes()->get();
         return view('admin.order.index',compact('orders'));
         // return response()->json($orders);
 
@@ -34,3 +37,11 @@ class OrderController extends Controller
     {
     }
 }
+//
+//     }
+//     public function show(Order $order)
+//     {
+//         $order_ids = Auth::user()->dishes()->with('orders')->get()->pluck('orders')->flatten()->unique('id')->pluck('id')->toArray();
+//         $dishes = $order->dishes()->get();
+//         if (in_array($order->id, $order_ids)) return view('admin.order.show', compact('order', 'dishes'));
+//         else abort(404);
