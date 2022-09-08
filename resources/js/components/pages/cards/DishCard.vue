@@ -1,7 +1,11 @@
 <template>
     <div>
         <div class="card" style="width: 18rem;">
-            <img src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000" class="card-img-top" alt="...">
+            <!-- <img src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000" class="card-img-top" alt="..."> -->
+
+            <img v-if="dish.image_db" :src="dish.image_db" class="card-img-top" alt="Immagine db">
+            <img v-else-if="dish.image" :src="`/storage/${dish.image}`" alt="Immagine utente">
+            <img v-else src="storage/uploads/dish-default.jpg" alt="immagine default">
             <div class="card-body">
                 <h5 class="card-title"> {{ dish.name }} </h5>
                 <span> {{ dish.price }} &euro;</span>
