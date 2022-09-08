@@ -14,33 +14,15 @@ use Illuminate\Database\Eloquent\Builder;
 class OrderController extends Controller
 {
     public function index(){
-        $orders = Auth::user()->dishes()->with('orders')->get()->pluck('orders')->flatten()->sortDesc()->unique('id');
 
-        // $orders = User::where('id', Auth::user()->id)->with('dishes')->with('orders')->get();
-        // $orders = DB::table('dish_order')
-        // ->select('orders.id','dishes.*')
-        // ->join('dishes','dish_order.dish_id','dishes.id' )
-        // ->join('users','users.id','dishes.user_id' )
-        // ->join('orders','orders.id','dish_order.order_id')
-        // ->where('users.id', Auth::user()->id)
-        // ->groupBy('dish_order.order_id')
-        // ->get();
-
-        // $posts = App\Post::whereHas('comments', function (Builder $query) {
-        //     $query->where('content', 'like', 'foo%');
-        // })->get();
-
-    //    $orders = Dish::whereHas('user',function (Builder $query) {
-    //         $query->where('user_id', '=', 1);
-    //      })
-    //      ->with('orders')
-    //      ->get();
-
-    //    $orders = Order::with(['dishes' => function( $query){
-    //     $query->join('users','users.id','dishes.user_id')->where('users.id','=',1);
-
-    //    }])->get();
-
+        $orders = DB::table('dish_order')
+        ->select('orders.*')
+        ->join('dishes','dish_order.dish_id','dishes.id' )
+        ->join('users','users.id','dishes.user_id' )
+        ->join('orders','orders.id','dish_order.order_id')
+        ->where('users.id', Auth::user()->id)
+        ->groupBy('orders.id')
+        ->get();
 
         return view('admin.order.index',compact('orders'));
         // return response()->json($orders);
