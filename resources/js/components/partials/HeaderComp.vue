@@ -1,5 +1,4 @@
 <template>
-  <!-- HEader & Jumbotron  -->
       <header class="d-flex">
 
         <div class="logo">
@@ -12,7 +11,7 @@
           <nav>
             <ul id="header" class="nav-list">
               <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
-              <li class="restors"><router-link :to="{name:'restaurants'}">Ristornati</router-link></li>
+              <li class="restors"><router-link :to="{name:'restaurants'}">Ristoranti</router-link></li>
               <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
               <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
             </ul>
@@ -21,19 +20,23 @@
           <!-- <i class="fa-solid fa-cart-shopping mx-2" style="color:black"><router-link :to="{name:'Cart'}"></router-link></i> -->
 
           <router-link :to="{name:'Cart'}"><i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i></router-link>
+
           <!-- HAMBURGER MENU -->
-          <div class="hamburger ml-2">
+          <div class="hamburger ml-2" @click="isShown = !isShown">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
           </div>
 
         </div>
-
-        <!-- <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
-          <li>1</li>>
-       </ul> -->
-
+        
+        <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
+          <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
+              <li class="restors"><router-link :to="{name:'restaurants'}">Ristoranti</router-link></li>
+              <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
+              <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
+        </ul> 
+       <!-- END OF HAMBURGER -->
       </header>
 </template>
 
@@ -43,7 +46,8 @@ export default {
   name: 'HeaderComp',
   data() {
     return {
-        cartList: JSON.parse(window.localStorage.getItem('dishesInCart'))
+        cartList: JSON.parse(window.localStorage.getItem('dishesInCart')),
+        isShown: false
     }
   },
 }
@@ -54,28 +58,27 @@ export default {
 @import'../../../sass/front/vars';
 
 header{
-    height: 100px;
-    background-color: $light-green;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1em 4em;
-    box-shadow: 0 0 15px black;
-    .logo img{
-    width:200px;
-    }
-    nav{
-      padding-top:17px;
-    }
-    li .active{
-      color:#7131fa;
-    }
-
+  height: 100px;
+  background-color: $light-green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 4em;
+  box-shadow: 0 0 15px black;
+  .logo img{
+  width:200px;
   }
+  nav{
+    padding-top:17px;
+  }
+  li .active{
+    color:#7131fa;
+  }
+}
 
-  .nav-list{
-    display: flex;
-    align-items: center;
+.nav-list{
+  display: flex;
+  align-items: center;
     li{
       margin: 0 10px;
       padding: 5px 20px;
@@ -107,114 +110,88 @@ header{
         transition: border-radius 0.4s linear;
         border-radius: 0;
         cursor:pointer;
+      }
     }
+}
+.hamburger{
+  display:none!important;
+  cursor: pointer;
+  .bar{
+    display:block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all .2s ease-in-out;
+    background-color: rgb(0, 0, 0);;
   }
-  }
-     .hamburger{
-      display:none!important;
-      cursor: pointer;
-      .bar{
-        display:block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-        transition: all .2s ease-in-out;
-        background-color: rgb(0, 0, 0);;
-      }
-      }
-  //-----------------------------
-  //MEDIA
+}
 
- @media only screen and (max-width: 776px) {
-  .header{
-  padding: 1em 1.5em;
-  }
-  .logo img{
-    width:170px;
-  }
-  .nav-list li {
-    padding: 5px 10px;
-  }
-  }
+//-----------------------------
+//MEDIA
 
-
-  
-  @media only screen and (max-width: 695px) { //akamde rac xdeba
-
-  header{
-    padding: 1em 2em;
-  }
-
-  header .logo img{
-    width: 150px;
-  }
-  .nav-list li{
-    margin: 0 5px;
-    padding: 5px 12px;
-    a{
-      font-size: 14px;
+  @media only screen and (max-width: 992px){
+    header[data-v-494e1ffe]{
+      padding: 1em 1em 1em 2em;
+    }
+    .nav-list li[data-v-494e1ffe] {
+      margin: 0 8px;
+      padding: 2px 18px;
+    }
+    header .logo img[data-v-494e1ffe]{
+      width:185px;
     }
   }
 
-  .nav{
-    position: fixed;
-    left: -120%;
-    top: 70px;
-    flex-direction: column;
-    width:100%;
-    text-align: center;
-    transition: 0.3s;
-  }
-  .nav.active{
-    left: 0;
-  }
-  .nav ul li{
-    margin: 16px 0;
+  @media only screen and (max-width: 842px){
+    .nav-list li[data-v-494e1ffe] {
+      margin: 0 7px;
+      padding: 2px 13px;
+    }
   }
 
-  .banner-text{
-    font-size:3em!important;
+  @media only screen and (max-width: 790px) {
+    .header{
+      padding: 1em 1.5em;
+    }
+    .logo img{
+      width:170px;
+    }
+    .nav-list li[data-v-494e1ffe] {
+      margin: 0 7px;
+      padding: 2px 6px;
+    }
   }
-  }
-  @media only screen and (max-width: 768px){
 
-  }
-
-    @media only screen and (max-width: 575px){
-      header{
-        padding: 0 2em;
+  @media only screen and (max-width: 735px){
+    header{
+      padding: 0 2em;
+    }
+    header nav li{
+      display:none;
+    }
+    .hamburger{
+      display: block!important;
       }
-      header nav li{
-        display:none;
-      }
-       .hamburger{
-        display: block!important;
-        }
-        .hamburger-menu{
-        position: absolute;
-        z-index: 967;
-        top: 115px;
-        width:100%;
-        background-color: red;
-        display:flex;
-        flex-direction: column;
-        text-align:center;
-        justify-content: center;
-        padding: 0;
-        li{
-          padding: 10px 0;
-          &:hover{
-            background-color: lighten(red, 10%);
-            cursor: pointer;
-          }
-        }
-        a{
+    .hamburger-menu[data-v-494e1ffe]{
+      position: absolute;
+      z-index: 967;
+      top: 100px;
+      left: 0;
+      width:100%;
+      background-color: $green_salad;
+      display:flex;
+      text-align:center;
+      justify-content: space-between;
+      padding: 10px;
+      a{
+        color: black;
+        text-decoration: none;
+        font-size: 18px;
+        text-transform: uppercase;
+        &:hover{
           color: white;
-          text-decoration: none;
-          font-size: 22px;
-          text-transform: uppercase;
         }
-        }
-
+      }
     }
+  }
 </style>

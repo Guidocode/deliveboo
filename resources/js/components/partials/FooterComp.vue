@@ -89,7 +89,7 @@ footer{
         }
     }
     .underlower-footer{
-    height: 40px;
+    min-height: 40px;
     padding-top: 10px;
     background-color: black;
     color: gray;

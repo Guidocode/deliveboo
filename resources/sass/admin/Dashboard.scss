@@ -20,8 +20,14 @@ main{
     }
   }
   .main-dashboard{
+    // display: grid;
     width:100%;
     justify-content: center;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    // margin: 0 auto;
+    // gap: 1.8rem;
+    // grid-template-columns: 20rem 20rem 20rem;
     // padding: 3rem 4rem;
   }
 
@@ -242,5 +248,57 @@ main{
   }
 
 }
-    
-  
+//MEDIAS
+
+@media screen and (max-width: 1200px){
+  main{
+    margin: 2rem 3rem;
+  }
+  main .insights{
+    grid-template-columns: repeat(2, 1fr);
+  } 
+  h1{
+    font-size: 28px;
+  }
+  aside{
+    width: 25rem;
+  }
+  main .date input[type=date]{
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  main{
+    margin: 2rem 2rem;
+  }
+  main .insights{
+    grid-template-columns: repeat(1, 1fr);
+  } 
+}
+@media screen and (max-width: 576px){
+  aside .sidebar h4{
+    display: none;
+  }
+  aside {
+    width: 6rem;
+    padding: 40px 25px;
+  }
+  aside .top .logo img {
+    display: none;
+  }
+  aside .sidebar a:hover{
+    margin:0;
+    padding: 10px;
+  }
+  aside .sidebar a.active{
+    padding: 10px;
+  }
+  aside .sidebar a.active:before{
+    display: none;
+  }
+  aside .sidebar a {
+    margin-left: 0;
+  }
+
+}
