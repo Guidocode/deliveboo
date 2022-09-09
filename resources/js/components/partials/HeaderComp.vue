@@ -19,7 +19,13 @@
 
           <!-- <i class="fa-solid fa-cart-shopping mx-2" style="color:black"><router-link :to="{name:'Cart'}"></router-link></i> -->
 
-          <router-link :to="{name:'Cart'}"><i class="fa-solid fa-cart-shopping mx-2" style="color:black"></i></router-link>
+            <router-link :to="{name:'Cart'}">
+                <i class="fa-solid fa-cart-shopping mx-2 position-relative" style="color:black">
+                    <div class="position-absolute " >
+                        <span> * </span>
+                    </div>
+                </i>
+            </router-link>
 
           <!-- HAMBURGER MENU -->
           <div class="hamburger ml-2" @click="isShown = !isShown">
@@ -29,13 +35,13 @@
           </div>
 
         </div>
-        
+
         <ul v-if="isShown" class="hamburger-menu" :class="{'open' : isShown}">
           <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
               <li class="restors"><router-link :to="{name:'restaurants'}">Ristoranti</router-link></li>
               <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
               <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
-        </ul> 
+        </ul>
        <!-- END OF HAMBURGER -->
       </header>
 </template>
@@ -47,9 +53,15 @@ export default {
   data() {
     return {
         cartList: JSON.parse(window.localStorage.getItem('dishesInCart')),
-        isShown: false
+        isShown: false,
     }
   },
+  methods: {
+
+  },
+  computed:{
+
+  }
 }
 </script>
 
@@ -193,5 +205,25 @@ header{
         }
       }
     }
+  }
+  i{
+    transform: scale(2);
+    div{
+      background-color: blue;
+      top: 50%;
+      right: -20%;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        color: white;
+        font-size: 8px;
+      }
+
+    }
+
   }
 </style>
