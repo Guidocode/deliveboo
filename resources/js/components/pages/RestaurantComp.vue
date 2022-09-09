@@ -5,15 +5,14 @@
       <img :src="'img/try1.png'" alt="">
 
       <div class="jumbo-text">
-      <div class="banner-text text-uppercase question">Categoria</div>
+      <div class="banner-text text-uppercase question">Categorie</div>
       <h3>scegliere uno o più categorie</h3>
       <!-- <i class="fa-solid fa-arrow-down"></i> -->
     </div>
     </div>
 
+
     <div class="input-wrap">
-
-
         <div class="text-box" v-for="(tipo, index) in types" :key="`tipo${ index }`">
           <label :for="tipo.id">
             
@@ -23,36 +22,16 @@
             
           </label>
         </div>
+
     </div>
 
-      
-
-
-    <!-- OLD ONE -->
-
-      <!-- <div v-for="resturant in resturants" :key="resturant.id" class="card  mx-4" style="width: 18rem;">
-        <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="">
-        <img v-else-if="resturant.image" :src="resturant.image" alt="">
-
-        <div class="card-body">
-          <h5 class="card-title">{{ resturant.name }}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-        </div>
-      </div>  -->
-
-
-
-     <div class="line mt-2"></div>
-     
-
-    <div class="resturant-container d-flex flex-wrap justify-content-center">
+      <div class="resturant-container d-flex flex-wrap">
 
         <div v-for="resturant in resturants" :key="resturant.id" class="my_card mx-4" style="width: 18rem;">
           <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
-             <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top" alt="Imagine db">
-             <img v-else-if="resturant.image" :src="`/storage/${resturant.image}`" alt="Immagine utente">
-             <img v-else src="storage/uploads/restaurant-default.jpg" alt="Immagine default">
+             <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top img-fluid" alt="Imagine db">
+             <img  class="img-fluid" v-else-if="resturant.image" :src="`/storage/${resturant.image}`" alt="Immagine utente">
+             <img class="img-fluid" v-else src="storage/uploads/restaurant-default.jpg" alt="Immagine default">
           </router-link>
 
             <div class="card-body">
@@ -61,7 +40,12 @@
                 <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
             </div>
         </div>
-    </div>
+      </div>
+
+
+     <!-- <div class="line mt-2"></div> -->
+     
+
     
   </div>
 </template>
@@ -202,10 +186,9 @@
   //END JUMBO
 
   .resturant-container{
-  width: 75%;
-  margin: 4rem auto;
   gap: 10px;
-  border-radius: 10px;
+  margin: 0 auto;
+  justify-content: center;
   }
   h2{
     margin-bottom: 40px;
@@ -213,13 +196,24 @@
   }
 
   // INPUT
+  .main_rest{
+    width:80%;
+    margin: 0 auto;
+    padding: 9rem 0;
+    height: 66rem;
+    justify-content: space-between;
+
+  }
   .input-wrap{
-    width: 90%;
-    margin: 50px auto;
     display: flex;
     min-height: 50px;
-    justify-content: start;
-    flex-wrap: wrap;
+    align-items: start;
+    width: 93%;
+    margin: 0 auto;
+    padding: 130px 60px 50px 60px;
+    .text-box{
+      margin-right:12px;
+    }
   }
 
   // .inputs{
@@ -231,14 +225,14 @@
   // }
 
   .my_btn{
-    color: darken($green_salad, 40%);
-    background-color: transparent;
-    border-radius: 33px;
-    border: 3px solid darken($green_salad, 40%);;
-    font-size: 24px;
-    padding: 15px 32px;
+    color: black;
+    background-color: $green_salad;
+    border-radius: 20px;
+    border: 3px solid black;
+    font-size: 20px;
+    padding: 5px 20px;
     &:hover{
-      background-color: $violet;
+      background-color: darken($green_salad, 20%);
     }
     &:active{
       color:black;
@@ -255,8 +249,8 @@
   //CARD
   .my_card{
   margin: 20px;
+  width: calc(100% /3);
   height: 200px;
-  width: 200px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
