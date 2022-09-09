@@ -58,13 +58,13 @@
      <div class="d-flex layout_wrapper">
         @auth
                 <aside>
-                    <div class="top">
+                    <div class="top d-flex align-items-center">
                         <div class="logo">
                             <img src='{{ asset('img/deliverboo_logo.png')}}' alt="Logo">
                         </div>
-                        <div class="close" id="close-btn">
+                        {{-- <div>
                             <i class="fa-solid fa-xmark"></i>
-                        </div>
+                        </div> --}}
                     </div>
 
                     {{-- sidebar --}}

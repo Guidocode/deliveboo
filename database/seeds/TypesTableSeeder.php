@@ -12,13 +12,14 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Pizzeria', 'Cinese', 'Mediorientale', 'Messiacano', 'Italiano', 'Arabo', 'Vegana', 'Giapponese', 'Fast Food', 'Dolci'];
+        $types = config('TypesList');
 
 
 
         foreach ($types as $type) {
             $new_type = new Type();
-            $new_type->name = $type;
+            $new_type->name = $type['name'];
+            $new_type->icon = $type['icon'];
             $new_type->save();
         }
     }

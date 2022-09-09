@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\User;
 Use App\Type;
 
@@ -13,13 +14,14 @@ class TypeUserTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i < 20; $i++){
-            
-            $type = Type::inRandomOrder()->first()->id;           
+        $typesUsers = config('TypesUsers');
+        
 
-            $user = User::inRandomOrder()->first();
-
-            $user->types()->attach($type);
+        foreach ($typesUsers as $typeUser){
+            DB::table('type_user')->insert([
+                'user_id' => $typeUser['user_id'],
+                'type_id' => $typeUser['type_id'],
+            ]);
            
         }
     }

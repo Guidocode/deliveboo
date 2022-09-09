@@ -275,14 +275,18 @@ main{
   main .insights{
     grid-template-columns: repeat(1, 1fr);
   } 
+  aside .sidebar a:last-child {
+    top: 24rem;
+  }
 }
 @media screen and (max-width: 576px){
   aside .sidebar h4{
     display: none;
   }
   aside {
-    width: 6rem;
-    padding: 40px 25px;
+    width: 5rem;
+    min-height:100vh;
+    padding: 10px 17px;
   }
   aside .top .logo img {
     display: none;
@@ -299,6 +303,19 @@ main{
   }
   aside .sidebar a {
     margin-left: 0;
+    justify-content: center;
   }
-
+  main .left .info,
+  main .left .theme-toggler{
+    display:none;
+  }
+  .profile{
+    margin-right:5px;
+  }
+  aside .sidebar a:last-child {
+    top: 24rem;
+  }
 }
+   
+    
+  

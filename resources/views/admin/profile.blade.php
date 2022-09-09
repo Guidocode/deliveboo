@@ -8,7 +8,7 @@
   <h6>General Information of <strong>{{Auth::user()->name }}</strong></h6>
   <span>Welcome back!</span>
   
-  <div class="d-flex justify-content-start align-items-center">
+  <div class=" profile-wrap">
     <div class="my_profile">
       <div class="user">
         <div>
