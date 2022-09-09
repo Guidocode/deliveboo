@@ -68,7 +68,7 @@ export default {
 footer{
     background-color:rgb(31, 31, 31);
     color: white;
-    height: 200px;
+    min-height: 200px;
     a{
         padding: 5px;
     }

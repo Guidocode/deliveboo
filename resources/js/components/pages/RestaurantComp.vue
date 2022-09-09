@@ -2,12 +2,15 @@
 
   <div class="restaurants text-center">
     <div class="jumbo">
-      <img :src="'img/jumbo.jpg'" alt="">
+      <img :src="'img/try.png'" alt="">
 
-      <div class="jumbo-text my_container">
+      <!-- <div class="jumbo-text my_container">
         <img :src="'img/jumbo2.jpg'" alt="" width="200">
-      </div>
+      </div> -->
+      <div class="banner-text pt-2 text-uppercase question">Categoria</div>
     </div>
+      <!-- <i id="icon_arrow" class="fa-solid fa-arrow-down"></i> -->
+      <h3>scegliere uno o più categorie</h3>
 
     <div class="input-wrap">
 
@@ -150,37 +153,44 @@
 
   .restaurants{
     margin: 0 auto;
-    .jumbo{
-      height:550px;
-      width:100%;
-      overflow: hidden;
-      img{
-        width:100%;
-      }
-    }
   }
   .jumbo{
     position:relative;
-
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    .question{
+    font-size: 5em;
+    font-weight: 700;
+    color: black;
+      text-transform: uppercase;
+      position:absolute;
+      z-index: 990;
+      top: 60%;
+      left:8%;
+      // transform: translate(33%, 50%);
+      animation: mymove 2s ease;
+    }
+      img{
+      height:37rem;
+      width:100%;
+    }    
   }
-  .jumbo-text{
-    width:60%;
-    height: 300px;
+  #icon_arrow{
+    font-size: 63px;
+    font-weight:600;
     position:absolute;
-    z-index: 990;
-    top: 0;
-    left:0;
-    transform: translate(33%, 50%);
-    background-color: $light_green;
-    border-radius: 15px;
-    padding: 4rem 7rem;
-    overflow: hidden;
-    animation: mymove 2s linear;
+    top: 62%;
+    left:35%;
   }
-
-  @keyframes mymove {
-  from {top: -100px;}
-  to {top: 0}
+  h3{
+    position: absolute;
+      z-index: 989;
+      top: 72%;
+      left:9%;
+      animation: h3move 2s ease;
   }
 
     .resturant-container{
@@ -215,7 +225,7 @@
      margin-right:100px;
   }
 
-  
+
   .my_btn{
     color:white;
     background-color: black;
@@ -285,14 +295,125 @@
   }
 
   }
+  // =====KEYFRAMES=====
 
-  //MEDIA
+  @keyframes mymove {
+  from { transform: translateX(-100%);}
+  to { transform: translateX(0%);}
+  }
+  @keyframes h3move {
+  from { transform: translateX(20%);}
+  to { transform: translateX(0%);}
+  }
+  @keyframes move_arrow {
+  from { transform: translateX(20%);}
+  to { transform: translateX(0%);}
+  }
+
+
+  // =====MEDIAS=====
+  // @media only screen and (max-width: 1496px){
+  //   .jumbo img{
+  //     height: 40rem;
+  //   }
+  // }
 
   @media only screen and (min-width: 1200px){
-    // .col-lg-6{
-    //   float:left;
-    //   width:50%;
-    // }
+    .jumbo img{
+      height: 37rem;
+    }
+    h3{
+    color:rgb(137, 39, 222);
+    top: 76%;
+    font-size: 25px;
+    }
+    .jumbo .question{
+      font-size:4rem;
+    }
+    #icon_arrow{
+    font-size: 52px;
+    top: 66%;
+    left: 44%;
+    }
+
+  }
+  @media only screen and (max-width: 992px){
+    .jumbo img{
+      height: 26rem;
+    }
+    h3{
+    color:red;
+    top: 76%;
+    font-size: 25px;
+    }
+    .jumbo .question{
+      font-size:4rem;
+    }
+    #icon_arrow{
+    font-size: 52px;
+    top: 66%;
+    left: 44%;
+    }
+
+  }
+
+  @media only screen and (max-width: 768px){
+    .jumbo img{
+      height: 21rem;
+    }
+    h3{
+    color:palevioletred;
+    top: 64%;
+    font-size: 19px;
+    }
+    .jumbo .question{
+    font-size:3rem;
+    }
+    #icon_arrow{
+    font-size: 35px;
+    top: 57%;
+    left: 43%;
+    }
+  }
+
+  @media only screen and (max-width: 575px){
+    .jumbo img{
+      height: 16rem;
+    }
+    h3{
+    top: 54%;
+    left: 9%;
+    font-size: 16px;
+    }
+    .jumbo .question{
+    font-size:2.5rem;
+    }
+    #icon_arrow{
+    font-size: 31px;
+    font-weight: 600;
+    top: 48%;
+    left: 48%;
+    }
+  }
+
+  @media only screen and (max-width: 390px){
+    .jumbo img{
+      height: 10rem;
+    }
+    h3{
+    top: 42%;
+    left: 9%;
+    font-size:12px;
+    }
+    .jumbo .question{
+      font-size:2rem;
+    }
+    #icon_arrow{
+    font-size: 28px;
+    font-weight: 600;
+    top: 37%;
+    left: 53%;
+    }
   }
 
   </style>
