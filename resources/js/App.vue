@@ -33,7 +33,7 @@ export default {
     return {
       scTimer: 0,
       scY: 0,
-      dataCart: null
+      dataCart: null,
     }
   },
   mounted() {
@@ -41,6 +41,10 @@ export default {
 
   },
   methods:{
+    updateCartCount(count){
+        this.cartCount = count
+        return this.cartCount
+    },
 
     handleScroll: function () {
       if (this.scTimer) return;

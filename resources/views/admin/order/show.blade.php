@@ -3,33 +3,19 @@
 @section('content')
 <div>
     <div>
-      <h1 class="">Info cliente </h1>
+      <h2 class="">Info cliente </h2>
 
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Cognome</th>
-                <th scope="col">Indirizzo</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Email</th>
-              </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>{{$order->id}}</td>
-                        <td>{{$order->client_name}}</td>
-                        <td>{{$order->client_surname}}</td>
-                        <td>{{$order->client_address}}</td>
-                        <td>{{$order->client_phone}}</td>
-                        <td>{{$order->client_email}}</td>
-                    </tr>
-            </tbody>
-        </table>
+        <ul>
+            <li><h5># {{$order->id}}</h5></li>
+            <li><h5>Nome: {{$order->client_name}}</h5></li>
+            <li><h5>Cognome: {{$order->client_surname}}</h5></li>
+            <li><h5>Indirizzo: {{$order->client_address}}</h5></li>
+            <li><h5>Telefono: {{$order->client_phone}}</h5></li>
+            <li><h5>Email: {{$order->client_email}}</h5></li>
+        </ul>
 
         <hr class="py-4">
-        <h1 class="mt-4 ">Articoli acquistati</h1>
+        <h2 class="mt-4 ">Articoli acquistati</h2>
 
           <table class="table">
               <thead>

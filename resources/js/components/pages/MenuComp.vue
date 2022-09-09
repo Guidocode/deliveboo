@@ -26,10 +26,12 @@
             </div>
 
             <div class="dish-container d-flex">
+
                 <DishCard v-for="dish in resturant.dishes" :key="dish.id"
                 :dish="dish"
                 @getCount="cartItemCount"
                 @getProductList="getProductList"
+
                 />
 
             </div>
@@ -59,6 +61,7 @@ export default {
 
     },
     methods: {
+
         getDishes(){
             if(this.cartNumber > 0 &&  window.localStorage.getItem('CartRestaurant') != this.$route.params.slug && this.$route.params.slug  ){
                 if(confirm("Sei entrato in un altro ristorante. Vuoi continuare e cancellare l'ordine precedente?")){
@@ -81,6 +84,7 @@ export default {
         cartItemCount(count){
             this.cartNumber = JSON.parse(window.localStorage.getItem('count'))
         },
+
         getProductList(cartToExport){
             this.productList = JSON.parse(window.localStorage.getItem('dishesInCart'))
             this.$emit('dataCart', this.productList)
@@ -96,17 +100,18 @@ export default {
 <style lang="scss" scoped>
 @import'../../../sass/front/vars';
 .container-menu{
-    height: calc(100%);
+    margin: 10px auto;
     .sidebar{
         padding: 20px 10px;
         background-color: $light_green;
+        width: 30%;
     }
     .dish-container{
         padding: 10px;
         gap: 10px;
         flex-wrap: wrap;
         background-color: $orange;
-        justify-content: center;
+        justify-content: start;
         flex-grow: 1;
     }
 }
