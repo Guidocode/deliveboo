@@ -32,7 +32,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order_content = $order->dishes()->get();
-        return view('admin.order.show', compact('order_content'));
+        return view('admin.order.show', compact('order','order_content'));
     }
 }
 //

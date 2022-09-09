@@ -18,7 +18,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
 
@@ -28,10 +28,10 @@
 
 </head>
 <body>
-    <div id="app">      
+    <div id="app">
         @guest
         <div class="guest-header">
-            
+
             <div class="logo">
                 <img src="{{ asset('img/deliverboo_logo.png') }}" alt="Logo">
             </div>
@@ -40,19 +40,19 @@
                 <div>
                     <a class="about {{ Route::currentRouteName() === '/' ? 'active' : ''}}" href="{{ url('/') }}">Go Back</a>
                 </div>
-                
+
                 <div class="d-flex">
                     <a class="mr-4 home {{ Route::currentRouteName() === 'login' ? 'active' : ''}}" href="{{ route('login') }}">Login</a>
 
                     @if (Route::has('register'))
                     <a class="about {{ Route::currentRouteName() === 'register' ? 'active' : ''}}" href="{{ route('register') }}">Register</a>
                     @endif
-                </div>           
+                </div>
             </div>
-                    
-            
+
+
         </div>
-        @endguest       
+        @endguest
         {{-- END GUEST --}}
 
      <div class="d-flex layout_wrapper">
@@ -73,7 +73,7 @@
                             <i class="fa-solid fa-table-list"></i>
                             <h4>Dashboard</h4>
                         </a>
-                        <a class="{{ Route::currentRouteName() === 'admin.profile' ? 'active' : ''}}" 
+                        <a class="{{ Route::currentRouteName() === 'admin.profile' ? 'active' : ''}}"
                         href="{{ route('admin.profile') }}">
                             <i class="fa-regular fa-user"></i>
                             <h4>Profile</h4>
@@ -82,7 +82,7 @@
                             <i class="fa-solid fa-bowl-rice"></i>
                             <h4>My menu</h4>
                         </a>
-                        <a href="#">
+                        <a class="{{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : ''}}" href="{{ route('admin.order.index')}}">
                             <i class="fa-solid fa-money-bill-wheat"></i>
                             <h4>Orders</h4>
                             {{-- <span class="message-count">2</span> --}}
@@ -110,7 +110,7 @@
                         </a>
 
                     </div>
-                </aside>                   
+                </aside>
         @endauth
         <main>
             @yield('content')

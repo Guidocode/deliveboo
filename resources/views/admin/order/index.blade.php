@@ -1,19 +1,33 @@
 @extends('layouts.admin')
 
 @section('content')
-{{-- @dump($orders) --}}
-{{-- {{ $orders }} --}}
-{{-- <a class="btn btn-primary" href="{{ route('admin.order.show', $orders[0]) }}">{{ $orders[0]->client_name }}</a> --}}
-
-@foreach ($orders as $order)
-
-<a class="btn btn-primary" href="{{ route('admin.order.show', $order->id) }}">
-    {{ $order->client_name }}
-</a>
-
-
-
-@endforeach
-
+<div><h1 class="">I tuoi ordini</h1></div>
+<div class="overflow-auto vh-40">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID ordine</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
+            <th scope="col">Totale</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+            @forelse($orders as $order)
+                <tr>
+                    <td class="align-middle">{{$order->id}}</td>
+                    <td class="align-middle">{{$order->client_name}}</td>
+                    <td class="align-middle">{{$order->client_surname}}</td>
+                    <td class="align-middle">{{$order->total_price}}€</td>
+                    <td class="align-middle"><a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-warning">Show Details</a></td>
+                </tr>
+            @empty
+                <tr colspan="4">Nessun ordine presente</tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 @endsection
 @section('title', 'my-orders')
+

@@ -1,11 +1,11 @@
-extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('content')
 <div>
     <div>
-      <h1 class="txt-oxford">Customer Info</h1>
-      <div class="table-responsive">
-        <table class="table ">
+      <h1 class="">Info cliente </h1>
+
+        <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -27,10 +27,10 @@ extends('layouts.admin')
                     </tr>
             </tbody>
         </table>
-      </div>
+
         <hr class="py-4">
-        <h1 class="mt-4 txt-oxford">Customer Cart</h1>
-        <div class="table-responsive">
+        <h1 class="mt-4 ">Articoli acquistati</h1>
+
           <table class="table">
               <thead>
                 <tr>
@@ -41,7 +41,7 @@ extends('layouts.admin')
                 </tr>
               </thead>
               <tbody>
-                  @foreach($dishes as $dish)
+                  @foreach($order_content as $dish)
                       <tr>
                           <td>{{$dish->name}}</td>
                           <td>{{$dish->price}}€</td>
@@ -52,9 +52,9 @@ extends('layouts.admin')
                   <td class="font-weight-bold">Totale Ordine: {{ $order->total_price }}€ </td>
               </tbody>
           </table>
-        </div>
+
         <div class="d-flex justify-content-end">
-          <a href="{{route('admin.orders.index')}}" class="btn btn-warning">Back to Orders</a>
+          <a href="{{route('admin.order.index')}}" class="btn btn-warning">Indietro</a>
         </div>
     </div>
   </div>
