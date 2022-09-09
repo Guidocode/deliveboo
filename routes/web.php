@@ -29,6 +29,7 @@ Route::middleware('auth')
             Route::get('/my-reports', 'HomeController@report')->name('report');
             Route::resource('dishes', 'DishController');
             Route::get('order', 'OrderController@index')->name('order.index');
+            Route::get('order/{order}', 'OrderController@show')->name('order.show');
         });
 
 // potrebbe creare problemi?
