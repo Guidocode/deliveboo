@@ -9,7 +9,8 @@
             <div class="mb-3">
               <label for="name" class="form-label">Nome piatto*</label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"  value='{{ old('name') }}' >
-                @error('name')
+              <div id="name-error" class=" text-danger"></div>
+              @error('name')
                  <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -18,6 +19,7 @@
               <label for="description" class="form-label">Ingredienti*</label>
               {{-- <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"  value='{{ old('description') }}'> --}}
               <textarea name="description" class="form-control @error('description') is-invalid @enderror"" id="description" cols="30" rows="5">{{ old('description') }}</textarea>
+              <div id="description-error" class=" text-danger"></div>
               @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -26,7 +28,8 @@
             <div class="mb-3">
               <label for="price" class="form-label">Prezzo*</label>
               <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price"  value='{{ old('price') }}'>
-                @error('price')
+              <div id="price-error" class=" text-danger"></div>
+              @error('price')
                  <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -63,7 +66,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="create-submit" disabled class="btn btn-primary">Submit</button>
         </form>
 
         <script>
@@ -71,6 +74,81 @@
                 const image = document.getElementById('output-image');
                 image.src = URL.createObjectURL(event.target.files[0]);
             };
+
+
+            let submit = document.getElementById('create-submit');
+
+
+            function submitOn(){
+                if(nameCheck && ingredientsCheck && priceCheck){
+                    submit.disabled = false
+                }else{
+                    submit.disabled = true
+                }
+            }
+
+
+            let nameField = document.getElementById('name');
+            let nameFieldError = document.getElementById('name-error');
+            let nameCheck = false
+
+            nameField.addEventListener('focusout', function(){
+                let reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/
+                // let reg = /^([a-zA-Z0-9 ']*)$/
+                if(reg.test(nameField.value.trim())){
+                    nameFieldError.innerText = '';
+                    nameCheck = true;
+                    console.log(nameField.value.trim());
+                }else{
+                    nameFieldError.innerText = 'Il nome non è valido'
+                    nameCheck = false
+
+                }
+                submitOn()
+            })
+
+            let ingredientsField = document.getElementById('description');
+            let ingredientsFieldError = document.getElementById('description-error');
+            let ingredientsCheck = false
+
+            ingredientsField.addEventListener('focusout', function(){
+                let reg = /^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/
+                // let reg = /^([a-zA-Z0-9 ']*)$/
+                if(reg.test(ingredientsField.value.trim())){
+                    ingredientsFieldError.innerText = '';
+                    ingredientsCheck = true;
+                    console.log(ingredientsField.value.trim());
+                }else{
+                    ingredientsFieldError.innerText = 'Ingredienti non validi'
+                    ingredientsCheck = false
+
+                }
+                submitOn()
+            })
+
+
+            let priceField = document.getElementById('price');
+            let priceError = document.getElementById('price-error');
+            let priceCheck = false;
+
+
+            priceField.addEventListener('focusout', function(){
+                let reg = /\d+(?:[.,]\d{0,2})?/
+                if (reg.test(priceField.value.trim())) {
+                    priceError.innerText = '';
+                    priceCheck = true;
+                }else if(priceField.value.length == 0   ){
+                    priceError.innerText = 'Compila questo campo';
+                    priceCheck = false;
+                }else {
+                    priceError.innerText = 'Il prezzo non è valido';
+                    priceCheck = false;
+                    console.log('else ');
+                }
+                submitOn()
+
+            })
+
         </script>
 
     </div>
