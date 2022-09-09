@@ -12,44 +12,54 @@
             </div>
 
         </div>
-        <div class=" d-flex container-menu">
 
-            <div class="sidebar">
 
-               <h3>Carrello <span >{{ cartNumber }}</span></h3>
-               <div class="d-flex flex-column justify-content-between">
-                    <table class="table  ">
-                        <thead>
-                            <tr>
-                            <th scope="col">Piatto</th>
-                            <th scope="col">Prezzo</th>
-                            <th scope="col">N°</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(product, index) in productList" :key="index">
-                                <th scope="row" class=" overflow-hidden">{{ product.name }}</th>
-                                <td>{{ product.price }}</td>
-                                <td>{{ product.inCart }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div v-if="productList"  class="btn btn-primary"><router-link :to="{name:'Cart'}">Vai al carrello</router-link></div>
-               </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col col-lg-4">
+                    <div class="sidebar d-flex flex-column justify-content-between">
+
+                        <div class="">
+                        <h3>Carrello <span >{{ cartNumber }}</span></h3>
+                            <table class="table  ">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Piatto</th>
+                                    <th scope="col">Prezzo</th>
+                                    <th scope="col">N°</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(product, index) in productList" :key="index">
+                                        <th scope="row" class=" overflow-hidden">{{ product.name }}</th>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.inCart }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div v-if="productList"  class="btn btn-primary"><router-link :to="{name:'Cart'}">Vai al carrello</router-link></div>
+                    </div>
+                </div>
+
+
+                <div class="col col-lg-8 d-flex flex-wrap">
+
+
+                    <DishCard v-for="dish in resturant.dishes" :key="dish.id"
+                    :dish="dish"
+                    @getCount="cartItemCount"
+                    @getProductList="getProductList"
+
+                    />
+
+
+                </div>
             </div>
-
-            <div class="dish-container d-flex">
-
-                <DishCard v-for="dish in resturant.dishes" :key="dish.id"
-                :dish="dish"
-                @getCount="cartItemCount"
-                @getProductList="getProductList"
-
-                />
-
-            </div>
-
         </div>
+
     </div>
 </template>
 
@@ -117,25 +127,11 @@ export default {
     align-items: center;
     padding: 10px;
 }
-.container-menu{
-    margin: 10px auto;
-    .sidebar{
-        padding: 20px 10px;
-        background-color: $light_green;
-        width: 40%;
-        th{
-            white-space: nowrap;
-            max-width: calc(100% / 3);
-        }
-    }
-    .dish-container{
-        padding: 10px;
-        gap: 10px;
-        flex-wrap: wrap;
-        // background-color: $orange;
-        justify-content: start;
-        flex-grow: 1;
-
-    }
+.col{
+    min-height: 400px;
 }
+.sidebar{
+    min-height: 400px;
+}
+
 </style>
