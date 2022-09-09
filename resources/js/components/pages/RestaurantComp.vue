@@ -2,28 +2,31 @@
 
   <div class="restaurants text-center">
     <div class="jumbo">
-      <img :src="'img/try.png'" alt="">
+      <img :src="'img/try1.png'" alt="">
 
-      <!-- <div class="jumbo-text my_container">
-        <img :src="'img/jumbo2.jpg'" alt="" width="200">
-      </div> -->
-      <div class="banner-text pt-2 text-uppercase question">Categoria</div>
-    </div>
-      <!-- <i id="icon_arrow" class="fa-solid fa-arrow-down"></i> -->
+      <div class="jumbo-text">
+      <div class="banner-text text-uppercase question">Categoria</div>
       <h3>scegliere uno o più categorie</h3>
+      <!-- <i class="fa-solid fa-arrow-down"></i> -->
+    </div>
+    </div>
 
     <div class="input-wrap">
 
-      <div class="inputs">
+
         <div class="text-box" v-for="(tipo, index) in types" :key="`tipo${ index }`">
           <label :for="tipo.id">
             
-            <button class="btn btn-warning my_btn" type="submit" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)"><span><i class="fa-solid fa-circle-check"></i> {{ tipo.name }}</span></button>
+            <button class="my_btn" type="submit" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)">
+              <span><i :class="tipo.icon"></i> {{ tipo.name }}</span>
+            </button>
             
           </label>
         </div>
-      </div>
     </div>
+
+      
+
 
     <!-- OLD ONE -->
 
@@ -59,6 +62,7 @@
             </div>
         </div>
     </div>
+    
   </div>
 </template>
 
@@ -78,7 +82,7 @@
                resturants: [],
                types:[],
                selectedTypes:[],
-               type: 'Cinese'
+               type: 'Cinese',
               }
           },
          mounted() {
@@ -102,7 +106,7 @@
           },
 
           filterMe(id){
-
+            
               if(this.selectedTypes.includes(id)){
                   let index = this.selectedTypes.indexOf(id)
                   this.selectedTypes.splice(index,1)
@@ -139,9 +143,11 @@
               }
 
           },
+          changeColor(){
 
-
-
+            let button =document.querySelector('.xxx');
+            button.classList.toggle('active');
+            }
           }
 
        }
@@ -150,57 +156,57 @@
 <style lang="scss" scoped>
 @import'../../../sass/front/vars';
 
-
   .restaurants{
     margin: 0 auto;
   }
   .jumbo{
     position:relative;
     width: 100%;
+    height: 35rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow:hidden;
-    .question{
-    font-size: 5em;
-    font-weight: 700;
-    color: black;
-      text-transform: uppercase;
+    .jumbo-text{
       position:absolute;
-      z-index: 990;
-      top: 60%;
-      left:8%;
+      position:absolute;
+      text-align: initial;
+      top: 66%;
+      left: 10%;
+      line-height: 79px;
       // transform: translate(33%, 50%);
-      animation: mymove 2s ease;
+      .question{
+        font-size: 5rem;
+        font-weight: 700;
+        color: black;
+        text-transform: uppercase;
+        animation: mymove 2s ease;
+        margin-bottom:1rem;
+      }
+      h3{
+      animation: h3move 2s ease;
+      padding-left:1rem;
+      }
     }
-      img{
-      height:37rem;
+    img{
+      height:41rem;
       width:100%;
     }    
+    .fa-arrow-down{
+      font-size: 45px;
+      margin-top:20px;
+      // background-color: $violet;
+      color: lightgray;
+    }
   }
-  #icon_arrow{
-    font-size: 63px;
-    font-weight:600;
-    position:absolute;
-    top: 62%;
-    left:35%;
-  }
-  h3{
-    position: absolute;
-      z-index: 989;
-      top: 72%;
-      left:9%;
-      animation: h3move 2s ease;
-  }
+  //END JUMBO
 
-    .resturant-container{
-    width: 75%;
-    margin: 4rem auto;
-    gap: 10px;
-    border-radius: 10px;
+  .resturant-container{
+  width: 75%;
+  margin: 4rem auto;
+  gap: 10px;
+  border-radius: 10px;
   }
-
-  
   h2{
     margin-bottom: 40px;
     font-family: Poppins,sans-serif;
@@ -208,48 +214,43 @@
 
   // INPUT
   .input-wrap{
-    min-width: 300px;
-    height: 85px;
-    padding: 0 2rem;
-  }
-
-  .inputs{
+    width: 90%;
     margin: 50px auto;
-    display:flex;
-    height:50px;
-    justify-content: center;
+    display: flex;
+    min-height: 50px;
+    justify-content: start;
     flex-wrap: wrap;
   }
 
-  div label input {
-     margin-right:100px;
-  }
-
+  // .inputs{
+  //   margin: 50px auto;
+  //   display:flex;
+  //   height:50px;
+  //   justify-content: center;
+  //   flex-wrap: wrap;
+  // }
 
   .my_btn{
-    color:white;
-    background-color: black;
-    border-radius: 20px;
-    border:none;
-
-
-  
-    margin:5px;
-    padding:8px 20px;
+    color: darken($green_salad, 40%);
+    background-color: transparent;
+    border-radius: 33px;
+    border: 3px solid darken($green_salad, 40%);;
+    font-size: 24px;
+    padding: 15px 32px;
     &:hover{
       background-color: $violet;
     }
     &:active{
       color:black;
-      background-color: white;
+    }
+    i{
+      margin-right:10px;
     }
   }
-
-
-  .line{
-    height:3px;
-    background-color: black;
+  .active{
+    background-color:green;
   }
+
 
   //CARD
   .my_card{
@@ -312,108 +313,109 @@
 
 
   // =====MEDIAS=====
-  // @media only screen and (max-width: 1496px){
-  //   .jumbo img{
-  //     height: 40rem;
-  //   }
-  // }
 
-  @media only screen and (min-width: 1200px){
+    @media only screen and (min-width: 2000px){
+    .restaurants{
+      padding:0 15rem;
+    }
+  }
+
+  @media only screen and (max-width: 1400px){
+   .jumbo,
     .jumbo img{
-      height: 37rem;
+       height: 28rem;
     }
-    h3{
-    color:rgb(137, 39, 222);
-    top: 76%;
-    font-size: 25px;
+    .jumbo .jumbo-text{
+      top: 64%;
+      left: 8%;
+      // line-height: 25px;
+      .question{
+        font-size:4rem;
+      }
+      h3{
+        font-size: 23px;
+        padding-left: 7px;
+      }
     }
-    .jumbo .question{
-      font-size:4rem;
-    }
-    #icon_arrow{
-    font-size: 52px;
-    top: 66%;
-    left: 44%;
-    }
-
   }
   @media only screen and (max-width: 992px){
+    .jumbo,
     .jumbo img{
-      height: 26rem;
+       height: 24rem;
     }
-    h3{
-    color:red;
-    top: 76%;
-    font-size: 25px;
+    .jumbo .jumbo-text{
+      top: 63%;
+      left: 8%;
+      // line-height: 25px;
+      .question{
+        font-size:4rem;
+      }
+      h3{
+        font-size: 23px;
+        padding-left: 7px;
+      }
     }
-    .jumbo .question{
-      font-size:4rem;
-    }
-    #icon_arrow{
-    font-size: 52px;
-    top: 66%;
-    left: 44%;
-    }
-
   }
+
 
   @media only screen and (max-width: 768px){
+    .jumbo,
     .jumbo img{
-      height: 21rem;
+       height: 20rem;
     }
-    h3{
-    color:palevioletred;
-    top: 64%;
-    font-size: 19px;
-    }
-    .jumbo .question{
-    font-size:3rem;
-    }
-    #icon_arrow{
-    font-size: 35px;
-    top: 57%;
-    left: 43%;
+    .jumbo .jumbo-text{
+      top: 63%;
+      left: 6%;
+      // line-height: 25px;
+      .question{
+        font-size:3.2rem;
+      }
+      h3{
+        font-size: 20px;
+        line-height: 8px;
+        padding-left: 7px;
+      }
     }
   }
 
-  @media only screen and (max-width: 575px){
+  @media only screen and (max-width: 576px){
+    .jumbo,
     .jumbo img{
-      height: 16rem;
+       height: 16rem;
     }
-    h3{
-    top: 54%;
-    left: 9%;
-    font-size: 16px;
-    }
-    .jumbo .question{
-    font-size:2.5rem;
-    }
-    #icon_arrow{
-    font-size: 31px;
-    font-weight: 600;
-    top: 48%;
-    left: 48%;
+    .jumbo .jumbo-text{
+      top: 63%;
+      left: 6%;
+      line-height: 25px;
+      .question{
+        font-size:2.8rem;
+      }
+      h3{
+        font-size: 18px;
+        line-height: 42px;
+        padding-left: 7px;
+      }
     }
   }
 
   @media only screen and (max-width: 390px){
+    
+    .jumbo,
     .jumbo img{
-      height: 10rem;
+       height: 10rem;
     }
-    h3{
-    top: 42%;
-    left: 9%;
-    font-size:12px;
+    .jumbo .jumbo-text{
+      top: 60%;
+      left: 6%;      
+      line-height: 25px;
+      .question{
+        font-size:2rem;
+      }
+      h3{
+        font-size:14px;
+      }
     }
-    .jumbo .question{
-      font-size:2rem;
-    }
-    #icon_arrow{
-    font-size: 28px;
-    font-weight: 600;
-    top: 37%;
-    left: 53%;
-    }
+
   }
 
   </style>

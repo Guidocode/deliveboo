@@ -17,7 +17,7 @@
 
     <!-- IMAGE COVER -->
     <div class="jumbo">
-      <img :src="'img/cover.v5.png'" alt="">
+      <img :src="'img/cover.v5.jpg'" alt="">
     </div>
   </div>
  
