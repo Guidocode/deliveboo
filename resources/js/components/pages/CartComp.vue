@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="">Note per il ristorante</label>
-                        <textarea class="form-control" name="" id="" rows="3">{{ form.note }}</textarea>
+                        <textarea v-model=form.note class="form-control" name="" id="" rows="3"></textarea>
                     </div>
 
                 </div>
