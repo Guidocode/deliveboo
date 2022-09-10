@@ -2,7 +2,7 @@
 
   <div class="restaurants text-center">
     <div class="jumbo">
-      <img :src="'img/try1.png'" alt="">
+      <img :src="'img/p2.jpg'" alt="">
 
       <div class="jumbo-text">
       <div class="banner-text text-uppercase question">Categorie</div>
@@ -22,6 +22,7 @@
             
           </label>
         </div>
+        <div><i class="fa-solid fa-xmark"></i></div>
 
     </div>
 
@@ -40,7 +41,21 @@
                 <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
             </div>
         </div>
+     
       </div>
+
+
+      <!-- <div class="rest_wrap">
+        <div class="rest_item">
+          <div class="rest_img">
+            <div class="img_wrap">
+              <img src="https://supatainment.com/wp-content/uploads/2022/08/der-erste-dsds-juror-neben-dieter-bohlen-steht-fest.jpg" alt="">
+            </div>
+
+          </div>
+        </div>
+
+      </div> -->
 
 
      <!-- <div class="line mt-2"></div> -->
@@ -146,11 +161,12 @@
   .jumbo{
     position:relative;
     width: 100%;
-    height: 35rem;
+    height: 36rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow:hidden;
+    margin-bottom: 3rem;
     .jumbo-text{
       position:absolute;
       position:absolute;
@@ -162,7 +178,7 @@
       .question{
         font-size: 5rem;
         font-weight: 700;
-        color: black;
+        color: rgb(255, 255, 255);
         text-transform: uppercase;
         animation: mymove 2s ease;
         margin-bottom:1rem;
@@ -170,10 +186,11 @@
       h3{
       animation: h3move 2s ease;
       padding-left:1rem;
+      color: white;
       }
     }
     img{
-      height:41rem;
+      // height:41rem;
       width:100%;
     }    
     .fa-arrow-down{
@@ -187,7 +204,7 @@
 
   .resturant-container{
   gap: 10px;
-  margin: 0 auto;
+  margin: 5rem auto;
   justify-content: center;
   }
   h2{
@@ -206,13 +223,20 @@
   }
   .input-wrap{
     display: flex;
+    flex-wrap: wrap;
     min-height: 50px;
-    align-items: start;
-    width: 93%;
+    justify-content: start;
+    align-items: center;
+    width: 86%;
     margin: 0 auto;
-    padding: 130px 60px 50px 60px;
+    padding-left: 35px;
+    margin-top: 2rem;
+    // margin-bottom:5rem;
     .text-box{
       margin-right:12px;
+    }
+    div:last-child{
+     justify-self: end;
     }
   }
 
@@ -226,11 +250,11 @@
 
   .my_btn{
     color: black;
-    background-color: $green_salad;
+    background-color: #BECFBC;
     border-radius: 20px;
     border: 3px solid black;
     font-size: 20px;
-    padding: 5px 20px;
+    padding: 10px 31px;
     &:hover{
       background-color: darken($green_salad, 20%);
     }
@@ -256,8 +280,10 @@
   overflow: hidden;
   box-shadow: 0 0 10px gray;
   img {
-  object-fit: cover;
-  width:100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    display: inline-block;
    &:hover{
     filter: blur(5px);
     // transform: scale(1.3);
