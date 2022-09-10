@@ -1,37 +1,69 @@
 <template>
     <div class="container my-4 ">
-        <table class="table" v-if="!clientInfo">
-            <thead>
-                <tr class=" text-center">
-                        <th scope="col">Piatto</th>
-                        <th scope="col">Prezzo</th>
-                        <th scope="col">Prezzo complessivo</th>
-                        <th scope="col">N°</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr v-for="(product, index) in dataCart" :key="index">
-                    <th scope="row">{{ product.name }}</th>
-                    <td>{{ product.price }}</td>
-                    <td>{{ (product.price * product.inCart).toFixed(2) }}</td>
-                    <td class="noselect">
-                        <i @click="productMinus(product, index, 0)" class="fa-solid fa-circle-minus mr-1"></i>
-                        {{ product.inCart }}
-                        <i  @click="productPlus(product, index, 1)" class="fa-solid fa-circle-plus ml-1"></i>
-                    </td>
-                    <td><i @click="deleteProduct(product, index)" class="fa-solid fa-trash"></i></td>
+
+        <div class="row">
+            <div class="col d-none d-md-block">
+                <table class="table" v-if="!clientInfo">
+                    <thead>
+                        <tr class=" text-center">
+                                <th scope="col">Piatto</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Prezzo complessivo</th>
+                                <th scope="col">N°</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(product, index) in dataCart" :key="index">
+                            <th scope="row">{{ product.name }}</th>
+                            <td>{{ product.price }}</td>
+                            <td>{{ (product.price * product.inCart).toFixed(2) }}</td>
+                            <td class="noselect">
+                                <i @click="productMinus(product, index, 0)" class="fa-solid fa-circle-minus mr-1"></i>
+                                {{ product.inCart }}
+                                <i  @click="productPlus(product, index, 1)" class="fa-solid fa-circle-plus ml-1"></i>
+                            </td>
+                            <td><i @click="deleteProduct(product, index)" class="fa-solid fa-trash"></i></td>
 
 
-                </tr>
+                        </tr>
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col d-md-none">
+                <table class="table" v-if="!clientInfo">
+                    <thead>
+                        <tr class=" text-center">
+                                <th scope="col">Piatto</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">N°</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(product, index) in dataCart" :key="index">
+                            <th scope="row">{{ product.name }}</th>
+                            <td>{{ product.price }}</td>
+                            <td class="noselect d-flex flex-column">
+                                <i @click="productMinus(product, index, 0)" class="fa-solid fa-circle-minus"></i>
+                                {{ product.inCart }}
+                                <i  @click="productPlus(product, index, 1)" class="fa-solid fa-circle-plus"></i>
+                            </td>
+                            <td><i @click="deleteProduct(product, index)" class="fa-solid fa-trash"></i></td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <h4  v-show="totalCount == 0" class="text-center">Non sono Presenti articoli nel carrello</h4>
         <h3 v-if="!clientInfo" class="mt-2 text-right">Prezzo Totale <span>{{ totalCost }}&euro;</span></h3>
 
-        <ButtonPulseComp
-        button_text="Cio"
-        v-if="!clientInfo" @click="clientInfo = true" />
        <div v-if="!clientInfo" @click="clientInfo = true" class="btn btn-primary flex-grow-0">Procedi</div>
        <div v-if="clientInfo && !clientPay" @click="clientInfo = false" class="btn btn-warning">Torna al carrello</div>
        <div v-if="clientInfo && clientPay" @click="clientPay = false" class="btn btn-warning">Torna ai dati di spedizione</div>
@@ -42,33 +74,33 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="name">Nome</label>
+                        <label for="name">Nome*</label>
                         <input v-model=form.client_name type="text" class="form-control" id="name">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="surname">Cognome</label>
+                        <label for="surname">Cognome*</label>
                         <input v-model=form.client_surname type="text" class="form-control" id="surname">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="">Email</label>
+                        <label for="">Email*</label>
                         <input v-model=form.client_email type="email" class="form-control" id="">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="">Numero di telefono</label>
+                        <label for="">Numero di telefono*</label>
                         <input v-model=form.client_phone type="text" class="form-control" id="">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="">Indirizzo</label>
+                        <label for="">Indirizzo*</label>
                         <input v-model=form.client_address type="text" class="form-control" id="">
                     </div>
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                         <label for="">Note per il ristorante</label>
                         <textarea v-model=form.note class="form-control" name="" id="" rows="3"></textarea>
-                    </div>
+                    </div> -->
 
                 </div>
                 <button @click="sendFormDetails" type="button" class="btn btn-primary btn-lg btn-block">Vai al Pagamento</button>
@@ -84,6 +116,7 @@
             @success="onSuccess"
             @error="onError"
         ></v-braintree>
+
     </div>
 </template>
 

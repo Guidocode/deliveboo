@@ -15,10 +15,10 @@
 
 
 
-        <div class="container">
+
             <div class="row">
 
-                <div class="col col-lg-4">
+                <div class=" col  col-md-3">
                     <div class="sidebar d-flex flex-column justify-content-between">
 
                         <div class="">
@@ -45,7 +45,7 @@
                 </div>
 
 
-                <div class="col col-lg-8 d-flex flex-wrap">
+                <div class="col-12  col-md-9 d-flex flex-wrap py-1">
 
 
                     <DishCard v-for="dish in resturant.dishes" :key="dish.id"
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-    </div>
+
 </template>
 
 <script>
@@ -129,6 +129,7 @@ export default {
 }
 .col{
     min-height: 400px;
+    gap: 10px;
 }
 .sidebar{
     min-height: 400px;
