@@ -7,11 +7,12 @@ Ecco il riepilogo del tuo ordine.
 | Articolo              | Quantità              | Prezzo                |
 | -------------         |:-------------:        | ---------------:      |
 @foreach ($order_content as $product)
-| {{ $product['name'] }} | {{ $product['inCart']}} | {{ $product['price'] }} |
+| {{ $product['name'] }} | {{ $product['inCart']}} | {{ $product['price'] }}&euro; |
 @endforeach
 @endcomponent
 <br>
-Totale ordine pagato {{ $order->total_price }}
+Totale ordine pagato {{ $order->total_price }}&euro;.
+<br>
 <br>
 
 
