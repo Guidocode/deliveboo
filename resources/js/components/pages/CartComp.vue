@@ -1,33 +1,45 @@
 <template>
-    <div class="container my-4 ">
-        <table class="table" v-if="!clientInfo">
-            <thead>
-                <tr class=" text-center">
-                        <th scope="col">Piatto</th>
-                        <th scope="col">Prezzo</th>
-                        <th scope="col">Prezzo complessivo</th>
-                        <th scope="col">N°</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr v-for="(product, index) in dataCart" :key="index">
-                    <th scope="row">{{ product.name }}</th>
-                    <td>{{ product.price }}</td>
-                    <td>{{ (product.price * product.inCart).toFixed(2) }}</td>
-                    <td class="noselect">
-                        <i @click="productMinus(product, index, 0)" class="fa-solid fa-circle-minus mr-1"></i>
-                        {{ product.inCart }}
-                        <i  @click="productPlus(product, index, 1)" class="fa-solid fa-circle-plus ml-1"></i>
-                    </td>
-                    <td><i @click="deleteProduct(product, index)" class="fa-solid fa-trash"></i></td>
+<div class="cartt">
+    <div class="cart c_container text-center">
+        <div v-if="!clientInfo">
+            <h3 class="text-uppercase pl-4 text-left">Il tuo carello</h3>
+            <div class="cart_item d-flex mb-3" v-for="(product, index) in dataCart" :key="index">
+
+            <div class="cart_img">
+                <img :src="product.image_db" alt="">
+            </div>
+            <div class="item_info ml-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>{{ product.name }}</h4>
+                    <div class="trash"><i @click="deleteProduct(product, index)" class="fa-solid fa-trash"></i></div> 
+                </div>
+                    <div class="item_price">
+                        <td>1pc / {{ product.price }}&euro;</td>
+                    </div>
+                <div class="info_wrap d-flex justify-content-between align-items-center">
+                    <div class="noselect">        
+                        <i @click="productMinus(product, index, 0)" class="fa-solid fa-minus"></i>
+                        <span class="number_items">{{ product.inCart }}</span>
+
+                        <i  @click="productPlus(product, index, 1)" class="fa-solid fa-plus"></i>
+
+                    </div>
+                    <div class="green_price">{{ (product.price * product.inCart).toFixed(2) }}</div>
+                </div>
+            </div>
+            </div>
+        <div class="line"></div>
+        <div class="tot_price d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="msg_price">Prezzo totale: </div>
+
+                </div>
+                            <span v-show="totalCount == 0" class="text-center">Non sono Presenti articoli nel carrello</span>
+                            <span v-if="!clientInfo" class="text-right tt_p">{{ totalCost }} &euro;</span>
+        </div>
+        </div>
 
 
-                </tr>
-
-            </tbody>
-        </table>
-        <h4  v-show="totalCount == 0" class="text-center">Non sono Presenti articoli nel carrello</h4>
-        <h3 v-if="!clientInfo" class="mt-2 text-right">Prezzo Totale <span>{{ totalCost }}&euro;</span></h3>
 
         <ButtonPulseComp
         button_text="Cio"
@@ -84,7 +96,9 @@
             @success="onSuccess"
             @error="onError"
         ></v-braintree>
+       
     </div>
+</div>
 </template>
 
 <script>
@@ -209,29 +223,106 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-textarea{
-    resize: none
+@import'../../../sass/front/vars';
+.cartt{
+    background-image: url('/img/back3.jpg');
+    background-position: center;
+    background-size: cover;
+    padding: 4rem 0;
+    display:grid;
 }
-tbody{
-
-    tr{
-        td{
-            i{
-                cursor:pointer;
-            }
-        }
-        &:hover{
-            background-color: darken($color: white, $amount: 20%);
-        }
+.c_container{
+    width:55%;
+}
+.cart{
+    margin:0 auto;
+    padding: 30px 50px;
+    background-color: $light_green;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius:30px;
+    box-shadow: 0 0 10px rgb(113, 113, 113);
+}
+.cart_img{
+    // width:230px;
+    flex-basis:25%;
+    height:150px;
+    border-radius: 30px;
+    overflow:hidden;
+    img{
+        width:100%;
+        height: 100%;
+         object-fit: cover!important;
     }
 }
-
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.number_items{
+    padding:7px 14px;
+    border:1px solid black;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+.item_info{
+    flex-basis: 70%;
+}
+.info_wrap{
+    margin-top:30px;
+}
+.noselect .fa-solid{
+    font-size:20px;
+    &:hover{
+        cursor:pointer;
+        transform: scale(1.2);
+    }
+}
+.line{
+     height:2px;
+     width:100%;
+     background-color: rgb(52, 52, 52);
+ }
+.cart_item{
+    padding:20px;
+    //border-bottom: 1px solid purple;
+    border-radius:30px;
+    &:hover{
+        background-color: white;
+    }
+}
+.pricee{
+    font-size:20px;
+    font-weight: 600;
+    color: rgba(252, 59, 59, 0.852);
+}
+.green_price{
+    padding: 5px 15px;
+    color:black;
+    // border: 2px solid black;
+    border-radius: 30px;
+    font-size:18px;
+    font-weight:600;
+    background-color: $green_salad;
+}
+.tt_p{
+    color: $violet;
+    font-size: 22px;
+    font-weight: 700;
+    &:hover{
+        transform: scale(1.2);
+    }
+}
+.trash{
+    margin: 0 20px;
+    color: darken($green_salad, 20%);
+    font-size: 20px;
+    .fa-trash:hover{
+        cursor:pointer;
+        color:black;
+    }   
+}
+.msg_price{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.tot_price{
+    margin-top: 15px;
+    padding: 0 30px;
 }
 </style>

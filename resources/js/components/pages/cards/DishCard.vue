@@ -251,18 +251,6 @@ animation: shake 1s;
     animation-fill-mode: backwards;
 }
 
-// @keyframes moveInBottom {
-//     0% {
-//         opacity: 0;
-//         transform: translateY(30px);
-//     }
-
-//     100% {
-//         opacity: 1;
-//         transform: translateY(0px);
-//     }
-// }
-
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -276,6 +264,8 @@ animation: shake 1s;
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+// =======MEDIAS=========
 @media only screen and (max-width: 1200px){
     .dish_card{
         padding: 20px 10px;
@@ -306,7 +296,7 @@ animation: shake 1s;
     }
 }
    
-//MEDIA
+
 @media only screen and (max-width: 843px){
     .dish_card{
         padding: 20px 10px;
@@ -357,6 +347,7 @@ animation: shake 1s;
         padding: 8px 20px;
     }
 }
+
 @media only screen and (max-width: 576px){
     .card-body[data-v-8c8299e8]{
       padding: 0 0px;
@@ -374,6 +365,7 @@ animation: shake 1s;
     padding: 8px 20px;
     }
 }
+
 @media only screen and (max-width: 392px){
 
     .dish_card{
@@ -403,12 +395,14 @@ animation: shake 1s;
         transform: translateY(0px);
         padding: 11px 32px;
 
-.card{
+    .card{
     width: calc((100% / 3) - 10px);
     margin: 5px;
-    img{
+        img{
         height: 40%;
 
+        }
+    }
     }
 }
 

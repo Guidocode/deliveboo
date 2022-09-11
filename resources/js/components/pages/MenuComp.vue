@@ -65,7 +65,7 @@
 
 
 
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
 
                 <div class="col col-lg-4">
@@ -109,8 +109,10 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 
+    </div>
+</div>
     </div>
 </div>
 </template>
@@ -578,9 +580,6 @@ position: relative;
     padding: 10px;
 }
 .col{
-    min-height: 400px;
-}
-.sidebar{
     min-height: 400px;
 }
 
