@@ -3,7 +3,7 @@
 
     <div class="dish_card d-flex">
         <div class="image_dish">
-            <!-- <img src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000" class="card-img-top" alt="..."> -->
+
 
             <img v-if="dish.image_db" :src="dish.image_db"  alt="Immagine db">
             <img v-else-if="dish.image" :src="`/storage/${dish.image}`" class="card-img-top img-dish img-fluid" alt="Immagine utente">
@@ -20,46 +20,18 @@
                 <div class="d-flex justify-content-between align-items-end">
                     <div class="price"> {{ dish.price }}&euro;</div>
                         <div class="order_btn">
-                            <button class="btn btn-white btn-animate">
-                                <a @click="addCart(dish),cartNumber(),getTotalCost(dish)">Aggiungi</a>
+                            <button @click="addCart(dish),cartNumber(),getTotalCost(dish)" :disabled="dish.visible === 0 ? '' : disabled " class="btn btn-white btn-animate">
+                                <a >Aggiungi</a>
                             </button>
                         </div>
                 </div>
           </div>
 
-   <!-- commentato nel merge <div class="card">
-        <img v-if="dish.image_db" :src="dish.image_db" class="card-img-top" alt="Immagine db">
-        <img v-else-if="dish.image" :src="`/storage/${dish.image}`" class="card-img-top" alt="Immagine utente">
-        <img v-else src="storage/uploads/dish-default.jpg" class="card-img-top" alt="immagine default">
-        <div class="card-body dish-body">
-            <h6 class="card-title"> {{ dish.name }} </h6>
-        </div>
-        <div class="card-footer">
-            <div class="" >
-                <a @click="addCart(dish),cartNumber(),getTotalCost(dish)" class="btn btn-primary">Aggiungi</a>
-                <span> {{ dish.price }}&euro;</span>
-            </div> fino a qui -->
 
         </div>
     </div>
 
 
-    <!-- Card Stack over flow -->
-    <!-- <div class="card flex-row flex-wrap">
-        <div class="card-header border-0">
-            <img v-if="dish.image_db" :src="dish.image_db" alt="Immagine db">
-            <img v-else-if="dish.image" :src="`/storage/${dish.image}`" alt="Immagine utente">
-            <img v-else src="storage/uploads/dish-default.jpg" alt="immagine default">
-        </div>
-        <div class="card-block px-2">
-            <h4 class="card-title">{{ dish.name }}</h4>
-        </div>
-        <div class="w-100"></div>
-        <div class="card-footer w-100 text-muted">
-            <a @click="addCart(dish),cartNumber(),getTotalCost(dish)" class="btn btn-primary">Aggiungi</a>
-            <span> {{ dish.price }}&euro;</span>
-        </div>
-    </div> -->
 
 
 </template>
@@ -155,7 +127,9 @@ animation: shake 1s;
     height: 240px;
     width:35%;
     overflow:hidden;
+
     }
+
     img{
         height:100%;
         width:100%;
@@ -370,7 +344,9 @@ animation: shake 1s;
 
     .dish_card{
         flex-direction: column;
+
         width:100%;
+
     }
     .image_dish{
         width:100%;
@@ -395,6 +371,7 @@ animation: shake 1s;
         transform: translateY(0px);
         padding: 11px 32px;
 
+
     .card{
     width: calc((100% / 3) - 10px);
     margin: 5px;
@@ -403,9 +380,19 @@ animation: shake 1s;
 
         }
     }
+
     }
 }
+    // .card{
+    //     width: calc((100% / 3) - 10px);
+    //     margin: 5px;
+    //     img{
+    //         height: 40%;
 
+    //     }
 
+button:disabled {
+    cursor: not-allowed;
+}
 </style>
 

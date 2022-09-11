@@ -59,7 +59,7 @@ class OrderController extends Controller
 
 
 
-        Mail::to($new_order->client_email)->send(new OrderPlaced($new_order, $orderdetail));
+        // Mail::to($new_order->client_email)->send(new OrderPlaced($new_order, $orderdetail));
 
         return   [
             'success' => 'success',

@@ -140,8 +140,8 @@ class DishController extends Controller
             $data['image'] = Storage::put('uploads', $data['image']);
         }
 
-
         $dish->update($data);
+        $dish->visible = $data['visible'];
 
         return redirect()->route('admin.dishes.show', compact('dish'));
     }

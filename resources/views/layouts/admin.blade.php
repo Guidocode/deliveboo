@@ -38,14 +38,16 @@
 
             <div class="d-flex justify-content-between w-100 pt-2">
                 <div>
+
                     <a class="about {{ Route::currentRouteName() === '/' ? 'active' : ''}}" href="{{ url('/') }}"> <i class="fa-solid fa-arrow-left"></i> Sito Pubblico</a>
+
                 </div>
 
                 <div class="d-flex">
-                    <a class="mr-4 home {{ Route::currentRouteName() === 'login' ? 'active' : ''}}" href="{{ route('login') }}">Login</a>
+                    <a class="mr-4 home {{ Route::currentRouteName() === 'login' ? 'active' : ''}}" href="{{ route('login') }}">Accedi</a>
 
                     @if (Route::has('register'))
-                    <a class="about {{ Route::currentRouteName() === 'register' ? 'active' : ''}}" href="{{ route('register') }}">Register</a>
+                    <a class="about {{ Route::currentRouteName() === 'register' ? 'active' : ''}}" href="{{ route('register') }}">Registrati</a>
                     @endif
                 </div>
             </div>
@@ -76,24 +78,24 @@
                         <a class="{{ Route::currentRouteName() === 'admin.profile' ? 'active' : ''}}"
                         href="{{ route('admin.profile') }}">
                             <i class="fa-regular fa-user"></i>
-                            <h4>Profile</h4>
+                            <h4>Profilo</h4>
                         </a>
                         <a class="{{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : ''}}" href="{{ route('admin.dishes.index')}}">
                             <i class="fa-solid fa-bowl-rice"></i>
-                            <h4>My menu</h4>
+                            <h4>Menu</h4>
                         </a>
                         <a class="{{ Route::currentRouteName() === 'admin.order.index' ? 'active' : ''}}" href="{{ route('admin.order.index')}}">
                             <i class="fa-solid fa-money-bill-wheat"></i>
-                            <h4>Orders</h4>
+                            <h4>Ordini</h4>
                             {{-- <span class="message-count">2</span> --}}
                         </a>
                         <a class="{{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : ''}}" href="{{ route('admin.dishes.create')}}">
                             <i class="fa-solid fa-utensils"></i>
-                            <h4>Add plate</h4>
+                            <h4>Aggiungi piatto</h4>
                         </a>
                         <a href="#">
                             <i class="fa-solid fa-chart-line"></i>
-                            <h4>Analytics</h4>
+                            <h4>Statistiche</h4>
                         </a>
                         <a class="{{ Route::currentRouteName() === 'admin.report' ? 'active' : ''}}" href="{{ route('admin.report')}}">
                             <i class="fa-solid fa-circle-exclamation"></i>
@@ -103,7 +105,7 @@
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="fa-regular fa-user"></i>
-                        <h4>{{ __('Logout') }}</h4>
+                        <h4>{{ __('Esci') }}</h4>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
