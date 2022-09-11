@@ -5,7 +5,7 @@
 @section('content')
 {{-- MAIN  --}}
 <div class="main-dashboard">
-    
+
     <div class="left d-flex justify-content-center">
         <div class="cont">
             <div class="d-flex justify-content-between">
@@ -24,33 +24,33 @@
                         <span class="active"><i class="fa-solid fa-sun"></i></span>
                         <span><i class="fa-solid fa-moon"></i></span>
                     </div>
-        
+
                     {{-- PROFILE --}}
                     <div class="profile d-flex">
-        
+
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                         @endif
-        
+
                         <div class="info">
                             <p>Ciao <strong>{{ Auth::user()->name }}</strong> sei loggato!</p>
                             <small class="text-muted">Admin</small>
                         </div>
-        
+
                         <div class="profile-photo">
-        
+
                             @if (Auth::user()->image)
-                            <img class="card-img-top" src="{{ asset('storage/' . Auth::user()->image) }}" alt="Immagine utente">
-        
+                            <img class="card-img-top round-image" src="{{ asset('storage/' . Auth::user()->image) }}" alt="Immagine utente">
+
                             @elseif (Auth::user()->image_db)
-                            <img class="card-img-top" src="{{ Auth::user()->image_db }}" alt="Immagine db">
-        
+                            <img class="card-img-top round-image" src="{{ Auth::user()->image_db }}" alt="Immagine db">
+
                             @else
-                            <img class="card-img-top" src="{{ asset('storage/uploads/restaurant-default.jpg') }}" alt="immagine default ristorante">
+                            <img class="card-img-top round-image" src="{{ asset('storage/uploads/restaurant-default.jpg') }}" alt="immagine default ristorante">
                             @endif
-        
+
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
 
                     <div class="middle">
                         <div class="left">
-                            <h5>Total Sales</h5>
+                            <h5>Vendite Totali</h5>
                             <h2>$25,000</h2>
                         </div>
 
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                    <small class="text-muted">Last 24 hours</small>
+                    <small class="text-muted">Ultime 24 ore</small>
                     <p>81%</p>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <i class="fa-solid fa-chart-simple"></i>
                     <div class="middle">
                         <div class="left">
-                            <h5>Total Expenses</h5>
+                            <h5>Spese Totali</h5>
                             <h2>$14,567</h2>
                         </div>
                         <div class="progress">
@@ -94,7 +94,7 @@
                          </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <small class="text-muted">Last 24 hours</small>
+                        <small class="text-muted">Ultime 24 ore</small>
                         <p>62%</p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                     <i class="fa-solid fa-chart-line"></i>
                     <div class="middle">
                      <div class="left">
-                            <h5>Total Income</h5>
+                            <h5>Guadagno Totale</h5>
                             <h2>$10,000</h2>
                         </div>
                         <div class="progress">
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <small class="text-muted">Last 24 hours</small>
+                        <small class="text-muted">Ultime 24 ore</small>
                         <p>45%</p>
                     </div>
                 </div>
@@ -122,38 +122,38 @@
 
             {{-- END INSIGHTS --}}
             <div class="recent-orders">
-                <H2>Recent Orders</H2>
+                <H2>Ordini Recenti</H2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Order Number</th>
-                            <th>Payment</th>
-                            <th>Status</th>
+                            <th>Numero ordine</th>
+                            <th>Pagamento</th>
+                            <th>Stato</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>12356</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
+                            <td>Da pagare</td>
+                            <td class="warning">In attesa</td>
+                            <td class="primary">Dettagli</td>
                         </tr>
                         <tr>
                             <td>12356</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
+                            <td>Da pagare</td>
+                            <td class="warning">In attesa</td>
+                            <td class="primary">Dettagli</td>
                         </tr>
                         <tr>
                             <td>12356</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
+                            <td>Da pagare</td>
+                            <td class="warning">In attesa</td>
+                            <td class="primary">Dettagli</td>
                         </tr>
                     </tbody>
                 </table>
-                <a href="#">Show all</a>
+                <a href="#">Vedi tutto</a>
             </div>
         </div>
     </div>

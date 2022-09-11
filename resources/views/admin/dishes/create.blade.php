@@ -35,7 +35,7 @@
             </div>
 
             <div class="image">
-                <img id="output-image" width="150" src="{{ asset('storage/uploads/default-img.gif') }}" alt="placeholder image">
+                <img id="output-image" width="150" src="{{ asset('storage/uploads/dish-default.jpg') }}" alt="placeholder image">
             </div>
 
             <div class="mb-3">
