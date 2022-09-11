@@ -118,14 +118,13 @@ animation: shake 0.5s;
 }
 }
 .image_dish{
-    width: 40%;
-    height: 250px;
+    height: 240px;
+    width:35%;
     overflow:hidden;
-
-    
+    }
     img{
-        width:100%;
         height:100%;
+        width:100%;
         object-fit: cover!important;
         border-radius: 20px;
         overflow: hidden;
@@ -134,8 +133,9 @@ animation: shake 0.5s;
             transition: all 1s ease;
         }
     }
-}
+
 .card-body{
+    width:65%;
     padding: 0 30px;
     h2{
         margin:0;
@@ -160,10 +160,7 @@ animation: shake 0.5s;
    position:relative;
 }
 .btn{
-    // margin-top: 20px;
-    // margin-top: 50px;
-    // margin-bottom:30px;
-    padding: 15px 40px;
+    padding: 10px 50px;
     border-radius: 30px;
  }
 
@@ -254,12 +251,17 @@ animation: shake 0.5s;
     .dish_card{
     flex-direction: column;
     padding: 2rem;
+    align-items: center;
+    }
+    .image_dish{
+        width:60%;
     }
 }
 @media only screen and (max-width: 392px){
 
     .dish_card{
         flex-direction: column;
+        width:100%;
     }
     .image_dish{
         width:100%;
@@ -269,6 +271,7 @@ animation: shake 0.5s;
     }
     .card-body[data-v-8c8299e8]{
       padding: 0 0px;
+      width:100%;
     }
     .card-title{
         margin-top:10px;

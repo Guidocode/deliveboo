@@ -65,7 +65,6 @@
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
@@ -194,7 +193,7 @@ position: relative;
 
 }
 .btn{
-    padding: 15px 40px;
+    padding: 10px 50px;
     border-radius: 30px;
     a{
         color:rgb(6, 6, 6);
@@ -214,7 +213,7 @@ position: relative;
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgb(30, 30, 31);;
+    box-shadow: 0 5px 8px rgb(30, 30, 31);;
 }
 
 .btn:active {
@@ -283,7 +282,7 @@ position: relative;
         }
         .btn{
             padding:10px;
-            box-shadow: 0 2px 10px rgb(30 30 31);
+            box-shadow: 0 2px 8px rgb(30 30 31);
         }
         .menu_items{
             margin-left: 34px;
@@ -325,10 +324,7 @@ position: relative;
     padding-top: 1rem;
     padding-bottom: 2rem;
     }
-    .image_dish img{
-        height: 220px;
-        width:100%;
-    }
+
     .card-body[data-v-8c8299e8]{
       padding: 0 0px;
     }

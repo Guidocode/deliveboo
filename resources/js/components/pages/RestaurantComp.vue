@@ -53,8 +53,6 @@
   </div>
 </template>
 
-
-
 <script>
   import axios from 'axios';
   import ButtonPulseComp from '../partials/ButtonPulseComp'
@@ -70,6 +68,7 @@
                types:[],
                selectedTypes:[],
                type: 'Cinese',
+               isActive: false
               }
           },
          mounted() {
@@ -131,8 +130,7 @@
 
           },
           changeColor(){
-
-            let button =document.querySelector('.xxx');
+            let button = document.querySelector('.my_btn');
             button.classList.toggle('active');
             }
           }
@@ -215,7 +213,7 @@
     min-height: 50px;
     justify-content: start;
     align-items: center;
-    width: 86%;
+    width: 84%;
     margin: 0 auto;
     padding-left: 35px;
     margin-top: 2rem;
@@ -269,7 +267,7 @@
   }
   .my_card img:hover .card-body{
     // position: absolute;
-    // filter: blur(5pxx);
+    // filter: blur(5px);
     // filter: brightness(60%);
     //transform: scale(1.1);
     transition: all 1s ease;

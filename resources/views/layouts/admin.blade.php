@@ -82,7 +82,7 @@
                             <i class="fa-solid fa-bowl-rice"></i>
                             <h4>My menu</h4>
                         </a>
-                        <a class="{{ Route::currentRouteName() === 'admin.dishes.index' ? 'active' : ''}}" href="{{ route('admin.order.index')}}">
+                        <a class="{{ Route::currentRouteName() === 'admin.order.index' ? 'active' : ''}}" href="{{ route('admin.order.index')}}">
                             <i class="fa-solid fa-money-bill-wheat"></i>
                             <h4>Orders</h4>
                             {{-- <span class="message-count">2</span> --}}
