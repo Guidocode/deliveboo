@@ -38,7 +38,7 @@
 
             <div class="d-flex justify-content-between w-100 pt-2">
                 <div>
-                    <a class="about {{ Route::currentRouteName() === '/' ? 'active' : ''}}" href="{{ url('/') }}">Go Back</a>
+                    <a class="about {{ Route::currentRouteName() === '/' ? 'active' : ''}}" href="{{ url('/') }}"> <i class="fa-solid fa-arrow-left"></i> Sito Pubblico</a>
                 </div>
 
                 <div class="d-flex">

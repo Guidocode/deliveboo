@@ -2,7 +2,7 @@
 
   <div class="restaurants text-center">
     <div class="jumbo">
-      <img :src="'img/try1.png'" alt="">
+      <img :src="'img/p3.png'" alt="">
 
       <div class="jumbo-text">
       <div class="banner-text text-uppercase question">Categorie</div>
@@ -22,31 +22,34 @@
             
           </label>
         </div>
+        <!-- <div><i class="fa-solid fa-xmark"></i></div> -->
 
     </div>
 
       <div class="resturant-container d-flex flex-wrap">
 
         <div v-for="resturant in resturants" :key="resturant.id" class="my_card mx-4" style="width: 18rem;">
-          <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
+          <div class="box">
+          
              <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top img-fluid" alt="Imagine db">
              <img  class="img-fluid" v-else-if="resturant.image" :src="`/storage/${resturant.image}`" alt="Immagine utente">
              <img class="img-fluid" v-else src="storage/uploads/restaurant-default.jpg" alt="Immagine default">
+          
+
+          <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
+          <div class="card-body d-flex">
+            <div class="card-title">
+              <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }" ><i class="fa-regular fa-eye"></i></router-link>
+              <h5 >{{ resturant.name }}</h5>
+            </div>
+          </div>
           </router-link>
 
-            <div class="card-body">
-                <h5 class="card-title">{{ resturant.name }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <router-link class="btn btn-primary" :to="{ name: 'Menu', params: {slug: resturant.slug} }" >Vai al ristorante</router-link>
-            </div>
+          </div>
         </div>
+     
       </div>
 
-
-     <!-- <div class="line mt-2"></div> -->
-     
-
-    
   </div>
 </template>
 
@@ -146,11 +149,12 @@
   .jumbo{
     position:relative;
     width: 100%;
-    height: 35rem;
+    height: 36rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow:hidden;
+    margin-bottom: 3rem;
     .jumbo-text{
       position:absolute;
       position:absolute;
@@ -162,7 +166,7 @@
       .question{
         font-size: 5rem;
         font-weight: 700;
-        color: black;
+        color: rgb(255, 255, 255);
         text-transform: uppercase;
         animation: mymove 2s ease;
         margin-bottom:1rem;
@@ -170,10 +174,11 @@
       h3{
       animation: h3move 2s ease;
       padding-left:1rem;
+      color: white;
       }
     }
     img{
-      height:41rem;
+      // height:41rem;
       width:100%;
     }    
     .fa-arrow-down{
@@ -185,17 +190,17 @@
   }
   //END JUMBO
 
+  //RESTAURANT PART
+
   .resturant-container{
   gap: 10px;
-  margin: 0 auto;
+  margin: 5rem auto;
   justify-content: center;
   }
   h2{
     margin-bottom: 40px;
     font-family: Poppins,sans-serif;
   }
-
-  // INPUT
   .main_rest{
     width:80%;
     margin: 0 auto;
@@ -206,31 +211,31 @@
   }
   .input-wrap{
     display: flex;
+    flex-wrap: wrap;
     min-height: 50px;
-    align-items: start;
-    width: 93%;
+    justify-content: start;
+    align-items: center;
+    width: 86%;
     margin: 0 auto;
-    padding: 130px 60px 50px 60px;
+    padding-left: 35px;
+    margin-top: 2rem;
+    // margin-bottom:5rem;
     .text-box{
       margin-right:12px;
     }
+    div:last-child{
+     justify-self: end;
+    }
   }
 
-  // .inputs{
-  //   margin: 50px auto;
-  //   display:flex;
-  //   height:50px;
-  //   justify-content: center;
-  //   flex-wrap: wrap;
-  // }
-
+   //BUTTONS
   .my_btn{
     color: black;
-    background-color: $green_salad;
+    background-color: #BECFBC;
     border-radius: 20px;
     border: 3px solid black;
     font-size: 20px;
-    padding: 5px 20px;
+    padding: 10px 31px;
     &:hover{
       background-color: darken($green_salad, 20%);
     }
@@ -245,51 +250,63 @@
     background-color:green;
   }
 
-
   //CARD
   .my_card{
-  margin: 20px;
+  margin: 40px;
   width: calc(100% /3);
-  height: 200px;
+  height: 300px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
+  text-align: start;
   box-shadow: 0 0 10px gray;
   img {
-  object-fit: cover;
-  width:100%;
-   &:hover{
-    filter: blur(5px);
-    // transform: scale(1.3);
-    transition: 0.5s ease-in;
+    position:absolute;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    display: inline-block;
   }
+  .my_card img:hover .card-body{
+    // position: absolute;
+    // filter: blur(5pxx);
+    // filter: brightness(60%);
+    //transform: scale(1.1);
+    transition: all 1s ease;
+    cursor:pointer;
+  }
+  .box{
+    width:100%;
+    height:100%;
+    background-color: red;
   }
   .card-body{
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 40%;
-  bottom: 0;
-  left: 0;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: translateY(100%);
-  transition: all 0.4s;
+    display: none !important;
+    position:relative;
+    width:100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align:center;
+    align-items: end;
+    .card-title{
+      position: absolute;
+      top:0;
+      left:0;
+      transform: translate(0%, 200%);
+      color:white;
+      width:100%;
+    }
+    i{
+    font-size: 20px;
+    color:rgb(201, 201, 201);
+    }
   }
-  &:hover .card-body{
-  transform: translateY(0%);
-  }
-  h5{
-    padding: 10px 20px;
-    background-color: $blue;
-    border-radius: 20px;
-    color:black;
+  .box:hover .card-body{
+  display: block !important;
+  cursor: pointer;
   }
 
-  }
+
   // =====KEYFRAMES=====
 
   @keyframes mymove {
@@ -305,7 +322,7 @@
   to { transform: translateX(0%);}
   }
 
-
+  }
   // =====MEDIAS=====
 
     @media only screen and (min-width: 2000px){
@@ -332,22 +349,32 @@
       }
     }
   }
-  @media only screen and (max-width: 992px){
+  @media only screen and (max-width: 993px){
     .jumbo,
     .jumbo img{
-       height: 24rem;
+       height: 26rem;
     }
     .jumbo .jumbo-text{
-      top: 63%;
+      top: 60%;
       left: 8%;
       // line-height: 25px;
       .question{
         font-size:4rem;
+        margin:0;
       }
       h3{
         font-size: 23px;
         padding-left: 7px;
       }
+    }
+    .input-wrap{
+    padding-left: 20px;
+    .my_btn{
+      padding: 7px 28px;
+    }
+    }
+    .resturant-container{
+      margin: 2rem auto;
     }
   }
 
@@ -355,20 +382,31 @@
   @media only screen and (max-width: 768px){
     .jumbo,
     .jumbo img{
-       height: 20rem;
+       height: 22rem;
     }
     .jumbo .jumbo-text{
-      top: 63%;
-      left: 6%;
+      top: 60%;
+      left: 9%;
       // line-height: 25px;
       .question{
         font-size:3.2rem;
+        margin:0;
       }
       h3{
         font-size: 20px;
         line-height: 8px;
         padding-left: 7px;
+        padding-top:5px;
       }
+    }
+    .input-wrap{
+    padding-left: 20px;
+    .my_btn{
+      padding: 7px 28px;
+    }
+    }
+    .resturant-container{
+      margin: 3rem auto;
     }
   }
 
@@ -382,21 +420,40 @@
       left: 6%;
       line-height: 25px;
       .question{
-        font-size:2.8rem;
+        font-size:2.6rem;
+        margin:0;
       }
       h3{
         font-size: 18px;
         line-height: 42px;
         padding-left: 7px;
+        padding-top:5px;
       }
+    }
+    .input-wrap{
+      flex-wrap: nowrap;
+      // width:300px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        margin: 0 auto;
+        padding-left: 0;
+        &::-webkit-scrollbar {
+        display: none;
+        }
+    }
+    .resturant-container{
+      margin: 0 auto;
+    }
+    .my_btn{
+      padding: 2px 27px;
     }
   }
 
-  @media only screen and (max-width: 390px){
-    
+  @media only screen and (max-width: 391px){
+
     .jumbo,
     .jumbo img{
-       height: 10rem;
+       height: 12rem;
     }
     .jumbo .jumbo-text{
       top: 60%;
@@ -404,12 +461,43 @@
       line-height: 25px;
       .question{
         font-size:2rem;
+        margin:0;
       }
       h3{
         font-size:14px;
+
       }
     }
+    .input-wrap{
+      flex-wrap: nowrap;
+      // width:300px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        margin: 0 auto;
+        padding-left: 0;
+        margin: 2rem auto;
+        &::-webkit-scrollbar {
+        display: none;
+        }
+    }
+      .my_btn{
+        height: 50px;
+        padding: 5px;
+        white-space: nowrap;
+        // overflow-y: hidden;
+        // overflow-x: scroll;
+        // -webkit-overflow-scrolling: touch;
+      }
+
+      .resturant-container{
+        margin: 0 auto;
+      }
+      .my_card{
+        margin:15px;
+        height:200px;
+      }
 
   }
+  
 
   </style>

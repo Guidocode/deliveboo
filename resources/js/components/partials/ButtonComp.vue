@@ -1,10 +1,8 @@
 <template>
-  <div class="text-box">
     <button class="btn btn-white btn-animate">
-      {{button_text}}
-      <i class="fa-solid fa-arrow-right ml-2"></i>
+        <a :href="a_link">{{button_text}}<i class="fa-solid fa-arrow-right ml-2"></i></a>
       </button>
-  </div>
+
 </template>
 
 <script>
@@ -14,17 +12,20 @@ export default {
     button_text:{
       type: String,
       default: () => 'label'
-    }
+    },
+
+        a_link:{
+        type: String,
+        default: () => '#'
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.text-box {
+.btn{
     margin-top: 50px;
     margin-bottom:30px;
-    display:flex;
-    justify-content:center;
  }
 
 .btn:link,
@@ -71,7 +72,7 @@ export default {
 }
 
 .btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
+    transform: scaleX(1.3) scaleY(1.2);
     opacity: 0;
 }
 
@@ -80,15 +81,15 @@ export default {
     animation-fill-mode: backwards;
 }
 
-@keyframes moveInBottom {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
+// @keyframes moveInBottom {
+//     0% {
+//         opacity: 0;
+//         transform: translateY(30px);
+//     }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
+//     100% {
+//         opacity: 1;
+//         transform: translateY(0px);
+//     }
+// }
 </style>
