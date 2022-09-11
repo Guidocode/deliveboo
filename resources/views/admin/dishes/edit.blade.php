@@ -65,7 +65,7 @@
 
                 Disponibile:
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="visible" id="visible" value="1" {{ $dish->visible == 1 ? 'checked' : '' }} >
+                    <input class="form-check-input" type="radio" name="visible" id="visible" value="1"  {{ $dish->visible == 1 ? 'checked' : '' }} >
                     <label class="form-check-label mr-4 mb-3" for="visible">
                       Si
                     </label>

@@ -20,8 +20,8 @@
                 <div class="d-flex justify-content-between align-items-end">
                     <div class="price"> {{ dish.price }}&euro;</div>
                         <div class="order_btn">
-                            <button class="btn btn-white btn-animate">
-                                <a @click="addCart(dish),cartNumber(),getTotalCost(dish)">Aggiungi</a>
+                            <button @click="addCart(dish),cartNumber(),getTotalCost(dish)" :disabled="dish.visible === 0 ? '' : disabled " class="btn btn-white btn-animate">
+                                <a >Aggiungi</a>
                             </button>
                         </div>
                 </div>
@@ -266,6 +266,7 @@ animation: shake 0.5s;
 
     .dish_card{
         flex-direction: column;
+
     }
     .image_dish{
         width:100%;
@@ -299,6 +300,8 @@ animation: shake 0.5s;
 
     //     }
 
-
+button:disabled {
+    cursor: not-allowed;
+}
 </style>
 

@@ -92,13 +92,13 @@
                 axios.get('/api/ristorante/' + this.slug)
                .then(r => {
                     this.resturant = r.data.user
-                    let allDish = this.resturant.dishes
-                    allDish.forEach(element => {
-                        console.log(element);
-                        if(element.visible == 1){
-                            this.dishes.push(element)
-                        };
-                    });
+                    // let allDish = this.resturant.dishes
+                    // allDish.forEach(element => {
+                    //     console.log(element);
+                    //     if(element.visible == 1){
+                    //         this.dishes.push(element)
+                    //     };
+                    // });
                 })
             },
             cartItemCount(count){
