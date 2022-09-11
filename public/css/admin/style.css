@@ -10998,7 +10998,7 @@ img {
 
 aside {
   width: 27rem;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
   background-color: #EEF0EB;
 }
@@ -11104,6 +11104,8 @@ main .date input[type=date] {
 main .main-dashboard {
   width: 100%;
   justify-content: center;
+  overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 main .left {
@@ -11346,11 +11348,98 @@ main .right .right .top .profile {
   text-align: right;
 }
 
+@media screen and (max-width: 1200px) {
+  main {
+    margin: 2rem 3rem;
+  }
+
+  main .insights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  aside {
+    width: 25rem;
+  }
+
+  main .date input[type=date] {
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    margin: 2rem 2rem;
+  }
+
+  main .insights {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  aside .sidebar a:last-child {
+    top: 24rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  aside .sidebar h4 {
+    display: none;
+  }
+
+  aside {
+    width: 5rem;
+    min-height: 100vh;
+    padding: 10px 17px;
+  }
+
+  aside .top .logo img {
+    display: none;
+  }
+
+  aside .sidebar a:hover {
+    margin: 0;
+    padding: 10px;
+  }
+
+  aside .sidebar a.active {
+    padding: 10px;
+  }
+
+  aside .sidebar a.active:before {
+    display: none;
+  }
+
+  aside .sidebar a {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  main .left .info,
+  main .left .theme-toggler {
+    display: none;
+  }
+
+  .profile {
+    margin-right: 5px;
+  }
+
+  aside .sidebar a:last-child {
+    top: 24rem;
+  }
+}
+
 .my_section {
   height: 100vh;
 }
 
-.my_section .my_profile {
+.my_section .profile-wrap {
+  display: flex;
+}
+
+.my_section .profile-wrap .my_profile {
   margin-top: 3rem;
   margin-right: 2rem;
   padding: 1.5rem;
@@ -11361,17 +11450,17 @@ main .right .right .top .profile {
   width: 70%;
 }
 
-.my_section .my_profile:hover {
+.my_section .profile-wrap .my_profile:hover {
   box-shadow: none;
 }
 
-.my_section .my_profile .user > div {
+.my_section .profile-wrap .my_profile .user > div {
   font-size: 22px;
   margin-bottom: 10px;
   color: rgb(121, 120, 120);
 }
 
-.my_section .my_profile .user > div i {
+.my_section .profile-wrap .my_profile .user > div i {
   background: rgb(142, 93, 210);
   padding: 0.5rem;
   border-radius: 50%;
@@ -11380,7 +11469,7 @@ main .right .right .top .profile {
   margin-right: 8px;
 }
 
-.my_section .my_profile .user > div .special {
+.my_section .profile-wrap .my_profile .user > div .special {
   font-weight: 600;
   color: black;
   margin-left: 10px;
@@ -11394,6 +11483,17 @@ main .right .right .top .profile {
   margin-top: 3rem;
   box-shadow: 0 5px 10px rgb(121, 120, 120);
   transition: all 300ms ease;
+}
+
+@media screen and (max-width: 576px) {
+  .my_section .profile-wrap {
+    flex-direction: column;
+  }
+
+  .my_section .profile-wrap .my_profile {
+    margin-top: 1rem;
+    margin-right: 0rem;
+  }
 }
 
 /* poppins-devanagari-400-normal*/

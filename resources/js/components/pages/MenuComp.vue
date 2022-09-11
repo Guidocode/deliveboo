@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+
         <!-- /JUMBO -->
 
         <div class="order">
@@ -61,8 +62,55 @@
                     @getProductList="getProductList" />
                 </div>
 
+
+
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col col-lg-4">
+                    <div class="sidebar d-flex flex-column justify-content-between">
+
+                        <div class="">
+                        <h3>Carrello <span >{{ cartNumber }}</span></h3>
+                            <table class="table  ">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Piatto</th>
+                                    <th scope="col">Prezzo</th>
+                                    <th scope="col">N°</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(product, index) in productList" :key="index">
+                                        <th scope="row" class=" overflow-hidden">{{ product.name }}</th>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.inCart }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div v-if="productList"  class="btn btn-primary"><router-link :to="{name:'Cart'}">Vai al carrello</router-link></div>
+                    </div>
+                </div>
+
+
+                <div class="col col-lg-8 d-flex flex-wrap">
+
+
+                    <DishCard v-for="dish in resturant.dishes" :key="dish.id"
+                    :dish="dish"
+                    @getCount="cartItemCount"
+                    @getProductList="getProductList"
+
+                    />
+
+
+                </div>
+
             </div>
         </div>
+
     </div>
 </div>
 
@@ -127,6 +175,7 @@ export default {
 
 <style lang="scss" scoped>
 @import'../../../sass/front/vars';
+
 .menu{
 position: relative;
 }
@@ -362,5 +411,18 @@ position: relative;
     }
 }
 
+
+
+.resturant-info{
+    background-color: aqua;
+    align-items: center;
+    padding: 10px;
+}
+.col{
+    min-height: 400px;
+}
+.sidebar{
+    min-height: 400px;
+}
 
 </style>
