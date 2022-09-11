@@ -11,7 +11,7 @@ import Error404 from './components/pages/Error404';
 import AboutComp from './components/pages/AboutComp';
 import MenuComp from './components/pages/MenuComp.vue';
 import CartComp from './components/pages/CartComp.vue';
-import TanksPage from './components/pages/TanksPage.vue';
+import ThanksPage from './components/pages/ThanksPage.vue';
 import RestaurantComp from './components/pages/RestaurantComp';
 
 
@@ -48,7 +48,7 @@ const router = new VueRouter({
     {
       path: '/grazie',
       name: 'ThanksPage',
-      component: TanksPage
+      component: ThanksPage
     },
     {
       path: '*',
