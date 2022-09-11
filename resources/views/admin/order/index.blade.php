@@ -20,7 +20,7 @@
                     <td class="align-middle">{{$order->client_name}}</td>
                     <td class="align-middle">{{$order->client_surname}}</td>
                     <td class="align-middle">{{$order->total_price}}€</td>
-                    <td class="align-middle"><a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-warning">Show Details</a></td>
+                    <td class="align-middle"><a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-warning">VEDI DETTAGLI</a></td>
                 </tr>
             @empty
                 <tr colspan="4">Nessun ordine presente</tr>
