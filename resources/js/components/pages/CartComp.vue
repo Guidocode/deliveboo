@@ -25,24 +25,25 @@
                     </div>
                 </div>
                 </div>
-            <div class="line"></div>
-            <div class="tot_price d-flex justify-content-between align-items-center">
+                <div class="line"></div>
+                <div class="tot_price d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                         <div class="msg_price">Prezzo totale: </div>
                     </div>
-                                <span v-show="totalCount == 0" class="text-center">Non sono Presenti articoli nel carrello</span>
-                                <span v-if="!clientInfo" class="text-right tt_p">{{ totalCost }} &euro;</span>
+                    <span v-show="totalCount == 0" class="text-center">Non sono Presenti articoli nel carrello</span>
+                    <span v-if="!clientInfo" class="text-right tt_p">{{ totalCost }} &euro;</span>
+                </div>
             </div>
-            </div>
+            
+            <div class="btn-text">
             <ButtonPulseComp
             button_text="Cio"
             v-if="!clientInfo" @click="clientInfo = true" />
-           <div v-if="!clientInfo" @click="clientInfo = true" class="btn btn-primary flex-grow-0">Procedi</div>
-           <div v-if="clientInfo && !clientPay" @click="clientInfo = false" class="btn btn-warning">Torna al carrello</div>
-           <div v-if="clientInfo && clientPay" @click="clientPay = false" class="btn btn-warning">Torna ai dati di spedizione</div>
+           <div v-if="!clientInfo" @click="clientInfo = true" class="btn btn-white btn-animate flex-grow-0">Procedi</div>
+         
             <!-- step 1 paymant -->
-            <div class="container mt-2" v-if="clientInfo && totalCount > 0 && !clientPay">
-                <h3>Informazioni cliente</h3>
+            <div class="container mt-2 text-left" v-if="clientInfo && totalCount > 0 && !clientPay">
+                <h3 class="text-uppercase">Informazioni cliente</h3>
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -71,10 +72,21 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Note per il ristorante</label>
-                            <textarea v-model=form.note class="form-control" name="" id="" rows="3"></textarea>
+                            <input v-model=form.note type="text" class="form-control" id="">
                         </div>
                     </div>
-                    <button @click="sendFormDetails" type="button" class="btn btn-primary btn-lg btn-block">Vai al Pagamento</button>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div v-if="clientInfo && !clientPay" @click="clientInfo = false" class="btn  btn-animate k_btn">Torna al carrello</div>
+                            <div v-if="clientInfo && clientPay" @click="clientPay = false" class="btn k_btn btn-animate">Torna ai dati di spedizione</div>
+
+                        </div>
+                        <button @click="sendFormDetails" type="button" class="btn btn_green btn-animate">Vai al Pagamento</button>
+
+                    </div>
+                    <div>
+                        <img src="" alt="">
+                    </div>
                 </form>
             </div>
             <!-- step 2 paymant -->
@@ -85,12 +97,13 @@
                 locale="it_IT"
                 @success="onSuccess"
                 @error="onError"
-            ></v-braintree>
+            >123</v-braintree>
+            </div>
         </div>
     </div>
-    </template>
-    <script>
-    import axios from 'axios';
+</template>
+<script>
+import axios from 'axios';
     export default {
         name: "CartComp",
         components:{
@@ -214,7 +227,8 @@
         background-position: center;
         background-size: cover;
         padding: 4rem 0;
-        display:grid;
+        // display:grid;
+        height:100vh;
     }
     .c_container{
         width:55%;
@@ -228,9 +242,9 @@
         box-shadow: 0 0 10px rgb(113, 113, 113);
     }
     .cart_img{
-        // width:230px;
-        flex-basis:25%;
-        height:150px;
+        min-width:100px;
+        // flex-basis:25%;
+        height:155px;
         border-radius: 30px;
         overflow:hidden;
         img{
@@ -310,4 +324,116 @@
         margin-top: 15px;
         padding: 0 30px;
     }
-    </style>
+    .form-control{
+        border-radius:20px;
+    }
+
+    // BTN
+.btn-text{
+    position: relative;
+}
+.btn{
+    background-color: black;
+    color:white;
+    border-radius: 20px;
+    padding: 5px 40px;
+}
+.k_btn{
+    background-color: $violet;
+    color:rgb(6, 6, 6);
+}
+.btn_green{
+    background-color: $green_salad;
+    color:rgb(6, 6, 6);
+}
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 40px;
+    border-radius: 30px;
+    display: inline-block;
+    transition: all .2s;
+    position: absolute;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+    background-color: rgb(3, 3, 3);
+    color: white;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: rgb(7, 7, 7);
+}
+
+.btn:hover::after {
+    transform: scaleX(1.3) scaleY(1.2);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom 5s ease-out;
+    animation-fill-mode: backwards;
+}
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+// =====MEDIA=====
+@media only screen and (max-width: 426px){
+.c_container {
+    width: 88%;
+}
+.cart{
+    padding:15px 10px;
+    h3{
+        font-size:20px;
+    }
+}
+.info_wrap{
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: start;
+}
+.green_price{
+    font-size:14px;
+    margin-top:20px;
+}
+.my_btn{
+
+}
+}
+
+</style>

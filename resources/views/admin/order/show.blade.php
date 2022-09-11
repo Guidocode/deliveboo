@@ -40,7 +40,7 @@
           </table>
 
         <div class="d-flex justify-content-end">
-          <a href="{{route('admin.order.index')}}" class="btn btn-warning">INDIETRO</a>
+          <a href="{{route('admin.order.index')}}" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> INDIETRO</a>
         </div>
     </div>
   </div>

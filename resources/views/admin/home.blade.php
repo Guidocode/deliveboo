@@ -20,10 +20,10 @@
                     <button id="menu-btn">
                         <span><i class="fa-solid fa-bars"></i></span>
                     </button>
-                    <div class="theme-toggler">
+                    {{-- <div class="theme-toggler">
                         <span class="active"><i class="fa-solid fa-sun"></i></span>
                         <span><i class="fa-solid fa-moon"></i></span>
-                    </div>
+                    </div> --}}
 
                     {{-- PROFILE --}}
                     <div class="profile d-flex">
@@ -122,34 +122,34 @@
 
             {{-- END INSIGHTS --}}
             <div class="recent-orders">
-                <H2>Ordini Recenti</H2>
+                <H2>Nuovi Messaggi</H2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Numero ordine</th>
-                            <th>Pagamento</th>
-                            <th>Stato</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Data</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>12356</td>
-                            <td>Da pagare</td>
-                            <td class="warning">In attesa</td>
-                            <td class="primary">Dettagli</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td class="warning">12/02/2022</td>
+                            <td class="primary">Unread</td>
                         </tr>
                         <tr>
-                            <td>12356</td>
-                            <td>Da pagare</td>
-                            <td class="warning">In attesa</td>
-                            <td class="primary">Dettagli</td>
+                            <td>Jane</td>
+                            <td>Doe</td>
+                            <td class="warning">12/09/2022</td>
+                            <td class="primary">Read</td>
                         </tr>
                         <tr>
-                            <td>12356</td>
-                            <td>Da pagare</td>
-                            <td class="warning">In attesa</td>
-                            <td class="primary">Dettagli</td>
+                            <td>Mario</td>
+                            <td>Rossi</td>
+                            <td class="warning">11/08/21</td>
+                            <td class="primary">Unread</td>
                         </tr>
                     </tbody>
                 </table>
