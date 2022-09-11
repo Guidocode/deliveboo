@@ -30,11 +30,11 @@
 
         <div class="row-table d-flex">
           <p class="title-dish">{{ $dish->name}}</p>
-          <div class="d-flex">
-            <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish) }}">MOSTRA</a>
-            <a class="btn btn-warning mx-3" href="{{ route('admin.dishes.edit', $dish) }}">MODIFICA</a>
+          <div class="d-flex buttons">
+            <a class="btn btn_lightgr" href="{{ route('admin.dishes.show', $dish) }}">MOSTRA</a>
+            <a class="btn btn_lightblue mx-3" href="{{ route('admin.dishes.edit', $dish) }}">MODIFICA</a>
   
-            <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#modal_box{{ $dish->id }}">CANCELLA
+            <button class="btn btn_yellow" type="submit" data-toggle="modal" data-target="#modal_box{{ $dish->id }}">CANCELLA
             </button>  
             
             {{-- MODAL  --}}

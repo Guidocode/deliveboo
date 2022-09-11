@@ -20,15 +20,15 @@
           <!-- <i class="fa-solid fa-cart-shopping mx-2" style="color:black"><router-link :to="{name:'Cart'}"></router-link></i> -->
 
             <router-link :to="{name:'Cart'}">
-                <i class="fa-solid fa-cart-shopping mx-2 position-relative" style="color:black">
-                    <div class="position-absolute " >
-                        <span> {{ countCart() }} </span>
+                <i class="fa-solid fa-cart-shopping">
+                    <div class="position-absolute cart_number" >
+                        <span class="cart_n"> {{ countCart() }} </span>
                     </div>
                 </i>
             </router-link>
 
           <!-- HAMBURGER MENU -->
-          <div class="hamburger ml-2" @click="isShown = !isShown">
+          <div class="hamburger mx-2" @click="isShown = !isShown">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -116,7 +116,6 @@ header{
 
         }
       }
-
     }
     .home{
       border: 2px solid black;
@@ -146,11 +145,27 @@ header{
     display:block;
     width: 25px;
     height: 3px;
-    margin: 5px auto;
+    margin: 5px 8px 0px 15px;
     transition: all .2s ease-in-out;
     background-color: rgb(0, 0, 0);;
   }
 }
+ .fa-cart-shopping{
+  position: relative;
+  transform: scale(1.4);
+ }
+.cart_number{
+  background-color: transparent;
+  top: 19%;
+  right: -75%;
+  width: 21px;
+    height: 18px;
+  .cart_n{
+    padding: 8px;
+    color:black;
+    font-size: 12px;
+  }
+  }
 
 //-----------------------------
 //MEDIA
@@ -205,10 +220,16 @@ header{
       left: 0;
       width:100%;
       background-color: $green_salad;
-      display:flex;
       text-align:center;
       justify-content: space-between;
       padding: 10px;
+      li{
+        padding:15px 0;
+        &:hover{
+          background-color: darken($green_salad, 10%);
+          cursor:pointer;
+        }
+      }
       a{
         color: black;
         text-decoration: none;

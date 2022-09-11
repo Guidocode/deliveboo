@@ -30,9 +30,12 @@
             <p class="card-text"><span>Ingredienti: </span>{{ $dish->description }}</p>
             <p class="h5"> Disponibilità: {{  $dish->visible === 1 ? 'Si' : 'No' }}</p>
             <h5><strong>Prezzo: </strong>{{ $dish->price }}&euro;</h5>
+            <div class="mt-4">
+                <a class="btn btn_lightblue mx-3" href="{{ route('admin.dishes.index') }}"><i class="fa-solid fa-arrow-left"></i> TORNA INDIETRO</a>
+                <a class="btn btn_lightgr" href="{{ route('admin.dishes.edit', $dish) }}">MODIFICA</a>
 
-            <a class="btn btn-primary my-3" href="{{ route('admin.dishes.index') }}"><< TORNA INDIETRO</a>
-            <a class="btn btn-warning" href="{{ route('admin.dishes.edit', $dish) }}">MODIFICA</a>
+            </div>
+
 
         </div>
     </div>

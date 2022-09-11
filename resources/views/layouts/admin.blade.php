@@ -93,14 +93,7 @@
                             <i class="fa-solid fa-utensils"></i>
                             <h4>Aggiungi piatto</h4>
                         </a>
-                        <a href="#">
-                            <i class="fa-solid fa-chart-line"></i>
-                            <h4>Statistiche</h4>
-                        </a>
-                        <a class="{{ Route::currentRouteName() === 'admin.report' ? 'active' : ''}}" href="{{ route('admin.report')}}">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            <h4>Reports</h4>
-                        </a>
+
 
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

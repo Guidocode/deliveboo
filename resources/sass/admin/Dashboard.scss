@@ -246,7 +246,27 @@ main{
       text-align:right;
     }
   }
-
+.btn_lightgr{
+  background-color: $violet;
+  padding:5px 20px;
+  color:black;
+  border-radius:30px;
+  margin: 5px 0;
+}
+.btn_lightblue{
+  background-color: $blue;
+  padding:5px 20px;
+  color:black;
+  border-radius:30px;
+  margin: 5px 0;
+}
+.btn_yellow{
+  background-color: $orange;
+  padding:5px 20px;
+  color:black;
+  border-radius:30px;
+  margin: 5px 0;
+}
 }
 //MEDIAS
 
@@ -270,7 +290,10 @@ main{
 
 @media screen and (max-width: 768px){
   main{
-    margin: 2rem 2rem;
+    margin: 2rem 1rem;
+  }
+  .buttons{
+    flex-direction: column;
   }
   main .insights{
     grid-template-columns: repeat(1, 1fr);
@@ -278,6 +301,13 @@ main{
   aside .sidebar a:last-child {
     top: 24rem;
   }
+  .row-table{
+    margin-top:20px;
+    p{
+      line-height:35px;
+    }
+  }
+
 }
 @media screen and (max-width: 576px){
   aside .sidebar h4{
