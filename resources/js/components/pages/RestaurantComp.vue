@@ -323,11 +323,7 @@
   }
   // =====MEDIAS=====
 
-    @media only screen and (min-width: 2000px){
-    .restaurants{
-      padding:0 15rem;
-    }
-  }
+
 
   @media only screen and (max-width: 1400px){
    .jumbo,

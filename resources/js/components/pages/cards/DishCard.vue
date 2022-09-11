@@ -12,7 +12,7 @@
         </div>
 
         <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
+            <div class=" flex-grow-1">
                 <h2 class="card-title"> {{ dish.name }} </h2>
                 <div class="description">{{ dish.description}}</div>
                 <div class="h6">Disponibile: {{ dish.visible === 1 ? 'Si' : 'No'}}</div>
@@ -124,13 +124,15 @@ animation: shake 1s;
 }
 }
 .image_dish{
-    height: 240px;
+    height: 300px;
     width:35%;
     overflow:hidden;
+
 
     }
 
     img{
+        object-position: 50% 35%;
         height:100%;
         width:100%;
         object-fit: cover!important;
@@ -269,7 +271,7 @@ animation: shake 1s;
         padding-left: 0;
     }
 }
-   
+
 
 @media only screen and (max-width: 843px){
     .dish_card{
@@ -297,7 +299,7 @@ animation: shake 1s;
         height: 200px;
     }
 }
-    
+
 
 @media only screen and (max-width: 736px){
 

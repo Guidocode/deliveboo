@@ -21,7 +21,7 @@
                             <span class="number_items">{{ product.inCart }}</span>
                             <i  @click="productPlus(product, index, 1)" class="fa-solid fa-plus"></i>
                         </div>
-                        <div class="green_price">{{ (product.price * product.inCart).toFixed(2) }}</div>
+                        <div class="green_price">{{ (product.price * product.inCart).toFixed(2) }} &euro;</div>
                     </div>
                 </div>
                 </div>

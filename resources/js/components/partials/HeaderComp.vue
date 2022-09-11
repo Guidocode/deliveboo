@@ -22,7 +22,7 @@
             <router-link :to="{name:'Cart'}">
                 <i class="fa-solid fa-cart-shopping mx-2 position-relative" style="color:black">
                     <div class="position-absolute " >
-                        <span> * </span>
+                        <span> {{ countCart() }} </span>
                     </div>
                 </i>
             </router-link>
@@ -52,12 +52,18 @@ export default {
   name: 'HeaderComp',
   data() {
     return {
+        count: 0,
         cartList: JSON.parse(window.localStorage.getItem('dishesInCart')),
         isShown: false,
     }
   },
   methods: {
-
+    countCart(){
+        setInterval(() => {
+            this.count = window.localStorage.getItem('count')
+        }, 100);
+        return this.count
+    }
   },
   computed:{
 
