@@ -1929,6 +1929,10 @@ __webpack_require__.r(__webpack_exports__);
     window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
+    updateCartCount: function updateCartCount(count) {
+      this.cartCount = count;
+      return this.cartCount;
+    },
     handleScroll: function handleScroll() {
       var _this = this;
 
@@ -1978,39 +1982,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CartComp',
+  name: "CartComp",
+  components: {},
   props: {},
   mounted: function mounted() {
     this.getTotalPrice();
   },
   data: function data() {
     return {
-      dataCart: JSON.parse(window.localStorage.getItem('dishesInCart')),
+      dataCart: JSON.parse(window.localStorage.getItem("dishesInCart")),
       productsToPass: [],
-      totalCount: localStorage.getItem('count'),
+      totalCount: localStorage.getItem("count"),
       totalCost: 0,
-      clientData: false,
+      clientInfo: false,
+      clientPay: false,
       form: {}
     };
   },
   methods: {
+    deleteProduct: function deleteProduct(product, index) {
+      delete this.dataCart[index];
+      localStorage.setItem("dishesInCart", JSON.stringify(this.dataCart));
+      this.totalCount -= product.inCart;
+      localStorage.setItem("count", this.totalCount);
+      var actualCost = parseFloat(this.totalCost) - product.price * product.inCart;
+      localStorage.setItem("totalCost", actualCost);
+      this.totalCost = actualCost, this.$forceUpdate();
+    },
     productMinus: function productMinus(product, index, bool) {
       if (product.inCart > 1) {
         product.inCart--;
-        localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart));
+        localStorage.setItem("dishesInCart", JSON.stringify(this.dataCart));
         this.totalCount--;
-        localStorage.setItem('count', this.totalCount);
+        localStorage.setItem("count", this.totalCount);
         var actualCost = parseFloat(this.totalCost) - product.price;
-        localStorage.setItem('totalCost', actualCost);
+        localStorage.setItem("totalCost", actualCost);
       } else if (product.inCart == 1) {
         delete this.dataCart[index];
-        localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart));
+        localStorage.setItem("dishesInCart", JSON.stringify(this.dataCart));
         this.totalCount--;
-        localStorage.setItem('count', this.totalCount);
+        localStorage.setItem("count", this.totalCount);
 
         var _actualCost = parseFloat(this.totalCost) - product.price;
 
-        localStorage.setItem('totalCost', _actualCost);
+        localStorage.setItem("totalCost", _actualCost);
         this.$forceUpdate();
       }
 
@@ -2018,19 +2033,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     productPlus: function productPlus(product, index, bool) {
       product.inCart++;
-      localStorage.setItem('dishesInCart', JSON.stringify(this.dataCart));
+      localStorage.setItem("dishesInCart", JSON.stringify(this.dataCart));
       this.totalCount++;
-      localStorage.setItem('count', this.totalCount);
+      localStorage.setItem("count", this.totalCount);
       this.updateTotalCost(product.price, bool);
     },
     sendFormDetails: function sendFormDetails() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/order', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/order", {
         params: this.form
       }).then(function (r) {
-        if (r.data.success == 'success') {
-          _this.clientData = true;
+        if (r.data.success == "success") {
+          _this.clientPay = true;
         }
       })["catch"](function (e) {
         console.log(e.message);
@@ -2042,8 +2057,8 @@ __webpack_require__.r(__webpack_exports__);
       var nonce = payload.nonce;
       this.form.products = this.productsToPass;
       this.form.total_price = this.totalCost;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/order', this.form).then(function (r) {
-        if (r.data.success == 'success') {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/order", this.form).then(function (r) {
+        if (r.data.success == "success") {
           setTimeout(function () {
             _this2.$router.push({
               name: "ThanksPage"
@@ -2059,7 +2074,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(message);
     },
     getTotalPrice: function getTotalPrice() {
-      console.log('ciao'); //setTimeout(() => {
+      console.log("ciao"); //setTimeout(() => {
 
       var totalCostF = 0;
 
@@ -2197,9 +2212,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _partials_ButtonPulseComp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../partials/ButtonPulseComp */ "./resources/js/components/partials/ButtonPulseComp.vue");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomeComp',
+  components: {
+    ButtonPulseComp: _partials_ButtonPulseComp__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       resturants: [],
@@ -2263,6 +2283,10 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.getResturant();
       }
+    },
+    changeColor: function changeColor() {
+      var button = document.querySelector('.xxx');
+      button.classList.toggle('active');
     }
   }
 });
@@ -2438,9 +2462,12 @@ __webpack_require__.r(__webpack_exports__);
   name: 'HeaderComp',
   data: function data() {
     return {
-      cartList: JSON.parse(window.localStorage.getItem('dishesInCart'))
+      cartList: JSON.parse(window.localStorage.getItem('dishesInCart')),
+      isShown: false
     };
-  }
+  },
+  methods: {},
+  computed: {}
 });
 
 /***/ }),
@@ -2579,31 +2606,82 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container my-4"
-  }, [_c("table", {
+  }, [!_vm.clientInfo ? _c("table", {
     staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.dataCart, function (product, index) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", {
+    staticClass: "text-center"
+  }, _vm._l(_vm.dataCart, function (product, index) {
     return _c("tr", {
       key: index
     }, [_c("th", {
       attrs: {
         scope: "row"
       }
-    }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price * product.inCart))]), _vm._v(" "), _c("td", [_c("span", {
+    }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s((product.price * product.inCart).toFixed(2)))]), _vm._v(" "), _c("td", {
+      staticClass: "noselect"
+    }, [_c("i", {
+      staticClass: "fa-solid fa-circle-minus mr-1",
       on: {
         click: function click($event) {
           return _vm.productMinus(product, index, 0);
         }
       }
-    }, [_vm._v("-")]), _vm._v(" " + _vm._s(product.inCart) + " "), _c("span", {
+    }), _vm._v("\n                    " + _vm._s(product.inCart) + "\n                    "), _c("i", {
+      staticClass: "fa-solid fa-circle-plus ml-1",
       on: {
         click: function click($event) {
           return _vm.productPlus(product, index, 1);
         }
       }
-    }, [_vm._v("+")])])]);
-  }), 0)]), _vm._v(" "), _c("h3", {
+    })]), _vm._v(" "), _c("td", [_c("i", {
+      staticClass: "fa-solid fa-trash",
+      on: {
+        click: function click($event) {
+          return _vm.deleteProduct(product, index);
+        }
+      }
+    })])]);
+  }), 0)]) : _vm._e(), _vm._v(" "), _c("h4", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.totalCount == 0,
+      expression: "totalCount == 0"
+    }],
+    staticClass: "text-center"
+  }, [_vm._v("Non sono Presenti articoli nel carrello")]), _vm._v(" "), !_vm.clientInfo ? _c("h3", {
     staticClass: "mt-2 text-right"
-  }, [_vm._v("Prezzo Totale "), _c("span", [_vm._v(_vm._s(_vm.totalCost) + "€")])]), _vm._v(" "), !_vm.clientData ? _c("div", {
+  }, [_vm._v("Prezzo Totale "), _c("span", [_vm._v(_vm._s(_vm.totalCost) + "€")])]) : _vm._e(), _vm._v(" "), !_vm.clientInfo ? _c("ButtonPulseComp", {
+    attrs: {
+      button_text: "Cio"
+    },
+    on: {
+      click: function click($event) {
+        _vm.clientInfo = true;
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), !_vm.clientInfo ? _c("div", {
+    staticClass: "btn btn-primary flex-grow-0",
+    on: {
+      click: function click($event) {
+        _vm.clientInfo = true;
+      }
+    }
+  }, [_vm._v("Procedi")]) : _vm._e(), _vm._v(" "), _vm.clientInfo && !_vm.clientPay ? _c("div", {
+    staticClass: "btn btn-warning",
+    on: {
+      click: function click($event) {
+        _vm.clientInfo = false;
+      }
+    }
+  }, [_vm._v("Torna al carrello")]) : _vm._e(), _vm._v(" "), _vm.clientInfo && _vm.clientPay ? _c("div", {
+    staticClass: "btn btn-warning",
+    on: {
+      click: function click($event) {
+        _vm.clientPay = false;
+      }
+    }
+  }, [_vm._v("Torna ai dati di spedizione")]) : _vm._e(), _vm._v(" "), _vm.clientInfo && _vm.totalCount > 0 && !_vm.clientPay ? _c("div", {
     staticClass: "container mt-2"
   }, [_c("h3", [_vm._v("Informazioni cliente")]), _vm._v(" "), _c("form", [_c("div", {
     staticClass: "form-row"
@@ -2641,7 +2719,7 @@ var render = function render() {
     attrs: {
       "for": "surname"
     }
-  }, [_vm._v("Surname")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2758,13 +2836,29 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("Note per il ristorante")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.note,
+      expression: "form.note"
+    }],
     staticClass: "form-control",
     attrs: {
       name: "",
       id: "",
       rows: "3"
+    },
+    domProps: {
+      value: _vm.form.note
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "note", $event.target.value);
+      }
     }
-  }, [_vm._v(_vm._s(_vm.form.note))])])]), _vm._v(" "), _c("button", {
+  })])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary btn-lg btn-block",
     attrs: {
       type: "button"
@@ -2772,7 +2866,7 @@ var render = function render() {
     on: {
       click: _vm.sendFormDetails
     }
-  }, [_vm._v("Vai al Pagamento")])])]) : _vm._e(), _vm._v(" "), _vm.clientData ? _c("v-braintree", {
+  }, [_vm._v("Vai al Pagamento")])])]) : _vm._e(), _vm._v(" "), _vm.clientPay ? _c("v-braintree", {
     staticClass: "container",
     attrs: {
       authorization: "sandbox_gpm3mdyb_vbh2gg786m8tr86x",
@@ -2789,7 +2883,9 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("thead", [_c("tr", [_c("th", {
+  return _c("thead", [_c("tr", {
+    staticClass: "text-center"
+  }, [_c("th", {
     attrs: {
       scope: "col"
     }
@@ -2869,7 +2965,7 @@ var render = function render() {
     staticClass: "jumbo"
   }, [_c("img", {
     attrs: {
-      src: "img/cover.v5.png",
+      src: "img/cover.v5.jpg",
       alt: ""
     }
   })])]);
@@ -2896,21 +2992,34 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "container d-flex container-menu"
+  return _c("div", {
+    staticClass: "container"
   }, [_c("div", {
-    staticClass: "sidebar"
-  }, [_vm._v("\n            " + _vm._s(_vm.resturant.name) + "\n           Aggiungere info ristoranti\n           "), _c("h3", [_vm._v("carrello "), _c("span", [_vm._v(_vm._s(_vm.cartNumber))])]), _vm._v(" "), _c("table", {
+    staticClass: "d-flex resturant-info justify-content-between mt-3"
+  }, [_c("h1", [_vm._v(_vm._s(_vm.resturant.name))]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("Indirizzo: ")]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted"
+  }, [_vm._v(_vm._s(_vm.resturant.address))])]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("Telefono: ")]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted"
+  }, [_vm._v(_vm._s(_vm.resturant.phone))])])]), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col col-lg-4"
+  }, [_c("div", {
+    staticClass: "sidebar d-flex flex-column justify-content-between"
+  }, [_c("div", {}, [_c("h3", [_vm._v("Carrello "), _c("span", [_vm._v(_vm._s(_vm.cartNumber))])]), _vm._v(" "), _c("table", {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.productList, function (product, index) {
     return _c("tr", {
       key: index
     }, [_c("th", {
+      staticClass: "overflow-hidden",
       attrs: {
         scope: "row"
       }
     }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.inCart))])]);
-  }), 0)]), _vm._v(" "), _vm.productList ? _c("div", {
+  }), 0)])]), _vm._v(" "), _vm.productList ? _c("div", {
     staticClass: "btn btn-primary"
   }, [_c("router-link", {
     attrs: {
@@ -2918,8 +3027,8 @@ var render = function render() {
         name: "Cart"
       }
     }
-  }, [_vm._v("Vai al carrello")])], 1) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "dish-container d-flex"
+  }, [_vm._v("Vai al carrello")])], 1) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "col col-lg-8 d-flex flex-wrap"
   }, _vm._l(_vm.resturant.dishes, function (dish) {
     return _c("DishCard", {
       key: dish.id,
@@ -2931,7 +3040,7 @@ var render = function render() {
         getProductList: _vm.getProductList
       }
     });
-  }), 1)])]);
+  }), 1)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2975,24 +3084,28 @@ var render = function render() {
   return _c("div", {
     staticClass: "restaurants text-center"
   }, [_c("div", {
+    staticClass: "jumbo"
+  }, [_c("img", {
+    attrs: {
+      src: "img/try1.png",
+      alt: ""
+    }
+  }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
     staticClass: "input-wrap"
-  }, [_c("div", {
-    staticClass: "inputs"
   }, _vm._l(_vm.types, function (tipo, index) {
     return _c("div", {
       key: "tipo".concat(index),
-      staticClass: "ck-button"
+      staticClass: "text-box"
     }, [_c("label", {
       attrs: {
         "for": tipo.id
       }
-    }, [_c("input", {
+    }, [_c("button", {
+      staticClass: "my_btn",
       attrs: {
-        type: "checkbox",
+        type: "submit",
         name: tipo.name,
-        id: tipo.id
-      },
-      domProps: {
+        id: tipo.id,
         value: tipo.id
       },
       on: {
@@ -3000,10 +3113,12 @@ var render = function render() {
           return _vm.filterMe(tipo.id);
         }
       }
-    }), _c("span", [_c("i", {
-      staticClass: "fa-solid fa-circle-check"
-    }), _vm._v(" " + _vm._s(tipo.name))])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+    }, [_c("span", [_c("i", {
+      "class": tipo.icon
+    }), _vm._v(" " + _vm._s(tipo.name))])])])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "line mt-2"
+  }), _vm._v(" "), _c("div", {
     staticClass: "resturant-container d-flex flex-wrap justify-content-center"
   }, _vm._l(_vm.resturants, function (resturant) {
     return _c("div", {
@@ -3057,7 +3172,16 @@ var render = function render() {
   }), 0)]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "jumbo-text"
+  }, [_c("div", {
+    staticClass: "banner-text text-uppercase question"
+  }, [_vm._v("Categoria")]), _vm._v(" "), _c("h3", [_vm._v("scegliere uno o più categorie")])]);
+}];
 render._withStripped = true;
 
 
@@ -3102,11 +3226,8 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "card",
-    staticStyle: {
-      width: "18rem"
-    }
+  return _c("div", {
+    staticClass: "card"
   }, [_vm.dish.image_db ? _c("img", {
     staticClass: "card-img-top",
     attrs: {
@@ -3114,27 +3235,31 @@ var render = function render() {
       alt: "Immagine db"
     }
   }) : _vm.dish.image ? _c("img", {
+    staticClass: "card-img-top",
     attrs: {
       src: "/storage/".concat(_vm.dish.image),
       alt: "Immagine utente"
     }
   }) : _c("img", {
+    staticClass: "card-img-top",
     attrs: {
       src: "storage/uploads/dish-default.jpg",
       alt: "immagine default"
     }
   }), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
+    staticClass: "card-body dish-body"
+  }, [_c("h6", {
     staticClass: "card-title"
-  }, [_vm._v(" " + _vm._s(_vm.dish.name) + " ")]), _vm._v(" "), _c("span", [_vm._v(" " + _vm._s(_vm.dish.price) + " €")]), _vm._v(" "), _c("a", {
+  }, [_vm._v(" " + _vm._s(_vm.dish.name) + " ")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer"
+  }, [_c("div", {}, [_c("a", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
         _vm.addCart(_vm.dish), _vm.cartNumber(), _vm.getTotalCost(_vm.dish);
       }
     }
-  }, [_vm._v(" Aggiungi al carrello ")])])])]);
+  }, [_vm._v("Aggiungi")]), _vm._v(" "), _c("span", [_vm._v(" " + _vm._s(_vm.dish.price) + "€")])])])]);
 };
 
 var staticRenderFns = [];
@@ -3298,7 +3423,7 @@ var render = function render() {
         name: "restaurants"
       }
     }
-  }, [_vm._v("Ristornati")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("Ristoranti")])], 1), _vm._v(" "), _c("li", {
     staticClass: "about"
   }, [_c("router-link", {
     attrs: {
@@ -3319,27 +3444,64 @@ var render = function render() {
       }
     }
   }, [_c("i", {
-    staticClass: "fa-solid fa-cart-shopping mx-2",
+    staticClass: "fa-solid fa-cart-shopping mx-2 position-relative",
     staticStyle: {
       color: "black"
     }
-  })]), _vm._v(" "), _vm._m(0)], 1)]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "hamburger ml-2"
+  }, [_c("div", {
+    staticClass: "position-absolute"
+  }, [_c("span", [_vm._v(" * ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "hamburger ml-2",
+    on: {
+      click: function click($event) {
+        _vm.isShown = !_vm.isShown;
+      }
+    }
   }, [_c("span", {
     staticClass: "bar"
   }), _vm._v(" "), _c("span", {
     staticClass: "bar"
   }), _vm._v(" "), _c("span", {
     staticClass: "bar"
-  })]);
-}];
+  })])], 1), _vm._v(" "), _vm.isShown ? _c("ul", {
+    staticClass: "hamburger-menu",
+    "class": {
+      open: _vm.isShown
+    }
+  }, [_c("li", {
+    staticClass: "home"
+  }, [_c("router-link", {
+    attrs: {
+      to: {
+        name: "home"
+      }
+    }
+  }, [_vm._v("Home")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "restors"
+  }, [_c("router-link", {
+    attrs: {
+      to: {
+        name: "restaurants"
+      }
+    }
+  }, [_vm._v("Ristoranti")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "about"
+  }, [_c("router-link", {
+    attrs: {
+      to: {
+        name: "about"
+      }
+    }
+  }, [_vm._v("Chi Siamo")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "home"
+  }, [_c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_vm._v("Accedi o registrati")])])]) : _vm._e()]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -28301,7 +28463,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "#pagetop[data-v-f348271a] {\n  position: fixed;\n  z-index: 995;\n  bottom: 40px;\n  right: 50px;\n}\n.fa-arrow-up[data-v-f348271a] {\n  color: black;\n  padding: 12px 15px;\n  background-color: white;\n  border-radius: 50%;\n}\n.fa-arrow-up[data-v-f348271a]:hover {\n  background-color: rgb(252, 151, 151);\n  cursor: pointer;\n  color: black;\n}", ""]);
+exports.push([module.i, "#pagetop[data-v-f348271a] {\n  position: fixed;\n  z-index: 995;\n  bottom: 40px;\n  right: 50px;\n}\nmain[data-v-f348271a] {\n  min-height: calc(100vh - 335px);\n}\n.fa-arrow-up[data-v-f348271a] {\n  color: black;\n  padding: 12px 15px;\n  background-color: white;\n  border-radius: 50%;\n}\n.fa-arrow-up[data-v-f348271a]:hover {\n  background-color: rgb(252, 151, 151);\n  cursor: pointer;\n  color: black;\n}", ""]);
 
 // exports
 
@@ -28339,7 +28501,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "textarea[data-v-04ef5265] {\n  resize: none;\n}", ""]);
+exports.push([module.i, "textarea[data-v-04ef5265] {\n  resize: none;\n}\ntbody tr td i[data-v-04ef5265] {\n  cursor: pointer;\n}\ntbody tr[data-v-04ef5265]:hover {\n  background-color: #cccccc;\n}\n.noselect[data-v-04ef5265] {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}", ""]);
 
 // exports
 
@@ -28377,7 +28539,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container-menu[data-v-68913da4] {\n  height: 100%;\n}\n.container-menu .sidebar[data-v-68913da4] {\n  padding: 20px 10px;\n  background-color: #EEF0EB;\n}\n.container-menu .dish-container[data-v-68913da4] {\n  padding: 10px;\n  gap: 10px;\n  flex-wrap: wrap;\n  background-color: #F98857;\n  justify-content: center;\n  flex-grow: 1;\n}", ""]);
+exports.push([module.i, ".resturant-info[data-v-68913da4] {\n  background-color: aqua;\n  align-items: center;\n  padding: 10px;\n}\n.col[data-v-68913da4] {\n  min-height: 400px;\n}\n.sidebar[data-v-68913da4] {\n  min-height: 400px;\n}", ""]);
 
 // exports
 
@@ -28396,7 +28558,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".search-container[data-v-ed0301fc] {\n  background-color: #EEF0EB;\n  border-radius: 10px;\n}\n.resturant-container[data-v-ed0301fc] {\n  width: 75%;\n  margin: 1rem auto;\n  gap: 10px;\n  border-radius: 10px;\n}\n.restaurants[data-v-ed0301fc] {\n  margin: 0 auto;\n}\nh2[data-v-ed0301fc] {\n  margin-bottom: 40px;\n  font-family: Poppins, sans-serif;\n}\n.input-wrap[data-v-ed0301fc] {\n  min-width: 300px;\n  height: 67px;\n  padding: 0 2rem;\n}\n.inputs[data-v-ed0301fc] {\n  margin: 30px auto;\n  display: flex;\n  height: 50px;\n  justify-content: center;\n  flex-wrap: wrap;\n  -webkit-overflow-scrolling: touch;\n}\n.inputs[data-v-ed0301fc]::-webkit-scrollbar {\n  display: none;\n}\ndiv label input[data-v-ed0301fc] {\n  margin-right: 100px;\n}\n.ck-button[data-v-ed0301fc] {\n  background-color: #C28ED1;\n  color: #3b1c44;\n  margin: 5px;\n  margin: 5px;\n  padding: 7px 20px;\n  border-radius: 25px;\n}\n.ck-button[data-v-ed0301fc]:hover {\n  background-color: #C28ED1;\n}\n.ck-button label[data-v-ed0301fc] {\n  float: left;\n  margin-bottom: 0;\n}\n.ck-button label span[data-v-ed0301fc] {\n  text-align: center;\n  display: block;\n}\n.ck-button label input[data-v-ed0301fc] {\n  position: absolute;\n  top: -20px;\n}\n.ck-button input:checked + span[data-v-ed0301fc] {\n  color: white;\n  padding: 0 30px 0 30px;\n  font-weight: 600;\n}\n.ck-button input:checked + span[data-v-ed0301fc]:hover {\n  color: rgb(245, 68, 68);\n  background-color: #C28ED1;\n}\n.line[data-v-ed0301fc] {\n  width: 93%;\n  margin: 2rem auto;\n  height: 3px;\n  background-color: black;\n}\n.my_card[data-v-ed0301fc] {\n  margin: 20px;\n  height: 200px;\n  width: 200px;\n  position: relative;\n  border-radius: 20px;\n  overflow: hidden;\n  box-shadow: 0 0 10px gray;\n}\n.my_card img[data-v-ed0301fc] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  width: 100%;\n}\n.my_card img[data-v-ed0301fc]:hover {\n  filter: blur(5px);\n  transition: 0.5s ease-in;\n}\n.my_card .card-body[data-v-ed0301fc] {\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 40%;\n  bottom: 0;\n  left: 0;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.5);\n  transform: translateY(100%);\n  transition: all 0.4s;\n}\n.my_card:hover .card-body[data-v-ed0301fc] {\n  transform: translateY(0%);\n}\n.my_card h5[data-v-ed0301fc] {\n  padding: 10px 20px;\n  background-color: #BCCBEA;\n  border-radius: 20px;\n  color: black;\n}", ""]);
+exports.push([module.i, ".restaurants[data-v-ed0301fc] {\n  margin: 0 auto;\n}\n.jumbo[data-v-ed0301fc] {\n  position: relative;\n  width: 100%;\n  height: 35rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n  position: absolute;\n  position: absolute;\n  text-align: initial;\n  top: 66%;\n  left: 10%;\n  line-height: 79px;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n  font-size: 5rem;\n  font-weight: 700;\n  color: black;\n  text-transform: uppercase;\n  -webkit-animation: mymove-ed0301fc 2s ease;\n          animation: mymove-ed0301fc 2s ease;\n  margin-bottom: 1rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n  -webkit-animation: h3move-ed0301fc 2s ease;\n          animation: h3move-ed0301fc 2s ease;\n  padding-left: 1rem;\n}\n.jumbo img[data-v-ed0301fc] {\n  height: 41rem;\n  width: 100%;\n}\n.jumbo .fa-arrow-down[data-v-ed0301fc] {\n  font-size: 45px;\n  margin-top: 20px;\n  color: lightgray;\n}\n.resturant-container[data-v-ed0301fc] {\n  width: 75%;\n  margin: 4rem auto;\n  gap: 10px;\n  border-radius: 10px;\n}\nh2[data-v-ed0301fc] {\n  margin-bottom: 40px;\n  font-family: Poppins, sans-serif;\n}\n.input-wrap[data-v-ed0301fc] {\n  width: 90%;\n  margin: 50px auto;\n  display: flex;\n  min-height: 50px;\n  justify-content: start;\n  flex-wrap: wrap;\n}\n.my_btn[data-v-ed0301fc] {\n  color: #536f50;\n  background-color: transparent;\n  border-radius: 33px;\n  border: 3px solid #536f50;\n  font-size: 24px;\n  padding: 15px 32px;\n}\n.my_btn[data-v-ed0301fc]:hover {\n  background-color: #C28ED1;\n}\n.my_btn[data-v-ed0301fc]:active {\n  color: black;\n}\n.my_btn i[data-v-ed0301fc] {\n  margin-right: 10px;\n}\n.active[data-v-ed0301fc] {\n  background-color: green;\n}\n.my_card[data-v-ed0301fc] {\n  margin: 20px;\n  height: 200px;\n  width: 200px;\n  position: relative;\n  border-radius: 20px;\n  overflow: hidden;\n  box-shadow: 0 0 10px gray;\n}\n.my_card img[data-v-ed0301fc] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  width: 100%;\n}\n.my_card img[data-v-ed0301fc]:hover {\n  filter: blur(5px);\n  transition: 0.5s ease-in;\n}\n.my_card .card-body[data-v-ed0301fc] {\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 40%;\n  bottom: 0;\n  left: 0;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.5);\n  transform: translateY(100%);\n  transition: all 0.4s;\n}\n.my_card:hover .card-body[data-v-ed0301fc] {\n  transform: translateY(0%);\n}\n.my_card h5[data-v-ed0301fc] {\n  padding: 10px 20px;\n  background-color: #BCCBEA;\n  border-radius: 20px;\n  color: black;\n}\n@-webkit-keyframes mymove-ed0301fc {\nfrom {\n    transform: translateX(-100%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@keyframes mymove-ed0301fc {\nfrom {\n    transform: translateX(-100%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@-webkit-keyframes h3move-ed0301fc {\nfrom {\n    transform: translateX(20%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@keyframes h3move-ed0301fc {\nfrom {\n    transform: translateX(20%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@-webkit-keyframes move_arrow-ed0301fc {\nfrom {\n    transform: translateX(20%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@keyframes move_arrow-ed0301fc {\nfrom {\n    transform: translateX(20%);\n}\nto {\n    transform: translateX(0%);\n}\n}\n@media only screen and (min-width: 2000px) {\n.restaurants[data-v-ed0301fc] {\n    padding: 0 15rem;\n}\n}\n@media only screen and (max-width: 1400px) {\n.jumbo[data-v-ed0301fc],\n.jumbo img[data-v-ed0301fc] {\n    height: 28rem;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n    top: 64%;\n    left: 8%;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n    font-size: 4rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n    font-size: 23px;\n    padding-left: 7px;\n}\n}\n@media only screen and (max-width: 992px) {\n.jumbo[data-v-ed0301fc],\n.jumbo img[data-v-ed0301fc] {\n    height: 24rem;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n    top: 63%;\n    left: 8%;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n    font-size: 4rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n    font-size: 23px;\n    padding-left: 7px;\n}\n}\n@media only screen and (max-width: 768px) {\n.jumbo[data-v-ed0301fc],\n.jumbo img[data-v-ed0301fc] {\n    height: 20rem;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n    top: 63%;\n    left: 6%;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n    font-size: 3.2rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n    font-size: 20px;\n    line-height: 8px;\n    padding-left: 7px;\n}\n}\n@media only screen and (max-width: 576px) {\n.jumbo[data-v-ed0301fc],\n.jumbo img[data-v-ed0301fc] {\n    height: 16rem;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n    top: 63%;\n    left: 6%;\n    line-height: 25px;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n    font-size: 2.8rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n    font-size: 18px;\n    line-height: 42px;\n    padding-left: 7px;\n}\n}\n@media only screen and (max-width: 390px) {\n.jumbo[data-v-ed0301fc],\n.jumbo img[data-v-ed0301fc] {\n    height: 10rem;\n}\n.jumbo .jumbo-text[data-v-ed0301fc] {\n    top: 60%;\n    left: 6%;\n    line-height: 25px;\n}\n.jumbo .jumbo-text .question[data-v-ed0301fc] {\n    font-size: 2rem;\n}\n.jumbo .jumbo-text h3[data-v-ed0301fc] {\n    font-size: 14px;\n}\n}", ""]);
 
 // exports
 
@@ -28415,7 +28577,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".card[data-v-8c8299e8] {\n  width: calc(33.3333333333% - 10px);\n  margin: 5px;\n}\n.card img[data-v-8c8299e8] {\n  height: 40%;\n}", ""]);
 
 // exports
 
@@ -28453,7 +28615,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "footer[data-v-de99f5e8] {\n  background-color: rgb(31, 31, 31);\n  color: white;\n  height: 200px;\n}\nfooter a[data-v-de99f5e8] {\n  padding: 5px;\n}\nfooter h3[data-v-de99f5e8] {\n  font-weight: bold;\n}\nfooter .btm-footer[data-v-de99f5e8] {\n  background-color: rgb(27, 27, 27);\n  border-top: 2px solid black;\n}\nfooter .btm-footer .btm-sentence[data-v-de99f5e8] {\n  font-style: italic;\n  font-size: 11px;\n  padding: 10px;\n  margin: 0 !important;\n}\nfooter .btm-footer .btm-sentence span[data-v-de99f5e8] {\n  font-weight: bold;\n}\nfooter .underlower-footer[data-v-de99f5e8] {\n  height: 40px;\n  padding-top: 10px;\n  background-color: black;\n  color: gray;\n  font-size: 12px;\n}\nfooter .title[data-v-de99f5e8] {\n  text-transform: uppercase;\n  color: #BECFBC;\n  font-weight: 500;\n  margin-bottom: 10px;\n}\nfooter .icons[data-v-de99f5e8] {\n  text-align: center;\n}\nfooter .col[data-v-de99f5e8] {\n  margin: 30px 0;\n}\nfooter ul[data-v-de99f5e8] {\n  -webkit-margin-before: 0;\n          margin-block-start: 0;\n  -webkit-margin-after: 0;\n          margin-block-end: 0;\n  -webkit-padding-start: 0px;\n          padding-inline-start: 0px;\n}\nfooter ul li[data-v-de99f5e8] {\n  font-size: 14px;\n  line-height: 25px;\n  color: gray;\n}\nfooter ul li[data-v-de99f5e8]:hover {\n  color: white;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "footer[data-v-de99f5e8] {\n  background-color: rgb(31, 31, 31);\n  color: white;\n  min-height: 200px;\n}\nfooter a[data-v-de99f5e8] {\n  padding: 5px;\n}\nfooter h3[data-v-de99f5e8] {\n  font-weight: bold;\n}\nfooter .btm-footer[data-v-de99f5e8] {\n  background-color: rgb(27, 27, 27);\n  border-top: 2px solid black;\n}\nfooter .btm-footer .btm-sentence[data-v-de99f5e8] {\n  font-style: italic;\n  font-size: 11px;\n  padding: 10px;\n  margin: 0 !important;\n}\nfooter .btm-footer .btm-sentence span[data-v-de99f5e8] {\n  font-weight: bold;\n}\nfooter .underlower-footer[data-v-de99f5e8] {\n  min-height: 40px;\n  padding-top: 10px;\n  background-color: black;\n  color: gray;\n  font-size: 12px;\n}\nfooter .title[data-v-de99f5e8] {\n  text-transform: uppercase;\n  color: #BECFBC;\n  font-weight: 500;\n  margin-bottom: 10px;\n}\nfooter .icons[data-v-de99f5e8] {\n  text-align: center;\n}\nfooter .col[data-v-de99f5e8] {\n  margin: 30px 0;\n}\nfooter ul[data-v-de99f5e8] {\n  -webkit-margin-before: 0;\n          margin-block-start: 0;\n  -webkit-margin-after: 0;\n          margin-block-end: 0;\n  -webkit-padding-start: 0px;\n          padding-inline-start: 0px;\n}\nfooter ul li[data-v-de99f5e8] {\n  font-size: 14px;\n  line-height: 25px;\n  color: gray;\n}\nfooter ul li[data-v-de99f5e8]:hover {\n  color: white;\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -28472,7 +28634,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-494e1ffe] {\n  height: 100px;\n  background-color: #EEF0EB;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1em 4em;\n  box-shadow: 0 0 15px black;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 200px;\n}\nheader nav[data-v-494e1ffe] {\n  padding-top: 17px;\n}\nheader li .active[data-v-494e1ffe] {\n  color: #7131fa;\n}\n.nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\n.nav-list li[data-v-494e1ffe] {\n  margin: 0 10px;\n  padding: 5px 20px;\n  cursor: pointer;\n  line-height: 30px;\n  list-style: none;\n}\n.nav-list li a[data-v-494e1ffe]:hover {\n  text-decoration: none !important;\n}\n.nav-list .home[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-top-right-radius: 25px;\n  border-bottom-right-radius: 25px;\n}\n.nav-list .home[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  cursor: pointer;\n}\n.nav-list .restors[data-v-494e1ffe], .nav-list .about[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-radius: 25px;\n}\n.nav-list .restors[data-v-494e1ffe]:hover, .nav-list .about[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-radius: 0;\n  cursor: pointer;\n}\n.hamburger[data-v-494e1ffe] {\n  display: none !important;\n  cursor: pointer;\n}\n.hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: rgb(0, 0, 0);\n}\n@media only screen and (max-width: 776px) {\n.header[data-v-494e1ffe] {\n    padding: 1em 1.5em;\n}\n.logo img[data-v-494e1ffe] {\n    width: 170px;\n}\n.nav-list li[data-v-494e1ffe] {\n    padding: 5px 10px;\n}\n}\n@media only screen and (max-width: 695px) {\nheader[data-v-494e1ffe] {\n    padding: 1em 2em;\n}\nheader .logo img[data-v-494e1ffe] {\n    width: 150px;\n}\n.nav-list li[data-v-494e1ffe] {\n    margin: 0 5px;\n    padding: 5px 12px;\n}\n.nav-list li a[data-v-494e1ffe] {\n    font-size: 14px;\n}\n.nav[data-v-494e1ffe] {\n    position: fixed;\n    left: -120%;\n    top: 70px;\n    flex-direction: column;\n    width: 100%;\n    text-align: center;\n    transition: 0.3s;\n}\n.nav.active[data-v-494e1ffe] {\n    left: 0;\n}\n.nav ul li[data-v-494e1ffe] {\n    margin: 16px 0;\n}\n.banner-text[data-v-494e1ffe] {\n    font-size: 3em !important;\n}\n}\n@media only screen and (max-width: 575px) {\nheader[data-v-494e1ffe] {\n    padding: 0 2em;\n}\nheader nav li[data-v-494e1ffe] {\n    display: none;\n}\n.hamburger[data-v-494e1ffe] {\n    display: block !important;\n}\n.hamburger-menu[data-v-494e1ffe] {\n    position: absolute;\n    z-index: 967;\n    top: 115px;\n    width: 100%;\n    background-color: red;\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n    justify-content: center;\n    padding: 0;\n}\n.hamburger-menu li[data-v-494e1ffe] {\n    padding: 10px 0;\n}\n.hamburger-menu li[data-v-494e1ffe]:hover {\n    background-color: #ff3333;\n    cursor: pointer;\n}\n.hamburger-menu a[data-v-494e1ffe] {\n    color: white;\n    text-decoration: none;\n    font-size: 22px;\n    text-transform: uppercase;\n}\n}", ""]);
+exports.push([module.i, "header[data-v-494e1ffe] {\n  height: 100px;\n  background-color: #EEF0EB;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1em 4em;\n  box-shadow: 0 0 15px black;\n}\nheader .logo img[data-v-494e1ffe] {\n  width: 200px;\n}\nheader nav[data-v-494e1ffe] {\n  padding-top: 17px;\n}\nheader li .active[data-v-494e1ffe] {\n  color: #7131fa;\n}\n.nav-list[data-v-494e1ffe] {\n  display: flex;\n  align-items: center;\n}\n.nav-list li[data-v-494e1ffe] {\n  margin: 0 10px;\n  padding: 5px 20px;\n  cursor: pointer;\n  line-height: 30px;\n  list-style: none;\n}\n.nav-list li a[data-v-494e1ffe]:hover {\n  text-decoration: none !important;\n}\n.nav-list .home[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-top-right-radius: 25px;\n  border-bottom-right-radius: 25px;\n}\n.nav-list .home[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  cursor: pointer;\n}\n.nav-list .restors[data-v-494e1ffe], .nav-list .about[data-v-494e1ffe] {\n  border: 2px solid black;\n  border-radius: 25px;\n}\n.nav-list .restors[data-v-494e1ffe]:hover, .nav-list .about[data-v-494e1ffe]:hover {\n  transition: border-radius 0.4s linear;\n  border-radius: 0;\n  cursor: pointer;\n}\n.hamburger[data-v-494e1ffe] {\n  display: none !important;\n  cursor: pointer;\n}\n.hamburger .bar[data-v-494e1ffe] {\n  display: block;\n  width: 25px;\n  height: 3px;\n  margin: 5px auto;\n  transition: all 0.2s ease-in-out;\n  background-color: rgb(0, 0, 0);\n}\n@media only screen and (max-width: 992px) {\nheader[data-v-494e1ffe][data-v-494e1ffe] {\n    padding: 1em 1em 1em 2em;\n}\n.nav-list li[data-v-494e1ffe][data-v-494e1ffe] {\n    margin: 0 8px;\n    padding: 2px 18px;\n}\nheader .logo img[data-v-494e1ffe][data-v-494e1ffe] {\n    width: 185px;\n}\n}\n@media only screen and (max-width: 842px) {\n.nav-list li[data-v-494e1ffe][data-v-494e1ffe] {\n    margin: 0 7px;\n    padding: 2px 13px;\n}\n}\n@media only screen and (max-width: 790px) {\n.header[data-v-494e1ffe] {\n    padding: 1em 1.5em;\n}\n.logo img[data-v-494e1ffe] {\n    width: 170px;\n}\n.nav-list li[data-v-494e1ffe][data-v-494e1ffe] {\n    margin: 0 7px;\n    padding: 2px 6px;\n}\n}\n@media only screen and (max-width: 735px) {\nheader[data-v-494e1ffe] {\n    padding: 0 2em;\n}\nheader nav li[data-v-494e1ffe] {\n    display: none;\n}\n.hamburger[data-v-494e1ffe] {\n    display: block !important;\n}\n.hamburger-menu[data-v-494e1ffe][data-v-494e1ffe] {\n    position: absolute;\n    z-index: 967;\n    top: 100px;\n    left: 0;\n    width: 100%;\n    background-color: #BECFBC;\n    display: flex;\n    text-align: center;\n    justify-content: space-between;\n    padding: 10px;\n}\n.hamburger-menu[data-v-494e1ffe] a[data-v-494e1ffe] {\n    color: black;\n    text-decoration: none;\n    font-size: 18px;\n    text-transform: uppercase;\n}\n.hamburger-menu[data-v-494e1ffe] a[data-v-494e1ffe]:hover {\n    color: white;\n}\n}\ni[data-v-494e1ffe] {\n  transform: scale(2);\n}\ni div[data-v-494e1ffe] {\n  background-color: blue;\n  top: 50%;\n  right: -20%;\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\ni div span[data-v-494e1ffe] {\n  color: white;\n  font-size: 8px;\n}", ""]);
 
 // exports
 
