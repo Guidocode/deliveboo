@@ -13,7 +13,7 @@
               <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
               <li class="restors"><router-link :to="{name:'restaurants'}">Ristoranti</router-link></li>
               <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
-              <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
+              <li class="home"><a :href="'/login'">Area Ristoratore</a></li>
             </ul>
           </nav>
 
@@ -40,7 +40,7 @@
           <li class="home"><router-link :to="{name:'home'}">Home</router-link></li>
               <li class="restors"><router-link :to="{name:'restaurants'}">Ristoranti</router-link></li>
               <li class="about"><router-link :to="{name:'about'}">Chi Siamo</router-link></li>
-              <li class="home"><a :href="'/login'">Accedi o registrati</a></li>
+              <li class="home"><a :href="'/login'">Area Ristoratore</a></li>
         </ul>
        <!-- END OF HAMBURGER -->
       </header>
@@ -97,9 +97,12 @@ header{
       cursor: pointer;
       line-height: 30px;
       list-style:none;
+      // font-size:18px;
+      // font-weight: 600;
       a{
         &:hover{
           text-decoration: none !important;
+
         }
       }
 
