@@ -84,20 +84,20 @@
                             <i class="fa-solid fa-bowl-rice"></i>
                             <h4>Menu</h4>
                         </a>
+                        <a class="{{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : ''}}" href="{{ route('admin.dishes.create')}}">
+                            <i class="fa-solid fa-utensils"></i>
+                            <h4>Aggiungi piatto</h4>
+                        </a>
                         <a class="{{ Route::currentRouteName() === 'admin.order.index' ? 'active' : ''}}" href="{{ route('admin.order.index')}}">
                             <i class="fa-solid fa-money-bill-wheat"></i>
                             <h4>Ordini</h4>
                             {{-- <span class="message-count">2</span> --}}
                         </a>
-                        <a class="{{ Route::currentRouteName() === 'admin.dishes.create' ? 'active' : ''}}" href="{{ route('admin.dishes.create')}}">
-                            <i class="fa-solid fa-utensils"></i>
-                            <h4>Aggiungi piatto</h4>
-                        </a>
 
 
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"><i class="fa-regular fa-user"></i>
+                        document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-left"></i>
                         <h4>{{ __('Esci') }}</h4>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

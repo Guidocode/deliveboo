@@ -409,9 +409,11 @@ import axios from 'axios';
         transform: translateY(0px);
     }
 }
+    // =====MEDIA=====
+@media only screen and (min-width: 2200px){
+ 
+}
 
-
-// =====MEDIA=====
 @media only screen and (max-width: 426px){
 .c_container {
     width: 88%;
@@ -431,8 +433,8 @@ import axios from 'axios';
     font-size:14px;
     margin-top:20px;
 }
-.my_btn{
-
+.tot_price{
+    margin-bottom:30px;
 }
 }
 

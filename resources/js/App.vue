@@ -75,9 +75,9 @@ export default {
   right:50px;
 
 }
-main{
-  min-height: calc(100vh - 335px);
-}
+// main{
+//   min-height: calc(100vh - 335px);
+// }
 
 .fa-arrow-up{
   color:black;

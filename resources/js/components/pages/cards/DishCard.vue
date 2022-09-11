@@ -11,7 +11,7 @@
 
         </div>
 
-        <div class="card-body d-flex justify-content-between align-items-center">
+        <div class="card-body d-flex justify-content-between">
             <div class=" flex-grow-1">
                 <h2 class="card-title"> {{ dish.name }} </h2>
                 <div class="description">{{ dish.description}}</div>
@@ -127,10 +127,7 @@ animation: shake 1s;
     height: 300px;
     width:35%;
     overflow:hidden;
-
-
     }
-
     img{
         object-position: 50% 35%;
         height:100%;
@@ -242,14 +239,16 @@ animation: shake 1s;
 }
 
 // =======MEDIAS=========
-@media only screen and (max-width: 1200px){
+@media only screen and (min-width: 1200px){
     .dish_card{
-        padding: 20px 10px;
+        padding: 35px 28px;
         margin-bottom: 20px;
         // height: 37rem;
     }
     .card-body{
         padding:0 15px;
+        align-items: end;
+        padding-left:25px;
     }
     .col{
         padding-right: 0;
@@ -285,10 +284,11 @@ animation: shake 1s;
     }
 }
 
-@media only screen and (max-width: 791px){
+@media only screen and (max-width: 768px){
     .dish_card{
         padding: 20px 10px;
         margin-bottom: 20px;
+        flex-direction:column;
         // height: 37rem;
     }
     .col{
@@ -297,6 +297,11 @@ animation: shake 1s;
     }
     .image_dish{
         height: 200px;
+        margin-bottom:30px;
+    }
+    .card-body,
+    .image_dish{
+        width:100%;
     }
 }
 
@@ -308,7 +313,7 @@ animation: shake 1s;
         // align-items: center;
         padding:0;
         margin-bottom: 20px;
-        height: 37rem;
+        // height: 37rem;
     }
     .card-body{
         width:100%;
@@ -342,23 +347,26 @@ animation: shake 1s;
     }
 }
 
-@media only screen and (max-width: 392px){
+@media only screen and (max-width: 426px){
 
     .dish_card{
-        flex-direction: column;
-
-        width:100%;
-
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     }
     .image_dish{
-        width:100%;
+    width: 100%;
+    height: 36%;
+    border-radius:30px;
+    overflow:hidden;
     }
     .image_dish img{
         height: 220px;
     }
     .card-body[data-v-8c8299e8]{
+    align-items: start;
       padding: 0 0px;
       width:100%;
+      margin-top:15px;
     }
     .card-title{
         margin-top:10px;
