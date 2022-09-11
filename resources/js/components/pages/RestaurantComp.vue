@@ -15,11 +15,11 @@
     <div class="input-wrap">
         <div class="text-box" v-for="(tipo, index) in types" :key="`tipo${ index }`">
           <label :for="tipo.id">
-            
-            <button class="my_btn" type="submit" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)">
+
+            <button class="my_btn" type="submit" :name="tipo.name" :id="tipo.id" :value="tipo.id" @click="filterMe(tipo.id)" :class="{active:selectedTypes.includes(tipo.id)}">
               <span><i :class="tipo.icon"></i> {{ tipo.name }}</span>
             </button>
-            
+
           </label>
         </div>
         <!-- <div><i class="fa-solid fa-xmark"></i></div> -->
@@ -30,11 +30,11 @@
 
         <div v-for="resturant in resturants" :key="resturant.id" class="my_card mx-4" style="width: 18rem;">
           <div class="box">
-          
+
              <img v-if="resturant.image_db" :src="resturant.image_db" class="card-img-top img-fluid" alt="Imagine db">
              <img  class="img-fluid" v-else-if="resturant.image" :src="`/storage/${resturant.image}`" alt="Immagine utente">
              <img class="img-fluid" v-else src="storage/uploads/restaurant-default.jpg" alt="Immagine default">
-          
+
 
           <router-link :to="{ name: 'Menu', params: {slug: resturant.slug} }">
           <div class="card-body d-flex">
@@ -47,7 +47,7 @@
 
           </div>
         </div>
-     
+
       </div>
 
   </div>
@@ -93,7 +93,7 @@
           },
 
           filterMe(id){
-            
+
               if(this.selectedTypes.includes(id)){
                   let index = this.selectedTypes.indexOf(id)
                   this.selectedTypes.splice(index,1)
@@ -180,7 +180,7 @@
     img{
       // height:41rem;
       width:100%;
-    }    
+    }
     .fa-arrow-down{
       font-size: 45px;
       margin-top:20px;
@@ -457,7 +457,7 @@
     }
     .jumbo .jumbo-text{
       top: 60%;
-      left: 6%;      
+      left: 6%;
       line-height: 25px;
       .question{
         font-size:2rem;
@@ -498,6 +498,6 @@
       }
 
   }
-  
+
 
   </style>

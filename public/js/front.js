@@ -2187,17 +2187,13 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios.get('/api/ristorante/' + this.slug).then(function (r) {
-        _this.resturant = r.data.user;
-        var allDish = _this.resturant.dishes;
-        allDish.forEach(function (element) {
-          console.log(element);
-
-          if (element.visible == 1) {
-            _this.dishes.push(element);
-          }
-
-          ;
-        });
+        _this.resturant = r.data.user; // let allDish = this.resturant.dishes
+        // allDish.forEach(element => {
+        //     console.log(element);
+        //     if(element.visible == 1){
+        //         this.dishes.push(element)
+        //     };
+        // });
       });
     },
     cartItemCount: function cartItemCount(count) {
@@ -3132,6 +3128,9 @@ var render = function render() {
       }
     }, [_c("button", {
       staticClass: "my_btn",
+      "class": {
+        active: _vm.selectedTypes.includes(tipo.id)
+      },
       attrs: {
         type: "submit",
         name: tipo.name,
@@ -3293,14 +3292,16 @@ var render = function render() {
   }, [_vm._v(" " + _vm._s(_vm.dish.price) + "€")]), _vm._v(" "), _c("div", {
     staticClass: "order_btn"
   }, [_c("button", {
-    staticClass: "btn btn-white btn-animate"
-  }, [_c("a", {
+    staticClass: "btn btn-white btn-animate",
+    attrs: {
+      disabled: _vm.dish.visible === 0 ? "" : _vm.disabled
+    },
     on: {
       click: function click($event) {
         _vm.addCart(_vm.dish), _vm.cartNumber(), _vm.getTotalCost(_vm.dish);
       }
     }
-  }, [_vm._v("Aggiungi")])])])])])])]);
+  }, [_c("a", [_vm._v("Aggiungi")])])])])])])]);
 };
 
 var staticRenderFns = [];
@@ -28618,7 +28619,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".dish_card[data-v-8c8299e8] {\n  width: 100% !important;\n  padding: 2rem;\n  border-bottom: 1px solid gray;\n}\n.dish_card[data-v-8c8299e8]:hover {\n  -webkit-animation: shake-8c8299e8 0.5s;\n          animation: shake-8c8299e8 0.5s;\n}\n.image_dish[data-v-8c8299e8] {\n  width: 40%;\n  height: 250px;\n  overflow: hidden;\n}\n.image_dish img[data-v-8c8299e8] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  border-radius: 20px;\n  overflow: hidden;\n}\n.image_dish img[data-v-8c8299e8]:hover {\n  transform: scale(1.1);\n  transition: all 1s ease;\n}\n.card-body[data-v-8c8299e8] {\n  padding: 0 30px;\n}\n.card-body h2[data-v-8c8299e8] {\n  margin: 0;\n}\n.price[data-v-8c8299e8] {\n  font-size: 20px;\n  font-weight: 600;\n  background-color: #BCCBEA;\n  border-radius: 20px;\n  padding: 10px 20px;\n  margin-top: 20px;\n}\n.description[data-v-8c8299e8] {\n  font-size: 18px;\n  margin: 10px 0;\n}\n.order_btn[data-v-8c8299e8] {\n  position: relative;\n}\n.btn[data-v-8c8299e8] {\n  padding: 15px 40px;\n  border-radius: 30px;\n}\n.btn[data-v-8c8299e8]:link,\n.btn[data-v-8c8299e8]:visited {\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 10px 40px;\n  border-radius: 30px;\n  display: inline-block;\n  transition: all 0.2s;\n  position: absolute;\n}\n.btn[data-v-8c8299e8]:hover {\n  transform: translateY(-3px);\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);\n}\n.btn[data-v-8c8299e8]:active {\n  transform: translateY(-1px);\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n}\n.btn-white[data-v-8c8299e8] {\n  background-color: rgb(3, 3, 3);\n  color: white;\n}\n.btn[data-v-8c8299e8]::after {\n  content: \"\";\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 100px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n  transition: all 0.4s;\n}\n.btn-white[data-v-8c8299e8]::after {\n  background-color: rgb(7, 7, 7);\n}\n.btn[data-v-8c8299e8]:hover::after {\n  transform: scaleX(1.3) scaleY(1.2);\n  opacity: 0;\n}\n.btn-animated[data-v-8c8299e8] {\n  -webkit-animation: moveInBottom 5s ease-out;\n          animation: moveInBottom 5s ease-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n@-webkit-keyframes shake-8c8299e8 {\n0% {\n    transform: translate(1px, 1px) rotate(0deg);\n}\n10% {\n    transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% {\n    transform: translate(-3px, 0px) rotate(1deg);\n}\n30% {\n    transform: translate(3px, 2px) rotate(0deg);\n}\n40% {\n    transform: translate(1px, -1px) rotate(1deg);\n}\n50% {\n    transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% {\n    transform: translate(-3px, 1px) rotate(0deg);\n}\n70% {\n    transform: translate(3px, 1px) rotate(-1deg);\n}\n80% {\n    transform: translate(-1px, -1px) rotate(1deg);\n}\n90% {\n    transform: translate(1px, 2px) rotate(0deg);\n}\n100% {\n    transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@keyframes shake-8c8299e8 {\n0% {\n    transform: translate(1px, 1px) rotate(0deg);\n}\n10% {\n    transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% {\n    transform: translate(-3px, 0px) rotate(1deg);\n}\n30% {\n    transform: translate(3px, 2px) rotate(0deg);\n}\n40% {\n    transform: translate(1px, -1px) rotate(1deg);\n}\n50% {\n    transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% {\n    transform: translate(-3px, 1px) rotate(0deg);\n}\n70% {\n    transform: translate(3px, 1px) rotate(-1deg);\n}\n80% {\n    transform: translate(-1px, -1px) rotate(1deg);\n}\n90% {\n    transform: translate(1px, 2px) rotate(0deg);\n}\n100% {\n    transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@media only screen and (max-width: 576px) {\n.card-body[data-v-8c8299e8][data-v-8c8299e8] {\n    padding: 0 0px;\n}\n.dish_card[data-v-8c8299e8] {\n    flex-direction: column;\n    padding: 2rem;\n}\n}\n@media only screen and (max-width: 392px) {\n.dish_card[data-v-8c8299e8] {\n    flex-direction: column;\n}\n.image_dish[data-v-8c8299e8] {\n    width: 100%;\n}\n.image_dish img[data-v-8c8299e8] {\n    height: 220px;\n}\n.card-body[data-v-8c8299e8][data-v-8c8299e8] {\n    padding: 0 0px;\n}\n.card-title[data-v-8c8299e8] {\n    margin-top: 10px;\n    font-size: 22px;\n    font-weight: 600;\n}\n.description[data-v-8c8299e8] {\n    font-size: 16px;\n    margin: 15px 0;\n}\n.btn[data-v-8c8299e8] {\n    transform: translateY(0px);\n    padding: 11px 32px;\n}\n}", ""]);
+exports.push([module.i, ".dish_card[data-v-8c8299e8] {\n  width: 100% !important;\n  padding: 2rem;\n  border-bottom: 1px solid gray;\n}\n.dish_card[data-v-8c8299e8]:hover {\n  -webkit-animation: shake-8c8299e8 0.5s;\n          animation: shake-8c8299e8 0.5s;\n}\n.image_dish[data-v-8c8299e8] {\n  width: 40%;\n  height: 250px;\n  overflow: hidden;\n}\n.image_dish img[data-v-8c8299e8] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  border-radius: 20px;\n  overflow: hidden;\n}\n.image_dish img[data-v-8c8299e8]:hover {\n  transform: scale(1.1);\n  transition: all 1s ease;\n}\n.card-body[data-v-8c8299e8] {\n  padding: 0 30px;\n}\n.card-body h2[data-v-8c8299e8] {\n  margin: 0;\n}\n.price[data-v-8c8299e8] {\n  font-size: 20px;\n  font-weight: 600;\n  background-color: #BCCBEA;\n  border-radius: 20px;\n  padding: 10px 20px;\n  margin-top: 20px;\n}\n.description[data-v-8c8299e8] {\n  font-size: 18px;\n  margin: 10px 0;\n}\n.order_btn[data-v-8c8299e8] {\n  position: relative;\n}\n.btn[data-v-8c8299e8] {\n  padding: 15px 40px;\n  border-radius: 30px;\n}\n.btn[data-v-8c8299e8]:link,\n.btn[data-v-8c8299e8]:visited {\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 10px 40px;\n  border-radius: 30px;\n  display: inline-block;\n  transition: all 0.2s;\n  position: absolute;\n}\n.btn[data-v-8c8299e8]:hover {\n  transform: translateY(-3px);\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);\n}\n.btn[data-v-8c8299e8]:active {\n  transform: translateY(-1px);\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n}\n.btn-white[data-v-8c8299e8] {\n  background-color: rgb(3, 3, 3);\n  color: white;\n}\n.btn[data-v-8c8299e8]::after {\n  content: \"\";\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 100px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n  transition: all 0.4s;\n}\n.btn-white[data-v-8c8299e8]::after {\n  background-color: rgb(7, 7, 7);\n}\n.btn[data-v-8c8299e8]:hover::after {\n  transform: scaleX(1.3) scaleY(1.2);\n  opacity: 0;\n}\n.btn-animated[data-v-8c8299e8] {\n  -webkit-animation: moveInBottom 5s ease-out;\n          animation: moveInBottom 5s ease-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n@-webkit-keyframes shake-8c8299e8 {\n0% {\n    transform: translate(1px, 1px) rotate(0deg);\n}\n10% {\n    transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% {\n    transform: translate(-3px, 0px) rotate(1deg);\n}\n30% {\n    transform: translate(3px, 2px) rotate(0deg);\n}\n40% {\n    transform: translate(1px, -1px) rotate(1deg);\n}\n50% {\n    transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% {\n    transform: translate(-3px, 1px) rotate(0deg);\n}\n70% {\n    transform: translate(3px, 1px) rotate(-1deg);\n}\n80% {\n    transform: translate(-1px, -1px) rotate(1deg);\n}\n90% {\n    transform: translate(1px, 2px) rotate(0deg);\n}\n100% {\n    transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@keyframes shake-8c8299e8 {\n0% {\n    transform: translate(1px, 1px) rotate(0deg);\n}\n10% {\n    transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% {\n    transform: translate(-3px, 0px) rotate(1deg);\n}\n30% {\n    transform: translate(3px, 2px) rotate(0deg);\n}\n40% {\n    transform: translate(1px, -1px) rotate(1deg);\n}\n50% {\n    transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% {\n    transform: translate(-3px, 1px) rotate(0deg);\n}\n70% {\n    transform: translate(3px, 1px) rotate(-1deg);\n}\n80% {\n    transform: translate(-1px, -1px) rotate(1deg);\n}\n90% {\n    transform: translate(1px, 2px) rotate(0deg);\n}\n100% {\n    transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@media only screen and (max-width: 576px) {\n.card-body[data-v-8c8299e8][data-v-8c8299e8] {\n    padding: 0 0px;\n}\n.dish_card[data-v-8c8299e8] {\n    flex-direction: column;\n    padding: 2rem;\n}\n}\n@media only screen and (max-width: 392px) {\n.dish_card[data-v-8c8299e8] {\n    flex-direction: column;\n}\n.image_dish[data-v-8c8299e8] {\n    width: 100%;\n}\n.image_dish img[data-v-8c8299e8] {\n    height: 220px;\n}\n.card-body[data-v-8c8299e8][data-v-8c8299e8] {\n    padding: 0 0px;\n}\n.card-title[data-v-8c8299e8] {\n    margin-top: 10px;\n    font-size: 22px;\n    font-weight: 600;\n}\n.description[data-v-8c8299e8] {\n    font-size: 16px;\n    margin: 15px 0;\n}\n.btn[data-v-8c8299e8] {\n    transform: translateY(0px);\n    padding: 11px 32px;\n}\n}\nbutton[data-v-8c8299e8]:disabled {\n  cursor: not-allowed;\n}", ""]);
 
 // exports
 
