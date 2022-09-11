@@ -114,7 +114,7 @@ width: 100% !important;
 padding:2rem;
 border-bottom: 1px solid gray;
 &:hover{
-animation: shake 0.5s;
+animation: shake 1s;
 }
 }
 .image_dish{
@@ -242,11 +242,91 @@ animation: shake 0.5s;
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+@media only screen and (max-width: 1200px){
+    .dish_card{
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        // height: 37rem;
+    }
+    .card-body{
+        padding:0 15px;
+    }
+    .col{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
 
+@media only screen and (max-width: 993px){
+    .dish_card{
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        // height: 37rem;
+    }
+    .card-body{
+        padding:0 15px;
+    }
+    .col{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+   
 //MEDIA
+@media only screen and (max-width: 843px){
+    .dish_card{
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        // height: 37rem;
+    }
+    .col{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 791px){
+    .dish_card{
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        // height: 37rem;
+    }
+    .col{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .image_dish{
+        height: 200px;
+    }
+}
+    
+
+@media only screen and (max-width: 736px){
+
+    .dish_card{
+        flex-direction: column;
+        // align-items: center;
+        padding:0;
+        margin-bottom: 20px;
+        height: 37rem;
+    }
+    .card-body{
+        width:100%;
+        padding:0;
+        margin:0;
+    }
+    .image_dish{
+        height: 300px;
+        width: 100%;
+    }
+    .price{
+        padding: 8px 20px;
+    }
+}
 @media only screen and (max-width: 576px){
     .card-body[data-v-8c8299e8]{
       padding: 0 0px;
+      width: 80%;
     }
     .dish_card{
     flex-direction: column;
@@ -254,7 +334,10 @@ animation: shake 0.5s;
     align-items: center;
     }
     .image_dish{
-        width:60%;
+    width:60%;
+    }
+    .price{
+    padding: 8px 20px;
     }
 }
 @media only screen and (max-width: 392px){

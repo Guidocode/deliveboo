@@ -253,11 +253,169 @@ position: relative;
     animation: moveInBottom 5s ease-out;
     animation-fill-mode: backwards;
 }
-//MEDIA
-@media only screen and (max-width: 769px){
+
+// =======MEDIA=======
+@media only screen and (max-width: 1400px){
+    .jumbo .j-text{
+         padding: 14px 28px;
+         top: 15rem;
+         left: 3rem;
+         width: 65%;
+         h1{
+             font-size:28px;
+         }
+    }
+    .order{
+         width: 25%;
+         top: 15rem;
+         right: 3rem;
+         h3{
+            font-size: 24px;
+         }
+     }
+
+    .menu_items{
+     padding: 10px;
+     margin-top: 4.5rem;
+    margin-left: 3rem;
+    width:65%;
+    min-height:350px;
+     }
+}
+@media only screen and (max-width: 1200px){
+    .jumbo .j-text{
+         padding: 14px 28px;
+         top: 15rem;
+         left: 3rem;
+         width: 65%;
+         h1{
+             font-size:28px;
+         }
+    }
+    .order{
+         width: 25%;
+         top: 15rem;
+         right: 3rem;
+         h3{
+            font-size: 24px;
+         }
+     }
+
+    .menu_items{
+     padding: 10px;
+     margin-top: 4.5rem;
+    margin-left: 3rem;
+    width:65%;
+    min-height:350px;
+     }
+}
+@media only screen and (max-width: 993px){
+
+     .jumbo .j-text{
+        padding: 14px 28px;
+        width: 63%;
+        top: 15rem;
+        left: 3rem;
+        h1{
+             font-size:28px;
+        }
+    }
+    .address,
+    .wel{
+       font-size:14px;
+     }
+    .order{
+         width: 25%;
+         top: 15rem;
+         right: 3rem;
+     }
+    .menu_items{
+         padding: 10px;
+         margin-top: 5.5rem;
+         margin-left: 3rem;
+         width:63%;
+         min-height:340px;
+      }
+}
+
+@media only screen and (max-width: 843px){
+    .jumbo .j-text{
+        top: 11rem;
+        width: 65%;
+        left: 2rem;
+    }
+    .order{
+    top: 11rem;
+    right: 2rem;
+    padding: 13px;
+        h3{
+        font-size: 20px;
+        }
+     }
+     .wel,
+     .address{
+        font-size: 14px;
+     }
+    .menu_items{
+         width: 65%;
+         margin-top: 4.5rem;
+        margin-left: 2rem;
+        min-height: 340px;
+        padding:10px;
+    }
+        .btn{
+        padding:5px 20px;
+        box-shadow: 0 2px 8px rgb(30 30 31);
+    }
+    
+}
+@media only screen and (max-width: 768px){
+    .jumbo,
+    .jumbo img{
+        height: 250px;
+    }
+    .jumbo .j-text{
+        padding: 14px 28px;
+        top: 10rem;
+        left: 2rem;
+        width: 65%;
+        h1{
+            font-size:28px;
+        }
+    }
+     .address{
+        font-size:14px;
+    }
+
+    .wel{
+        font-size:14px;
+    }
+    //     }
+    .order{
+        width: 27%;
+        top: 10rem;
+        right: 1rem;
+    }
+    .table th, .table td{
+        padding:5px;
+    }
+    .btn{
+        padding:5px 10px;
+        box-shadow: 0 2px 8px rgb(30 30 31);
+    }
+    .menu_items{
+        padding: 21px;
+        margin-top: 4.5rem;
+        margin-left: 2rem;
+        width:65%;
+        min-height:300px;
+     }
+}
+
+@media only screen and (max-width: 736px){
         .jumbo .j-text{
         width:58%;
-        top: 15rem;
+        top: 11rem;
         left: 2rem;
         padding: 14px 29px;
         .address{
@@ -273,6 +431,7 @@ position: relative;
         .order{
             width:30%;
             right:2rem;
+             top: 11rem;
             h3{
                 font-size: 18px;
             }
@@ -285,8 +444,12 @@ position: relative;
             box-shadow: 0 2px 8px rgb(30 30 31);
         }
         .menu_items{
-            margin-left: 34px;
-        }
+        width: 57%;
+        margin-top: 3.5rem;
+        padding: 30px;
+        margin-left: 37px;
+    }
+
 }
 
 @media only screen and (max-width: 576px){
