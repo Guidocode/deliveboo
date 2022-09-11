@@ -62,7 +62,12 @@ export default {
         setInterval(() => {
             this.count = window.localStorage.getItem('count')
         }, 100);
-        return this.count
+        if(this.count == null){
+            return 0
+        }else{
+            return this.count
+        }
+
     }
   },
   computed:{
