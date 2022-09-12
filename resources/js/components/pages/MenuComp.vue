@@ -93,8 +93,8 @@
     </div>
         </div>
     </div>
-    </template>
-    <script>
+</template>
+<script>
     import DishCard from './cards/DishCard.vue';
     export default {
         name: "MenuComp",
@@ -137,11 +137,12 @@
             }
         },
     }
-    </script>
-    <style lang="scss" scoped>
+</script>
+<style lang="scss" scoped>
     @import'../../../sass/front/vars';
     .menu{
     position: relative;
+    min-height: 80vh;
     }
     .jumbo{
         width:100%;
@@ -280,12 +281,13 @@
         min-height:350px;
          }
     }
-    @media only screen and (max-width: 1200px){
+    @media only screen and (min-width: 1200px){
         .jumbo .j-text{
-             padding: 14px 28px;
-             top: 15rem;
-             left: 3rem;
-             width: 65%;
+        padding: 20px 40px;
+        top: 15rem;
+        left: 7rem;
+        width: 63%;
+        }
              h1{
                  font-size:28px;
              }
@@ -293,19 +295,25 @@
         .order{
              width: 25%;
              top: 15rem;
-             right: 3rem;
+             right: 7rem;
              h3{
                 font-size: 24px;
              }
          }
         .menu_items{
-         padding: 10px;
-         margin-top: 4.5rem;
-        margin-left: 3rem;
-        width:65%;
-        min-height:350px;
+padding: 10px;
+    margin-top: 6.5rem;
+    margin-left: 7rem;
+    width: 63%;
+    min-height: 350px;
          }
-    }
+         .image_dish{
+            height: 343px;
+    width: 35%;
+    border-radius: 30px;
+    overflow: hidden;
+         }
+    
     @media only screen and (max-width: 993px){
          .jumbo .j-text{
             padding: 14px 28px;
@@ -442,13 +450,8 @@
             margin-left: 37px;
         }
     }
-    @media only screen and (max-width: 576px){
-         .jumbo{
-            height: 250px;
-        }
-        .jumbo img{
-            height:100%;
-        }
+@media only screen and (max-width: 426px){
+
         .jumbo .j-text{
             width:90%;
             top: 13rem;
@@ -460,6 +463,12 @@
         h1{
             font-size: 2rem;
         }
+        .address{
+            display:none;
+        }
+        .special{
+            font-size:14px;
+        }
         .order{
             display:none;
             // width:90%;
@@ -468,7 +477,7 @@
         }
         .menu_items{
         padding: 0;
-        margin-top: 7rem;
+        margin-top: 5rem;
         width:90%;
         margin-left: 30px;
         }
@@ -481,6 +490,7 @@
           padding: 0 0px;
         }
     }
+
     @media only screen and (max-width: 392px){
         .jumbo{
             height: 250px;

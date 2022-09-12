@@ -325,22 +325,35 @@
 
 
 
-  @media only screen and (max-width: 1400px){
+  @media only screen and (min-width: 1400px){
    .jumbo,
     .jumbo img{
-       height: 28rem;
+       height: 40rem;
     }
     .jumbo .jumbo-text{
       top: 64%;
-      left: 8%;
+      left: 8rem;
       // line-height: 25px;
       .question{
-        font-size:4rem;
+        font-size:6rem;
       }
       h3{
-        font-size: 23px;
+        font-size: 2.5rem;
         padding-left: 7px;
       }
+    }
+    .input-wrap{
+      width: 83%;
+    }
+    .resturant-container{
+    margin: 0 auto;
+    justify-content: center;
+    width: 83%;
+    justify-content: space-between;
+    padding: 2rem 0;
+    }
+    .input-wrap .text-box{
+      margin-right: 25px;
     }
   }
   @media only screen and (max-width: 993px){
@@ -443,11 +456,11 @@
     }
   }
 
-  @media only screen and (max-width: 391px){
+  @media only screen and (max-width: 426px){
 
     .jumbo,
     .jumbo img{
-       height: 12rem;
+       height: 14rem;
     }
     .jumbo .jumbo-text{
       top: 60%;
@@ -485,6 +498,7 @@
 
       .resturant-container{
         margin: 0 auto;
+        padding-bottom: 30px;
       }
       .my_card{
         margin:15px;

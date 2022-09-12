@@ -100,5 +100,10 @@ body{
   flex-basis:50%;
   margin-block-start: 0em;
   margin-block-end: 0em;
-  line-height: 55px;
+}
+@media screen and (max-width: 426px){
+.row-table{
+  padding:0;
+}
+
 }

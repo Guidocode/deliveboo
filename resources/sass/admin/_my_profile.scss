@@ -50,13 +50,23 @@
   }
 }
 
- @media screen and (max-width: 576px){
+ @media screen and (max-width: 426px){
    .my_section .profile-wrap{
      flex-direction: column;
+     align-items: center;
    }
    .my_section .profile-wrap .my_profile{
     margin-top: 1rem;
     margin-right: 0rem;
+    width:100%;
+    padding:5px;
    }
+   .h4{
+    font-size: 17px;
+   }
+   .row-table p{
+    line-height: 27px;
+   }
+
  }
 
